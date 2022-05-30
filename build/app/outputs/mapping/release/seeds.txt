@@ -1,0 +1,1024 @@
+com.google.firebase.firestore.core.DocumentViewChange$Type: com.google.firebase.firestore.core.DocumentViewChange$Type valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterOverlaySurface
+io.grpc.okhttp.internal.TlsVersion: io.grpc.okhttp.internal.TlsVersion[] values()
+io.flutter.embedding.engine.FlutterJNI: void nativeUpdateJavaAssetManager(long,android.content.res.AssetManager,java.lang.String)
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$AnimationCallback: io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback this$0
+com.google.android.gms.internal.measurement.zzbo$zza
+com.google.firebase.auth.internal.zzf: android.os.Parcelable$Creator CREATOR
+io.grpc.internal.CensusStatsModule$ClientCallTracer: io.grpc.internal.CensusStatsModule$ClientTracer streamTracer
+com.google.android.gms.internal.measurement.zzl: com.google.android.gms.internal.measurement.zzm asInterface(android.os.IBinder)
+com.google.android.gms.internal.firebase_auth.zzed: android.os.Parcelable$Creator CREATOR
+io.grpc.ConnectivityState: io.grpc.ConnectivityState valueOf(java.lang.String)
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack
+com.google.android.gms.measurement.AppMeasurement: void setConditionalUserPropertyAs(com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty)
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzo
+org.tensorflow.lite.NativeInterpreterWrapper: long inferenceDurationNanoseconds
+com.google.firebase.firestore.core.DocumentViewChange$Type: com.google.firebase.firestore.core.DocumentViewChange$Type[] values()
+com.google.firebase.auth.GithubAuthCredential: android.os.Parcelable$Creator CREATOR
+io.flutter.view.AccessibilityViewEmbedder: void copyAccessibilityFields(android.view.accessibility.AccessibilityNodeInfo,android.view.accessibility.AccessibilityNodeInfo)
+com.google.firebase.firestore.remote.ConnectivityMonitor$NetworkStatus: com.google.firebase.firestore.remote.ConnectivityMonitor$NetworkStatus[] values()
+com.google.android.gms.internal.measurement.zzbj$zze: java.lang.String zze
+io.flutter.view.AccessibilityViewEmbedder: android.view.View platformViewOfNode(int)
+io.flutter.plugin.platform.SingleViewPresentation: android.view.View$OnFocusChangeListener focusChangeListener
+com.google.android.gms.internal.measurement.zzbj$zzc: boolean zzf
+com.google.android.gms.measurement.module.Analytics
+io.flutter.embedding.engine.FlutterJNI: void nativeSurfaceChanged(long,int,int)
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: long mCreationTimestamp
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event ON_ANY
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.Object mValue
+com.google.android.gms.internal.measurement.zzbr$zze: com.google.android.gms.internal.measurement.zzgx zzk
+com.google.android.gms.internal.measurement.zzbo$zza: boolean zzf
+com.google.android.gms.internal.measurement.zzbj$zze
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.View$OnApplyWindowInsetsListener getInsetsListener()
+io.flutter.embedding.engine.FlutterJNI: void updateSemantics(java.nio.ByteBuffer,java.lang.String[])
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: android.graphics.Matrix getFinalMatrix()
+io.flutter.plugin.platform.SingleViewPresentation: io.flutter.plugin.platform.SingleViewPresentation$PresentationState detachState()
+com.google.firebase.firestore.core.OrderBy$Direction: com.google.firebase.firestore.core.OrderBy$Direction valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zze: com.google.android.gms.internal.measurement.zzfl zzi
+io.flutter.plugins.firebaseanalytics.FlutterFirebaseAppRegistrar: FlutterFirebaseAppRegistrar()
+com.google.firestore.v1.BatchGetDocumentsResponse$ResultCase: com.google.firestore.v1.BatchGetDocumentsResponse$ResultCase valueOf(java.lang.String)
+io.flutter.embedding.android.FlutterView: io.flutter.embedding.engine.FlutterEngine getAttachedFlutterEngine()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void onActivitySaveInstanceState(com.google.android.gms.dynamic.IObjectWrapper,com.google.android.gms.internal.measurement.zzn,long)
+com.google.firebase.firestore.util.Logger$Level: com.google.firebase.firestore.util.Logger$Level[] values()
+androidx.lifecycle.Lifecycle$State: androidx.lifecycle.Lifecycle$State valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void removeIsDisplayingFlutterUiListener(io.flutter.embedding.engine.renderer.FlutterUiDisplayListener)
+io.grpc.internal.CensusStatsModule$ClientTracer: long outboundUncompressedSize
+com.google.android.gms.internal.measurement.zzbj$zzd: int zzd
+com.google.android.gms.internal.measurement.zzbj$zzf: int zzc
+com.google.android.gms.measurement.AppMeasurementReceiver: AppMeasurementReceiver()
+androidx.lifecycle.FullLifecycleObserverAdapter
+com.google.firebase.auth.FacebookAuthCredential: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.plugins.lifecycle.HiddenLifecycleReference: androidx.lifecycle.Lifecycle getLifecycle()
+com.google.android.gms.measurement.AppMeasurement: void clearConditionalUserProperty(java.lang.String,java.lang.String,android.os.Bundle)
+io.grpc.ChannelLogger$ChannelLogLevel: io.grpc.ChannelLogger$ChannelLogLevel valueOf(java.lang.String)
+androidx.activity.OnBackPressedDispatcher$LifecycleOnBackPressedCancellable
+com.google.firebase.firestore.proto.MaybeDocument$DocumentTypeCase: com.google.firebase.firestore.proto.MaybeDocument$DocumentTypeCase valueOf(java.lang.String)
+com.google.firebase.analytics.FirebaseAnalytics: com.google.android.gms.measurement.internal.zzia getScionFrontendApiImplementation(android.content.Context,android.os.Bundle)
+com.google.android.gms.internal.measurement.zzbr$zza
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: int access$500(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback)
+io.grpc.okhttp.NegotiationType: io.grpc.okhttp.NegotiationType valueOf(java.lang.String)
+com.google.firebase.auth.PhoneAuthCredential: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterOverlaySurface: int getId()
+com.google.firebase.firestore.core.Query$LimitType: com.google.firebase.firestore.core.Query$LimitType[] values()
+com.google.android.gms.common.util.DynamiteApi
+io.flutter.view.AccessibilityViewEmbedder: java.util.Map embeddedViewToDisplayBounds
+com.google.firebase.auth.zzaf: android.os.Parcelable$Creator CREATOR
+io.flutter.view.AccessibilityViewEmbedder: void cacheVirtualIdMappings(android.view.View,int,int)
+com.google.android.gms.internal.measurement.zzbr$zze: int zzc
+com.google.protobuf.GeneratedMessageLite$MethodToInvoke: com.google.protobuf.GeneratedMessageLite$MethodToInvoke[] values()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void performAction(android.os.Bundle,com.google.android.gms.internal.measurement.zzn,long)
+com.google.android.gms.internal.measurement.zzbr$zzk: com.google.android.gms.internal.measurement.zzbr$zzk zzj
+io.flutter.embedding.engine.FlutterJNI: void asyncWaitForVsync(long)
+io.flutter.embedding.engine.systemchannels.TextInputChannel$TextCapitalization: io.flutter.embedding.engine.systemchannels.TextInputChannel$TextCapitalization[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.WindowInsetsAnimation$Callback getAnimationCallback()
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzak
+com.google.protobuf.WireFormat$Utf8Validation: com.google.protobuf.WireFormat$Utf8Validation valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbj$zza
+com.google.android.gms.internal.firebase_auth.zzcn: android.os.Parcelable$Creator CREATOR
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: int access$100(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback)
+com.google.android.gms.dynamite.DynamiteModule$DynamiteLoaderClassLoader: DynamiteModule$DynamiteLoaderClassLoader()
+io.flutter.embedding.engine.FlutterJNI: void loadDartDeferredLibrary(int,java.lang.String[])
+com.google.android.gms.internal.measurement.zzbr$zzk: float zzh
+androidx.versionedparcelable.ParcelImpl: android.os.Parcelable$Creator CREATOR
+com.google.firebase.firestore.FirestoreRegistrar: com.google.firebase.firestore.FirestoreMultiDbComponent lambda$getComponents$0(com.google.firebase.components.ComponentContainer)
+io.flutter.embedding.engine.FlutterJNI: void nativeSurfaceWindowChanged(long,android.view.Surface)
+io.flutter.embedding.engine.FlutterJNI: void markTextureFrameAvailable(long)
+com.google.android.gms.internal.firebase_auth.zzfw: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.systemchannels.PlatformChannel$HapticFeedbackType: io.flutter.embedding.engine.systemchannels.PlatformChannel$HapticFeedbackType valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzq
+io.grpc.okhttp.NegotiationType: io.grpc.okhttp.NegotiationType[] values()
+io.flutter.embedding.android.FlutterSplashView$SavedState
+io.flutter.embedding.engine.FlutterJNI: void dispatchEmptyPlatformMessage(java.lang.String,int)
+com.google.firebase.iid.Registrar: java.util.List getComponents()
+com.google.firebase.firestore.proto.MaybeDocument$DocumentTypeCase: com.google.firebase.firestore.proto.MaybeDocument$DocumentTypeCase[] values()
+io.grpc.internal.GrpcUtil$Http2Error: io.grpc.internal.GrpcUtil$Http2Error valueOf(java.lang.String)
+com.google.android.gms.dynamite.DynamiteModule$DynamiteLoaderClassLoader
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getAppInstanceId(com.google.android.gms.internal.measurement.zzn)
+com.google.firebase.firestore.core.OnlineState: com.google.firebase.firestore.core.OnlineState valueOf(java.lang.String)
+com.google.firebase.firestore.MetadataChanges: com.google.firebase.firestore.MetadataChanges valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zze: long zzf
+com.google.android.gms.internal.measurement.zzfq: com.google.android.gms.internal.measurement.zzfq[] values()
+com.google.android.gms.internal.measurement.zzbr$zzh$zza: com.google.android.gms.internal.measurement.zzbr$zzh$zza[] values()
+com.google.firebase.firestore.core.LimboDocumentChange$Type: com.google.firebase.firestore.core.LimboDocumentChange$Type valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbj$zze: com.google.android.gms.internal.measurement.zzbj$zze zzj
+io.flutter.embedding.android.RenderMode: io.flutter.embedding.android.RenderMode[] values()
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event[] values()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void onActivityCreated(com.google.android.gms.dynamic.IObjectWrapper,android.os.Bundle,long)
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityPostResumed(android.app.Activity)
+io.flutter.embedding.engine.systemchannels.TextInputChannel$TextInputType: io.flutter.embedding.engine.systemchannels.TextInputChannel$TextInputType valueOf(java.lang.String)
+com.google.firebase.auth.internal.FederatedSignInActivity
+io.flutter.embedding.engine.FlutterJNI: void prefetchDefaultFontManager()
+com.google.firebase.analytics.FirebaseAnalytics: com.google.firebase.analytics.FirebaseAnalytics getInstance(android.content.Context)
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: android.graphics.SurfaceTexture surfaceTexture
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzaf
+com.google.android.gms.measurement.module.Analytics: com.google.android.gms.measurement.module.Analytics getInstance(android.content.Context)
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$AnimationCallback: void onPrepare(android.view.WindowInsetsAnimation)
+io.flutter.plugin.platform.SingleViewPresentation: io.flutter.plugin.platform.PlatformViewFactory viewFactory
+com.google.common.util.concurrent.AbstractFuture: com.google.common.util.concurrent.AbstractFuture$Listener listeners
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getConditionalUserProperties(java.lang.String,java.lang.String,com.google.android.gms.internal.measurement.zzn)
+io.flutter.plugin.platform.SingleViewPresentation: io.flutter.plugin.platform.PlatformView getView()
+com.google.firestore.v1.TransactionOptions$ReadOnly$ConsistencySelectorCase: com.google.firestore.v1.TransactionOptions$ReadOnly$ConsistencySelectorCase valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbj$zze: com.google.android.gms.internal.measurement.zzbj$zzc zzf
+com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+com.google.android.gms.internal.measurement.zzbj$zzf: java.lang.String zze
+com.google.android.gms.internal.measurement.zzbo$zza: boolean zze
+io.flutter.embedding.engine.systemchannels.PlatformChannel$ClipboardContentFormat: io.flutter.embedding.engine.systemchannels.PlatformChannel$ClipboardContentFormat valueOf(java.lang.String)
+com.google.android.gms.internal.firebase_auth.zzff: android.os.Parcelable$Creator CREATOR
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event ON_DESTROY
+io.flutter.embedding.android.FlutterTextureView: io.flutter.embedding.engine.renderer.FlutterRenderer getAttachedRenderer()
+com.google.android.gms.internal.measurement.zzbj$zzd: java.lang.String zzf
+io.flutter.embedding.engine.FlutterJNI: void nativeSetViewportMetrics(long,float,int,int,int,int,int,int,int,int,int,int,int,int,int,int)
+com.google.firestore.v1.StructuredQuery$Filter$FilterTypeCase: com.google.firestore.v1.StructuredQuery$Filter$FilterTypeCase valueOf(java.lang.String)
+io.flutter.embedding.android.FlutterSplashView$SavedState: java.lang.String access$602(io.flutter.embedding.android.FlutterSplashView$SavedState,java.lang.String)
+io.grpc.InternalChannelz$ChannelTrace$Event$Severity: io.grpc.InternalChannelz$ChannelTrace$Event$Severity valueOf(java.lang.String)
+com.google.android.gms.common.internal.safeparcel.SafeParcelable: java.lang.String NULL
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.WindowInsets lastWindowInsets
+com.google.android.gms.internal.measurement.zzbj$zzf: com.google.android.gms.internal.measurement.zzfl zzg
+com.google.gson.FieldNamingPolicy: com.google.gson.FieldNamingPolicy valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void nativeNotifyLowMemoryWarning(long)
+com.google.android.gms.dynamite.descriptors.com.google.android.gms.measurement.dynamite.ModuleDescriptor: java.lang.String MODULE_ID
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getCachedAppInstanceId(com.google.android.gms.internal.measurement.zzn)
+com.google.protobuf.WireFormat$JavaType: com.google.protobuf.WireFormat$JavaType[] values()
+com.google.firebase.firestore.local.QueryPurpose: com.google.firebase.firestore.local.QueryPurpose[] values()
+io.grpc.okhttp.OkHttpFrameLogger$Direction: io.grpc.okhttp.OkHttpFrameLogger$Direction valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zza: com.google.android.gms.internal.measurement.zzbr$zzi zze
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: void remove()
+com.google.android.gms.internal.measurement.zzbr$zzf: com.google.android.gms.internal.measurement.zzbr$zzf zzd
+io.flutter.embedding.engine.FlutterJNI: boolean nativeFlutterTextUtilsIsVariationSelector(int)
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: android.os.Bundle mTimedOutEventParams
+androidx.loader.app.LoaderManagerImpl$LoaderViewModel
+io.flutter.embedding.engine.FlutterJNI: void init(android.content.Context,java.lang.String[],java.lang.String,java.lang.String,java.lang.String,long)
+io.flutter.embedding.engine.FlutterJNI: long performNativeAttach(io.flutter.embedding.engine.FlutterJNI,boolean)
+com.google.android.gms.internal.measurement.zzdl: int zza
+com.google.firebase.firestore.proto.Target$TargetTypeCase: com.google.firebase.firestore.proto.Target$TargetTypeCase valueOf(java.lang.String)
+com.google.firestore.v1.Precondition$ConditionTypeCase: com.google.firestore.v1.Precondition$ConditionTypeCase[] values()
+com.google.android.gms.internal.measurement.zzbr$zzb: com.google.android.gms.internal.measurement.zzgx zzg
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzaa
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event ON_RESUME
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityStarted(android.app.Activity)
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzk
+io.grpc.internal.CensusStatsModule$ClientTracer: long outboundMessageCount
+com.google.android.gms.internal.measurement.zzbo$zzb: java.lang.String zze
+com.google.firebase.firestore.proto.Target$TargetTypeCase: com.google.firebase.firestore.proto.Target$TargetTypeCase[] values()
+com.google.android.gms.measurement.internal.zzv: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: void attachToNative(boolean)
+io.flutter.embedding.android.TransparencyMode: io.flutter.embedding.android.TransparencyMode[] values()
+com.google.android.gms.internal.measurement.zzbr$zza: int zzc
+io.flutter.embedding.engine.FlutterJNI: void unregisterTexture(long)
+io.flutter.embedding.android.DrawableSplashScreen$DrawableSplashScreenView
+com.google.android.gms.internal.measurement.zzbr$zzg: com.google.android.gms.internal.measurement.zzbr$zzg zzav
+io.flutter.view.FlutterCallbackInformation: java.lang.String callbackName
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setDataCollectionEnabled(boolean)
+io.flutter.view.AccessibilityBridge$Action: io.flutter.view.AccessibilityBridge$Action valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzh: com.google.android.gms.internal.measurement.zzfl zze
+com.google.android.gms.measurement.AppMeasurementJobService: AppMeasurementJobService()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: boolean access$300(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback)
+com.google.android.gms.internal.measurement.zzbr$zzg: com.google.android.gms.internal.measurement.zzfj zzar
+com.google.android.gms.internal.measurement.zzbj$zzb: com.google.android.gms.internal.measurement.zzgx zzm
+com.google.android.gms.internal.measurement.zzez: com.google.android.gms.internal.measurement.zzez[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: int deferredInsetTypes
+com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar: java.util.List getComponents()
+com.google.protobuf.WireFormat$FieldType: com.google.protobuf.WireFormat$FieldType[] values()
+com.google.firestore.v1.Value$ValueTypeCase: com.google.firestore.v1.Value$ValueTypeCase valueOf(java.lang.String)
+com.google.firebase.firestore.remote.Stream$State: com.google.firebase.firestore.remote.Stream$State valueOf(java.lang.String)
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: android.graphics.SurfaceTexture surfaceTexture()
+io.opencensus.trace.MessageEvent$Type: io.opencensus.trace.MessageEvent$Type[] values()
+com.google.firebase.analytics.FirebaseAnalytics
+com.google.android.gms.internal.firebase_auth.zzbx: android.os.Parcelable$Creator CREATOR
+io.flutter.plugins.camera.types.ResolutionPreset: io.flutter.plugins.camera.types.ResolutionPreset[] values()
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzp
+com.google.firestore.v1.StructuredQuery$CompositeFilter$Operator: com.google.firestore.v1.StructuredQuery$CompositeFilter$Operator[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: int overlayInsetTypes
+com.google.firebase.firestore.core.UserData$Source: com.google.firebase.firestore.core.UserData$Source valueOf(java.lang.String)
+com.google.android.gms.internal.firebase_auth.zzch: android.os.Parcelable$Creator CREATOR
+com.google.firebase.firestore.core.ViewSnapshot$SyncState: com.google.firebase.firestore.core.ViewSnapshot$SyncState valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbo$zzc: java.lang.String zze
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: void getTransformMatrix(float[])
+io.flutter.embedding.engine.FlutterJNI: void dispatchSemanticsAction(int,int,java.nio.ByteBuffer,int)
+com.google.firebase.firestore.DocumentSnapshot$ServerTimestampBehavior: com.google.firebase.firestore.DocumentSnapshot$ServerTimestampBehavior valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void nativeSurfaceDestroyed(long)
+com.google.android.gms.internal.measurement.zzbj$zza: com.google.android.gms.internal.measurement.zzbj$zza zzi
+android.support.v4.graphics.drawable.IconCompatParcelizer: androidx.core.graphics.drawable.IconCompat read(androidx.versionedparcelable.VersionedParcel)
+io.flutter.embedding.engine.FlutterJNI: boolean nativeFlutterTextUtilsIsEmoji(int)
+com.google.common.util.concurrent.AbstractFuture$Waiter: com.google.common.util.concurrent.AbstractFuture$Waiter next
+com.google.firestore.v1.Write$OperationCase: com.google.firestore.v1.Write$OperationCase valueOf(java.lang.String)
+io.grpc.internal.CensusStatsModule$ClientTracer: long inboundWireSize
+io.grpc.okhttp.internal.Protocol: io.grpc.okhttp.internal.Protocol[] values()
+com.google.firebase.firestore.core.Query$LimitType: com.google.firebase.firestore.core.Query$LimitType valueOf(java.lang.String)
+io.flutter.embedding.engine.systemchannels.TextInputChannel$TextInputType: io.flutter.embedding.engine.systemchannels.TextInputChannel$TextInputType[] values()
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityPostCreated(android.app.Activity,android.os.Bundle)
+com.google.android.gms.internal.firebase_auth.zzgk: com.google.android.gms.internal.firebase_auth.zzgk[] values()
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzau
+io.flutter.embedding.engine.FlutterJNI: void invokePlatformMessageEmptyResponseCallback(int)
+com.google.android.gms.common.api.internal.LifecycleCallback
+com.google.android.gms.dynamite.descriptors.com.google.android.gms.measurement.dynamite.ModuleDescriptor: int MODULE_VERSION
+io.grpc.InternalChannelz$ChannelTrace$Event$Severity: io.grpc.InternalChannelz$ChannelTrace$Event$Severity[] values()
+com.google.android.gms.internal.measurement.zzfd$zzd: com.google.android.gms.internal.measurement.zzew zzc
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: void detachFromGLContext()
+io.flutter.embedding.engine.FlutterJNI: void nativeDispatchPlatformMessage(long,java.lang.String,java.nio.ByteBuffer,int,int)
+io.flutter.embedding.engine.systemchannels.PlatformChannel$DeviceOrientation: io.flutter.embedding.engine.systemchannels.PlatformChannel$DeviceOrientation valueOf(java.lang.String)
+io.grpc.internal.CensusStatsModule$ClientCallTracer: int callEnded
+io.flutter.embedding.engine.FlutterJNI: void nativeInvokePlatformMessageResponseCallback(long,int,java.nio.ByteBuffer,int)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getUserProperties(java.lang.String,java.lang.String,boolean,com.google.android.gms.internal.measurement.zzn)
+com.google.firebase.firestore.FirestoreRegistrar: java.util.List getComponents()
+com.google.android.gms.internal.measurement.zzfd$zzd
+com.google.android.gms.internal.measurement.zzbr$zza: com.google.android.gms.internal.measurement.zzbr$zza zzh
+io.grpc.okhttp.internal.CipherSuite: io.grpc.okhttp.internal.CipherSuite[] values()
+io.flutter.plugins.camera.types.FlashMode: io.flutter.plugins.camera.types.FlashMode[] values()
+com.google.android.gms.signin.internal.zak: android.os.Parcelable$Creator CREATOR
+io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar
+com.google.android.gms.internal.measurement.zzl: zzl()
+com.google.android.gms.internal.measurement.zzbr$zzi: com.google.android.gms.internal.measurement.zzfl zzf
+io.flutter.plugins.camera.types.FocusMode: io.flutter.plugins.camera.types.FocusMode[] values()
+com.google.android.gms.internal.measurement.zzbr$zzd
+com.google.firebase.firestore.DocumentChange$Type: com.google.firebase.firestore.DocumentChange$Type valueOf(java.lang.String)
+com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken valueOf(java.lang.String)
+androidx.fragment.app.FragmentManagerState: android.os.Parcelable$Creator CREATOR
+io.flutter.view.AccessibilityViewEmbedder
+com.google.firebase.firestore.local.QueryPurpose: com.google.firebase.firestore.local.QueryPurpose valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzm
+io.flutter.embedding.engine.FlutterJNI: void nativeInvokePlatformMessageEmptyResponseCallback(long,int)
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzao
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void unregisterOnMeasurementEventListener(com.google.android.gms.internal.measurement.zzs)
+com.google.android.gms.internal.measurement.zzbo$zzc
+io.flutter.embedding.engine.FlutterJNI: boolean initCalled
+androidx.core.app.RemoteActionCompat
+com.google.android.gms.measurement.AppMeasurement: void beginAdUnitExposure(java.lang.String)
+com.google.android.gms.internal.measurement.zzbj$zzc: com.google.android.gms.internal.measurement.zzbj$zzf zzd
+io.flutter.plugins.GeneratedPluginRegistrant: void registerWith(io.flutter.embedding.engine.FlutterEngine)
+android.support.v4.graphics.drawable.IconCompatParcelizer
+com.google.firebase.firestore.FirebaseFirestoreException$Code: com.google.firebase.firestore.FirebaseFirestoreException$Code[] values()
+io.flutter.embedding.engine.FlutterJNI: void dispatchSemanticsAction(int,io.flutter.view.AccessibilityBridge$Action,java.lang.Object)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getMaxUserProperties(java.lang.String,com.google.android.gms.internal.measurement.zzn)
+androidx.core.app.RemoteActionCompatParcelizer: void write(androidx.core.app.RemoteActionCompat,androidx.versionedparcelable.VersionedParcel)
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.String mTriggeredEventName
+io.flutter.embedding.android.FlutterImageView$SurfaceKind: io.flutter.embedding.android.FlutterImageView$SurfaceKind valueOf(java.lang.String)
+io.flutter.view.AccessibilityBridge$Flag: io.flutter.view.AccessibilityBridge$Flag valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void onDisplayPlatformView(int,int,int,int,int,int,int,io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack)
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event ON_START
+com.google.android.gms.measurement.internal.zzm: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: void pushTransform(float[])
+io.flutter.plugin.platform.SingleViewPresentation: io.flutter.plugin.platform.SingleViewPresentation$PresentationState state
+io.flutter.embedding.engine.FlutterJNI: io.flutter.embedding.engine.FlutterJNI$AccessibilityDelegate accessibilityDelegate
+com.google.android.gms.internal.measurement.zzbr$zza: com.google.android.gms.internal.measurement.zzgx zzi
+io.flutter.view.AccessibilityViewEmbedder: android.view.accessibility.AccessibilityNodeInfo createAccessibilityNodeInfo(int)
+io.opencensus.trace.NetworkEvent$Type: io.opencensus.trace.NetworkEvent$Type valueOf(java.lang.String)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void logEventAndBundle(java.lang.String,java.lang.String,android.os.Bundle,com.google.android.gms.internal.measurement.zzn,long)
+io.grpc.ConnectivityState: io.grpc.ConnectivityState[] values()
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: boolean released
+com.google.android.gms.internal.firebase_auth.zzdh: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzb
+com.google.android.gms.internal.measurement.zzbr$zzj: int zzc
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityPaused(android.app.Activity)
+com.google.firebase.auth.zzg: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.common.internal.ResolveAccountResponse: android.os.Parcelable$Creator CREATOR
+io.flutter.view.AccessibilityViewEmbedder: void setFlutterNodesTranslateBounds(android.view.accessibility.AccessibilityNodeInfo,android.graphics.Rect,android.view.accessibility.AccessibilityNodeInfo)
+com.google.android.gms.internal.measurement.zzbr$zzg: com.google.android.gms.internal.measurement.zzfl zzae
+com.google.android.gms.internal.measurement.zzbj$zzc: com.google.android.gms.internal.measurement.zzgx zzi
+io.flutter.view.AccessibilityViewEmbedder: android.view.View rootAccessibilityView
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzd
+com.google.android.gms.internal.measurement.zzfd: int zzc
+androidx.core.app.CoreComponentFactory: CoreComponentFactory()
+io.flutter.embedding.engine.FlutterJNI: java.util.Set flutterUiDisplayListeners
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzab
+io.flutter.embedding.engine.FlutterJNI: void setPlatformViewsController(io.flutter.plugin.platform.PlatformViewsController)
+com.google.android.gms.internal.measurement.zzbr$zzg: com.google.android.gms.internal.measurement.zzfl zzf
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$AnimationCallback animationCallback
+androidx.core.app.RemoteActionCompat: RemoteActionCompat()
+io.flutter.embedding.engine.plugins.lifecycle.HiddenLifecycleReference: HiddenLifecycleReference(androidx.lifecycle.Lifecycle)
+io.flutter.plugins.firebaseanalytics.FlutterFirebaseAppRegistrar: java.util.List getComponents()
+com.google.android.gms.internal.measurement.zzbo$zzc: java.lang.String zzd
+io.flutter.embedding.engine.FlutterJNI: void setLocalizationPlugin(io.flutter.plugin.localization.LocalizationPlugin)
+io.grpc.okhttp.OkHttpChannelBuilder
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getCurrentScreenClass(com.google.android.gms.internal.measurement.zzn)
+io.flutter.embedding.android.FlutterSplashView$SavedState: FlutterSplashView$SavedState(android.os.Parcel)
+com.google.firebase.auth.FirebaseAuthRegistrar: java.util.List getComponents()
+io.flutter.plugins.camera.types.ExposureMode: io.flutter.plugins.camera.types.ExposureMode[] values()
+io.flutter.embedding.engine.plugins.lifecycle.HiddenLifecycleReference
+com.google.firebase.auth.EmailAuthCredential: android.os.Parcelable$Creator CREATOR
+io.flutter.plugins.urllauncher.WebViewActivity
+com.google.android.gms.measurement.AppMeasurement: int getMaxUserProperties(java.lang.String)
+com.google.android.gms.internal.measurement.zzbo$zzb
+com.google.android.gms.internal.measurement.zzbj$zzd: com.google.android.gms.internal.measurement.zzgx zzj
+io.grpc.util.RoundRobinLoadBalancer$ReadyPicker: int index
+com.google.android.gms.internal.firebase_auth.zzfy: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.measurement.AppMeasurementReceiver
+io.flutter.embedding.android.FlutterImageView$SurfaceKind: io.flutter.embedding.android.FlutterImageView$SurfaceKind[] values()
+com.google.android.gms.internal.firebase_auth.zzfr: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: void onPreEngineRestart()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: AppMeasurementDynamiteService()
+io.flutter.embedding.engine.FlutterJNI: void dispatchPointerDataPacket(java.nio.ByteBuffer,int)
+com.google.android.gms.internal.firebase_auth.zzcz: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: void deferredComponentInstallFailure(int,java.lang.String,boolean)
+io.flutter.embedding.engine.FlutterJNI: void nativeDestroy(long)
+com.google.android.gms.measurement.internal.zzam: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbo$zzb: com.google.android.gms.internal.measurement.zzfl zzg
+io.flutter.view.AccessibilityBridge$TextDirection: io.flutter.view.AccessibilityBridge$TextDirection[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: ImeSyncDeferringInsetsCallback(android.view.View,int,int)
+androidx.lifecycle.Lifecycle$State: androidx.lifecycle.Lifecycle$State[] values()
+com.google.android.gms.internal.measurement.zzim: com.google.android.gms.internal.measurement.zzim[] values()
+com.google.android.gms.internal.measurement.zzbr$zzb: com.google.android.gms.internal.measurement.zzbr$zzb zzf
+androidx.activity.ComponentActivity$2
+io.flutter.embedding.engine.FlutterJNI: io.flutter.embedding.engine.deferredcomponents.DeferredComponentManager deferredComponentManager
+io.flutter.view.AccessibilityViewEmbedder: void addChildrenToFlutterNode(android.view.accessibility.AccessibilityNodeInfo,android.view.View,android.view.accessibility.AccessibilityNodeInfo)
+com.google.android.gms.internal.firebase_auth.zzdl: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.firebase_auth.zzcf: android.os.Parcelable$Creator CREATOR
+io.grpc.okhttp.internal.framed.HeadersMode: io.grpc.okhttp.internal.framed.HeadersMode valueOf(java.lang.String)
+io.flutter.embedding.android.FlutterSurfaceView
+io.flutter.embedding.engine.FlutterJNI: boolean loadLibraryCalled
+com.squareup.okhttp.Protocol: com.squareup.okhttp.Protocol[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$AnimationCallback: android.view.WindowInsets onProgress(android.view.WindowInsets,java.util.List)
+io.flutter.embedding.engine.FlutterJNI: void detachFromNativeAndReleaseResources()
+com.google.firebase.analytics.FirebaseAnalytics: void setCurrentScreen(android.app.Activity,java.lang.String,java.lang.String)
+io.flutter.plugin.platform.SingleViewPresentation: int viewId
+org.tensorflow.lite.DataType: org.tensorflow.lite.DataType[] values()
+org.tensorflow.lite.DataType: org.tensorflow.lite.DataType valueOf(java.lang.String)
+io.flutter.plugins.camera.PictureCaptureRequest$State: io.flutter.plugins.camera.PictureCaptureRequest$State valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbj$zza: com.google.android.gms.internal.measurement.zzgx zzj
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void initForTests(java.util.Map)
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityPreDestroyed(android.app.Activity)
+com.google.android.gms.internal.firebase_auth.zzem: android.os.Parcelable$Creator CREATOR
+com.google.firestore.v1.Target$TargetTypeCase: com.google.firestore.v1.Target$TargetTypeCase[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.WindowInsets access$400(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback)
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: java.util.List mutators
+androidx.versionedparcelable.CustomVersionedParcelable
+io.flutter.plugin.platform.SingleViewPresentation: void onCreate(android.os.Bundle)
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: android.os.Bundle mTriggeredEventParams
+com.google.android.gms.internal.measurement.zzbj$zzd: int zzc
+androidx.core.graphics.drawable.IconCompat: IconCompat()
+io.grpc.internal.GzipInflatingBuffer$State: io.grpc.internal.GzipInflatingBuffer$State valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: boolean zzx
+io.flutter.embedding.android.FlutterSurfaceView: io.flutter.embedding.engine.renderer.FlutterRenderer getAttachedRenderer()
+com.google.firestore.v1.ListenRequest$TargetChangeCase: com.google.firestore.v1.ListenRequest$TargetChangeCase[] values()
+io.flutter.embedding.engine.FlutterJNI: boolean nativeFlutterTextUtilsIsEmojiModifierBase(int)
+androidx.core.graphics.drawable.IconCompat
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.String mExpiredEventName
+com.google.android.gms.internal.measurement.zzbo$zzc: com.google.android.gms.internal.measurement.zzgx zzg
+com.google.android.gms.measurement.AppMeasurement: java.lang.String getCurrentScreenName()
+com.google.firebase.iid.Registrar: Registrar()
+io.flutter.embedding.engine.systemchannels.TextInputChannel$TextCapitalization: io.flutter.embedding.engine.systemchannels.TextInputChannel$TextCapitalization valueOf(java.lang.String)
+io.flutter.view.FlutterCallbackInformation: java.lang.String callbackClassName
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzn
+androidx.core.app.RemoteActionCompatParcelizer: androidx.core.app.RemoteActionCompat read(androidx.versionedparcelable.VersionedParcel)
+com.google.android.gms.internal.measurement.zzbj$zze: boolean zzh
+com.google.firebase.firestore.util.Logger$Level: com.google.firebase.firestore.util.Logger$Level valueOf(java.lang.String)
+com.google.firebase.heartbeatinfo.HeartBeatInfo$HeartBeat: com.google.firebase.heartbeatinfo.HeartBeatInfo$HeartBeat valueOf(java.lang.String)
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: long mTimeToLive
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: android.os.Bundle mExpiredEventParams
+io.grpc.internal.CensusStatsModule$ClientTracer: long inboundMessageCount
+io.flutter.embedding.engine.systemchannels.PlatformChannel$SystemUiOverlay: io.flutter.embedding.engine.systemchannels.PlatformChannel$SystemUiOverlay[] values()
+io.flutter.plugins.camera.types.FlashMode: io.flutter.plugins.camera.types.FlashMode valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbo$zza: com.google.android.gms.internal.measurement.zzgx zzi
+com.google.android.gms.signin.internal.zai: android.os.Parcelable$Creator CREATOR
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: boolean animating
+androidx.lifecycle.ViewModel: ViewModel()
+com.google.android.gms.measurement.AppMeasurementJobService
+com.google.android.gms.internal.measurement.zzbj$zzb: boolean zzg
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: boolean access$200(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback)
+io.opencensus.trace.Span$Options: io.opencensus.trace.Span$Options[] values()
+com.google.firebase.auth.FirebaseAuth: com.google.firebase.auth.FirebaseAuth getInstance(com.google.firebase.FirebaseApp)
+com.google.android.gms.internal.firebase_auth.zzdr: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzt
+com.google.android.gms.internal.measurement.zzbj$zza: com.google.android.gms.internal.measurement.zzfl zze
+com.google.android.gms.internal.measurement.zzbj$zza: int zzc
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setSessionTimeoutDuration(long)
+io.flutter.embedding.android.FlutterView: android.view.accessibility.AccessibilityNodeProvider getAccessibilityNodeProvider()
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzai
+io.flutter.embedding.engine.FlutterJNI: void invokePlatformMessageResponseCallback(int,java.nio.ByteBuffer,int)
+com.google.android.gms.measurement.AppMeasurement
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: boolean mActive
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setInstanceIdProvider(com.google.android.gms.internal.measurement.zzt)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setUserId(java.lang.String,long)
+io.flutter.embedding.engine.FlutterJNI: void onSurfaceWindowChanged(android.view.Surface)
+com.google.android.gms.measurement.AppMeasurement: void endAdUnitExposure(java.lang.String)
+com.google.firebase.auth.internal.zzn: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: boolean getIsSoftwareRenderingEnabled()
+com.google.android.gms.internal.measurement.zzbr$zzh: int zzc
+com.google.firebase.iid.FirebaseInstanceId
+android.support.v4.graphics.drawable.IconCompatParcelizer: void write(androidx.core.graphics.drawable.IconCompat,androidx.versionedparcelable.VersionedParcel)
+com.google.android.gms.measurement.AppMeasurement: com.google.android.gms.measurement.AppMeasurement getInstance(android.content.Context)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void clearConditionalUserProperty(java.lang.String,java.lang.String,android.os.Bundle)
+io.flutter.embedding.android.FlutterSplashView$SavedState: android.os.Bundle splashScreenState
+com.google.android.gms.internal.firebase_auth.zzdn: android.os.Parcelable$Creator CREATOR
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event ON_STOP
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: void pushClipRRect(int,int,int,int,float[])
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void onActivityDestroyed(com.google.android.gms.dynamic.IObjectWrapper,long)
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityPostStarted(android.app.Activity)
+androidx.fragment.app.FragmentActivity: FragmentActivity()
+io.flutter.plugin.editing.TextInputPlugin$InputTarget$Type: io.flutter.plugin.editing.TextInputPlugin$InputTarget$Type valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void addIsDisplayingFlutterUiListener(io.flutter.embedding.engine.renderer.FlutterUiDisplayListener)
+com.google.android.gms.internal.firebase_auth.zzeh: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: io.flutter.embedding.engine.dart.PlatformMessageHandler platformMessageHandler
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: void attachToGLContext(int)
+io.flutter.embedding.engine.FlutterJNI: java.lang.Long nativeShellHolderId
+io.flutter.embedding.engine.FlutterJNI: android.graphics.Bitmap getBitmap()
+io.flutter.plugins.urllauncher.UrlLauncher$LaunchStatus: io.flutter.plugins.urllauncher.UrlLauncher$LaunchStatus[] values()
+io.flutter.embedding.engine.FlutterJNI: void nativeSurfaceCreated(long,android.view.Surface)
+io.flutter.embedding.engine.FlutterJNI: void updateCustomAccessibilityActions(java.nio.ByteBuffer,java.lang.String[])
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack$FlutterMutatorType: io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack$FlutterMutatorType valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzap
+io.grpc.internal.DnsNameResolver$JdkAddressResolver: io.grpc.internal.DnsNameResolver$JdkAddressResolver[] values()
+com.google.android.gms.internal.measurement.zzbo$zzb: com.google.android.gms.internal.measurement.zzbo$zzb zzl
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.View access$602(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback,android.view.View)
+com.google.firebase.auth.FirebaseAuth: com.google.firebase.auth.FirebaseAuth getInstance()
+com.google.android.gms.internal.measurement.zzfd: java.util.Map zzd
+com.google.firestore.v1.StructuredQuery$FieldFilter$Operator: com.google.firestore.v1.StructuredQuery$FieldFilter$Operator[] values()
+com.google.android.gms.internal.measurement.zzbj$zzd: boolean zze
+com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver: AppMeasurementInstallReferrerReceiver()
+io.flutter.embedding.engine.FlutterJNI: void onBeginFrame()
+androidx.activity.ImmLeaksCleaner
+androidx.lifecycle.LiveData$LifecycleBoundObserver
+com.google.android.gms.internal.firebase_auth.zzfm: android.os.Parcelable$Creator CREATOR
+io.grpc.Context$DirectExecutor: io.grpc.Context$DirectExecutor[] values()
+com.google.android.gms.internal.measurement.zzbr$zzj: int zzd
+com.google.firebase.firestore.remote.ConnectivityMonitor$NetworkStatus: com.google.firebase.firestore.remote.ConnectivityMonitor$NetworkStatus valueOf(java.lang.String)
+io.flutter.view.AccessibilityViewEmbedder: android.util.SparseArray flutterIdToOrigin
+com.google.firebase.provider.FirebaseInitProvider
+org.tensorflow.lite.gpu.GpuDelegate
+io.flutter.embedding.engine.FlutterOverlaySurface: int id
+com.google.android.gms.internal.measurement.zzbr$zzf
+com.google.android.gms.internal.firebase_auth.zzew: android.os.Parcelable$Creator CREATOR
+org.tensorflow.lite.annotations.UsedByReflection
+com.google.firestore.v1.ListenResponse$ResponseTypeCase: com.google.firestore.v1.ListenResponse$ResponseTypeCase valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbo$zzc: com.google.android.gms.internal.measurement.zzbo$zzc zzf
+io.flutter.embedding.engine.FlutterJNI: void setAccessibilityFeatures(int)
+io.flutter.view.AccessibilityViewEmbedder: java.lang.Integer getRecordFlutterId(android.view.View,android.view.accessibility.AccessibilityRecord)
+io.flutter.embedding.engine.FlutterJNI: io.flutter.view.FlutterCallbackInformation nativeLookupCallbackInformation(long)
+com.google.android.gms.common.zzk: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.firebase_auth.zzct: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbj$zzd
+com.google.gson.LongSerializationPolicy: com.google.gson.LongSerializationPolicy[] values()
+io.flutter.plugins.camera.types.FocusMode: io.flutter.plugins.camera.types.FocusMode valueOf(java.lang.String)
+androidx.versionedparcelable.CustomVersionedParcelable: CustomVersionedParcelable()
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzl
+com.google.android.gms.internal.firebase_auth.zzdb: android.os.Parcelable$Creator CREATOR
+com.google.common.util.concurrent.AbstractFuture: com.google.common.util.concurrent.AbstractFuture$Waiter waiters
+io.grpc.okhttp.OkHttpChannelBuilder: io.grpc.okhttp.OkHttpChannelBuilder transportExecutor(java.util.concurrent.Executor)
+com.google.android.gms.internal.measurement.zzbj$zzb: com.google.android.gms.internal.measurement.zzbj$zzb zzl
+com.google.android.gms.internal.measurement.zzbj$zzc: com.google.android.gms.internal.measurement.zzbj$zzd zze
+com.google.android.gms.internal.firebase_auth.zzfh: android.os.Parcelable$Creator CREATOR
+io.grpc.okhttp.OkHttpFrameLogger$SettingParams: io.grpc.okhttp.OkHttpFrameLogger$SettingParams[] values()
+io.flutter.view.AccessibilityBridge$TextDirection: io.flutter.view.AccessibilityBridge$TextDirection valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzd: com.google.android.gms.internal.measurement.zzbr$zzd zzf
+com.google.android.gms.common.internal.ResolveAccountRequest: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzg: com.google.android.gms.internal.measurement.zzgx zzaw
+com.google.android.gms.internal.measurement.zzbo$zzb: int zzc
+io.grpc.okhttp.OkHttpChannelBuilder: io.grpc.okhttp.OkHttpChannelBuilder sslSocketFactory(javax.net.ssl.SSLSocketFactory)
+com.google.android.gms.internal.measurement.zzbj$zzb: boolean zzk
+com.google.android.gms.internal.measurement.zzbo$zzb: int zzf
+io.grpc.SecurityLevel: io.grpc.SecurityLevel[] values()
+com.google.android.gms.internal.measurement.zzbj$zzf$zzb: com.google.android.gms.internal.measurement.zzbj$zzf$zzb[] values()
+io.flutter.embedding.android.FlutterSplashView$SavedState: java.lang.String access$600(io.flutter.embedding.android.FlutterSplashView$SavedState)
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event[] $VALUES
+com.google.android.gms.internal.measurement.zzbj$zza: boolean zzh
+com.google.common.util.concurrent.AbstractFuture$Waiter: java.lang.Thread thread
+com.google.android.gms.internal.measurement.zzbr$zzk: double zzi
+com.google.common.util.concurrent.DirectExecutor: com.google.common.util.concurrent.DirectExecutor[] values()
+com.google.firestore.v1.DocumentTransform$FieldTransform$ServerValue: com.google.firestore.v1.DocumentTransform$FieldTransform$ServerValue valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: FlutterJNI()
+com.google.firebase.auth.FirebaseAuthRegistrar: FirebaseAuthRegistrar()
+com.google.android.gms.measurement.AppMeasurement: java.util.List getConditionalUserProperties(java.lang.String,java.lang.String)
+io.flutter.plugins.GeneratedPluginRegistrant
+io.flutter.embedding.android.FlutterSplashView$SavedState: android.os.Bundle access$702(io.flutter.embedding.android.FlutterSplashView$SavedState,android.os.Bundle)
+io.flutter.plugins.firebaseanalytics.FlutterFirebaseAppRegistrar
+androidx.core.graphics.drawable.IconCompatParcelizer: androidx.core.graphics.drawable.IconCompat read(androidx.versionedparcelable.VersionedParcel)
+io.flutter.embedding.engine.FlutterJNI: java.util.Set engineLifecycleListeners
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$AnimationCallback: ImeSyncDeferringInsetsCallback$AnimationCallback(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setMinimumSessionDuration(long)
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzag
+com.google.android.gms.internal.measurement.zzbj$zzb
+com.google.android.gms.internal.measurement.zzbr$zzi: com.google.android.gms.internal.measurement.zzfm zzc
+com.google.android.gms.internal.measurement.zzbj$zzb: com.google.android.gms.internal.measurement.zzbj$zzd zzh
+io.flutter.plugins.camera.types.ExposureMode: io.flutter.plugins.camera.types.ExposureMode valueOf(java.lang.String)
+androidx.lifecycle.SingleGeneratedAdapterObserver
+io.flutter.embedding.engine.FlutterJNI: void handlePlatformMessage(java.lang.String,byte[],int)
+com.google.firebase.iid.FirebaseInstanceIdReceiver: FirebaseInstanceIdReceiver()
+io.flutter.view.FlutterCallbackInformation: java.lang.String callbackLibraryPath
+io.flutter.embedding.engine.FlutterJNI: void nativeRegisterTexture(long,long,io.flutter.embedding.engine.renderer.SurfaceTextureWrapper)
+com.google.android.gms.internal.measurement.zzbr$zzf: com.google.android.gms.internal.measurement.zzfl zzc
+com.google.android.gms.common.api.internal.LifecycleCallback: com.google.android.gms.common.api.internal.LifecycleFragment getChimeraLifecycleFragmentImpl(com.google.android.gms.common.api.internal.LifecycleActivity)
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbj$zzb: java.lang.String zze
+androidx.core.app.RemoteActionCompatParcelizer
+io.flutter.embedding.engine.FlutterJNI: void notifyLowMemoryWarning()
+io.grpc.internal.KeepAliveManager$State: io.grpc.internal.KeepAliveManager$State valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzk: com.google.android.gms.internal.measurement.zzgx zzk
+io.flutter.plugin.platform.SingleViewPresentation: java.lang.Object createParams
+androidx.lifecycle.CompositeGeneratedAdaptersObserver
+io.flutter.plugins.GeneratedPluginRegistrant: GeneratedPluginRegistrant()
+io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar
+com.google.android.gms.internal.measurement.zzbj$zzc: com.google.android.gms.internal.measurement.zzbj$zzc zzh
+io.grpc.okhttp.OkHttpFrameLogger$Direction: io.grpc.okhttp.OkHttpFrameLogger$Direction[] values()
+io.flutter.embedding.android.FlutterSplashView$SavedState: java.lang.String previousCompletedSplashIsolate
+com.google.android.gms.internal.measurement.zzbo$zzb: com.google.android.gms.internal.measurement.zzfl zzi
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setEventInterceptor(com.google.android.gms.internal.measurement.zzs)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzi
+io.flutter.plugins.urllauncher.WebViewActivity: WebViewActivity()
+com.google.firebase.database.collection.LLRBNode$Color: com.google.firebase.database.collection.LLRBNode$Color valueOf(java.lang.String)
+io.opencensus.tags.TagMetadata$TagTtl: io.opencensus.tags.TagMetadata$TagTtl valueOf(java.lang.String)
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty
+io.flutter.view.AccessibilityBridge$AccessibilityFeature: io.flutter.view.AccessibilityBridge$AccessibilityFeature[] values()
+com.google.android.gms.measurement.AppMeasurement: long generateEventId()
+io.flutter.embedding.engine.FlutterJNI: void destroyOverlaySurfaces()
+com.google.android.gms.internal.firebase_auth.zzfl: android.os.Parcelable$Creator CREATOR
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: boolean access$302(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback,boolean)
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: void release()
+io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar: FlutterFirebaseAppRegistrar()
+io.flutter.plugin.platform.SingleViewPresentation: io.flutter.plugin.platform.AccessibilityEventsDelegate accessibilityEventsDelegate
+io.flutter.embedding.android.FlutterActivity: FlutterActivity()
+com.google.android.gms.internal.measurement.zzbr$zzi: com.google.android.gms.internal.measurement.zzbr$zzi zzg
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setConditionalUserProperty(android.os.Bundle,long)
+io.flutter.plugins.camera.DartMessenger$CameraEventType: io.flutter.plugins.camera.DartMessenger$CameraEventType[] values()
+com.google.android.gms.internal.measurement.zzbr$zze
+io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar
+com.google.android.gms.internal.measurement.zzbr$zzh
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.String mTimedOutEventName
+com.google.firestore.v1.Target$QueryTarget$QueryTypeCase: com.google.firestore.v1.Target$QueryTarget$QueryTypeCase valueOf(java.lang.String)
+io.flutter.plugins.camera.DartMessenger$DeviceEventType: io.flutter.plugins.camera.DartMessenger$DeviceEventType[] values()
+com.google.android.gms.internal.measurement.zzbr$zzk: int zzc
+io.flutter.view.AccessibilityViewEmbedder: void setFlutterNodeParent(android.view.accessibility.AccessibilityNodeInfo,android.view.View,android.view.accessibility.AccessibilityNodeInfo)
+com.google.firebase.auth.internal.zzu: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.dynamite.DynamiteModule$DynamiteLoaderClassLoader: java.lang.ClassLoader sClassLoader
+io.flutter.embedding.engine.FlutterJNI: void nativeMarkTextureFrameAvailable(long,long)
+com.google.android.gms.internal.measurement.zzbr$zzb: int zzc
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$InsetsListener insetsListener
+com.google.firebase.firestore.Source: com.google.firebase.firestore.Source[] values()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void registerOnMeasurementEventListener(com.google.android.gms.internal.measurement.zzs)
+io.flutter.plugin.platform.SingleViewPresentation: android.widget.FrameLayout container
+com.google.android.gms.internal.measurement.zzbr$zzk: java.lang.String zze
+com.google.firestore.v1.ListenRequest$TargetChangeCase: com.google.firestore.v1.ListenRequest$TargetChangeCase valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzas
+com.google.firestore.v1.Target$ResumeTypeCase: com.google.firestore.v1.Target$ResumeTypeCase[] values()
+io.flutter.embedding.engine.FlutterJNI: android.graphics.Bitmap nativeGetBitmap(long)
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityDestroyed(android.app.Activity)
+com.google.firebase.firestore.core.UserData$Source: com.google.firebase.firestore.core.UserData$Source[] values()
+io.flutter.plugins.camera.DartMessenger$DeviceEventType: io.flutter.plugins.camera.DartMessenger$DeviceEventType valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zze: com.google.android.gms.internal.measurement.zzbr$zze zzj
+androidx.activity.ComponentActivity: ComponentActivity()
+com.google.firebase.auth.FirebaseAuthRegistrar
+com.google.android.gms.common.internal.GetServiceRequest: android.os.Parcelable$Creator CREATOR
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$AnimationCallback: void onEnd(android.view.WindowInsetsAnimation)
+io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar: FlutterFirebaseAppRegistrar()
+com.google.firebase.firestore.DocumentChange$Type: com.google.firebase.firestore.DocumentChange$Type[] values()
+io.flutter.view.AccessibilityViewEmbedder: AccessibilityViewEmbedder(android.view.View,int)
+com.google.protobuf.WireFormat$FieldType: com.google.protobuf.WireFormat$FieldType valueOf(java.lang.String)
+com.google.firebase.firestore.remote.WatchChange$WatchTargetChangeType: com.google.firebase.firestore.remote.WatchChange$WatchTargetChangeType valueOf(java.lang.String)
+com.squareup.okhttp.Protocol: com.squareup.okhttp.Protocol valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzan
+androidx.core.graphics.drawable.IconCompatParcelizer
+com.google.firestore.v1.StructuredQuery$Filter$FilterTypeCase: com.google.firestore.v1.StructuredQuery$Filter$FilterTypeCase[] values()
+ss.ashish.covidly.MainActivity
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.String mTriggerEventName
+com.google.android.gms.internal.measurement.zzbo$zzb: com.google.android.gms.internal.measurement.zzgx zzm
+io.flutter.plugins.urllauncher.UrlLauncher$LaunchStatus: io.flutter.plugins.urllauncher.UrlLauncher$LaunchStatus valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzd: com.google.android.gms.internal.measurement.zzgx zzg
+com.google.android.gms.internal.measurement.zzbr$zzc: java.lang.String zze
+com.google.firebase.auth.internal.zzp: android.os.Parcelable$Creator CREATOR
+androidx.loader.app.LoaderManagerImpl$LoaderViewModel: LoaderManagerImpl$LoaderViewModel()
+io.opencensus.trace.NetworkEvent$Type: io.opencensus.trace.NetworkEvent$Type[] values()
+io.grpc.okhttp.internal.CipherSuite: io.grpc.okhttp.internal.CipherSuite valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzfd: com.google.android.gms.internal.measurement.zzhy zzb
+com.google.android.gms.internal.firebase_auth.zzej: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: void ensureAttachedToNative()
+com.google.firebase.auth.internal.zzw: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbo$zzb: boolean zzk
+io.flutter.embedding.engine.systemchannels.PlatformChannel$ClipboardContentFormat: io.flutter.embedding.engine.systemchannels.PlatformChannel$ClipboardContentFormat[] values()
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: long mTriggerTimeout
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.View access$600(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback)
+io.flutter.embedding.engine.FlutterJNI: io.flutter.plugin.platform.PlatformViewsController platformViewsController
+com.google.android.gms.internal.measurement.zzbj$zzb: boolean zzj
+com.google.firestore.v1.DocumentTransform$FieldTransform$TransformTypeCase: com.google.firestore.v1.DocumentTransform$FieldTransform$TransformTypeCase valueOf(java.lang.String)
+io.grpc.internal.KeepAliveManager$State: io.grpc.internal.KeepAliveManager$State[] values()
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.String mName
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper
+io.flutter.view.AccessibilityViewEmbedder: android.view.accessibility.AccessibilityNodeInfo getRootNode(android.view.View,int,android.graphics.Rect)
+io.grpc.internal.GrpcUtil$Http2Error: io.grpc.internal.GrpcUtil$Http2Error[] values()
+com.google.firebase.auth.GoogleAuthCredential: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: long mTriggeredTimestamp
+com.google.android.gms.internal.measurement.zzbr$zzh: com.google.android.gms.internal.measurement.zzgx zzg
+androidx.fragment.app.Fragment$2
+io.flutter.view.AccessibilityBridge$Action: io.flutter.view.AccessibilityBridge$Action[] values()
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event ON_PAUSE
+io.flutter.embedding.android.FlutterImageView: android.view.Surface getSurface()
+com.google.android.gms.internal.measurement.zzbr$zzc: long zzf
+com.google.android.gms.internal.measurement.zzbr$zze: double zzh
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getTestFlag(com.google.android.gms.internal.measurement.zzn,int)
+com.google.android.gms.internal.measurement.zzbr$zzh: int zzd
+com.google.android.gms.internal.firebase_auth.zzcv: android.os.Parcelable$Creator CREATOR
+com.google.firestore.v1.Target$QueryTarget$QueryTypeCase: com.google.firestore.v1.Target$QueryTarget$QueryTypeCase[] values()
+io.grpc.internal.GzipInflatingBuffer$State: io.grpc.internal.GzipInflatingBuffer$State[] values()
+io.flutter.embedding.android.FlutterActivityLaunchConfigs$BackgroundMode: io.flutter.embedding.android.FlutterActivityLaunchConfigs$BackgroundMode valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: io.flutter.embedding.engine.FlutterJNI$AsyncWaitForVsyncDelegate asyncWaitForVsyncDelegate
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void resetAnalyticsData(long)
+com.google.android.gms.internal.measurement.zzbj$zze: boolean zzi
+io.flutter.embedding.android.RenderMode: io.flutter.embedding.android.RenderMode valueOf(java.lang.String)
+com.google.android.gms.measurement.AppMeasurement: java.lang.String getGmpAppId()
+io.flutter.view.AccessibilityViewEmbedder: boolean onAccessibilityHoverEvent(int,android.view.MotionEvent)
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: boolean access$202(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback,boolean)
+androidx.core.graphics.drawable.IconCompatParcelizer: void write(androidx.core.graphics.drawable.IconCompat,androidx.versionedparcelable.VersionedParcel)
+io.flutter.embedding.engine.FlutterJNI: boolean nativeFlutterTextUtilsIsRegionalIndicator(int)
+com.google.android.gms.internal.measurement.zzbr$zzd: int zzc
+androidx.core.app.CoreComponentFactory
+io.opencensus.trace.MessageEvent$Type: io.opencensus.trace.MessageEvent$Type valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void dispatchSemanticsAction(int,io.flutter.view.AccessibilityBridge$Action)
+io.flutter.view.AccessibilityBridge$Flag: io.flutter.view.AccessibilityBridge$Flag[] values()
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityStopped(android.app.Activity)
+com.google.gson.LongSerializationPolicy: com.google.gson.LongSerializationPolicy valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void setAccessibilityDelegate(io.flutter.embedding.engine.FlutterJNI$AccessibilityDelegate)
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityCreated(android.app.Activity,android.os.Bundle)
+com.google.android.gms.internal.firebase_auth.zzfj: android.os.Parcelable$Creator CREATOR
+com.google.firestore.v1.Target$ResumeTypeCase: com.google.firestore.v1.Target$ResumeTypeCase valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: io.flutter.embedding.engine.FlutterOverlaySurface createOverlaySurface()
+com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+com.google.firebase.analytics.FirebaseAnalytics: java.lang.String getFirebaseInstanceId()
+com.google.android.gms.internal.measurement.zzbo$zza: int zzg
+io.flutter.embedding.engine.FlutterJNI: void nativeOnVsync(long,long,long)
+com.google.android.gms.common.Feature: android.os.Parcelable$Creator CREATOR
+io.grpc.internal.CensusTracingModule$ServerTracer: int streamClosed
+android.support.v4.graphics.drawable.IconCompatParcelizer: IconCompatParcelizer()
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: java.util.List getFinalClippingPaths()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setCurrentScreen(com.google.android.gms.dynamic.IObjectWrapper,java.lang.String,java.lang.String,long)
+com.google.android.gms.measurement.AppMeasurement: void clearConditionalUserPropertyAs(java.lang.String,java.lang.String,java.lang.String,android.os.Bundle)
+com.google.android.gms.internal.measurement.zzc: android.os.IBinder asBinder()
+io.flutter.plugin.platform.SingleViewPresentation: android.content.Context outerContext
+io.flutter.embedding.engine.systemchannels.PlatformChannel$SoundType: io.flutter.embedding.engine.systemchannels.PlatformChannel$SoundType[] values()
+com.google.android.gms.internal.measurement.zzbr$zze: java.lang.String zzd
+com.google.firebase.firestore.core.LimboDocumentChange$Type: com.google.firebase.firestore.core.LimboDocumentChange$Type[] values()
+io.grpc.okhttp.OkHttpChannelBuilder$NegotiationType: io.grpc.okhttp.OkHttpChannelBuilder$NegotiationType valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzu
+io.flutter.plugins.camera.DartMessenger$CameraEventType: io.flutter.plugins.camera.DartMessenger$CameraEventType valueOf(java.lang.String)
+io.grpc.okhttp.internal.Protocol: io.grpc.okhttp.internal.Protocol valueOf(java.lang.String)
+io.grpc.internal.MessageDeframer$State: io.grpc.internal.MessageDeframer$State valueOf(java.lang.String)
+com.google.firestore.v1.StructuredQuery$UnaryFilter$OperandTypeCase: com.google.firestore.v1.StructuredQuery$UnaryFilter$OperandTypeCase[] values()
+com.google.android.gms.internal.measurement.zzbj$zzb: int zzc
+com.google.android.gms.internal.measurement.zzbr$zzg: com.google.android.gms.internal.measurement.zzbr$zzh zzaq
+io.grpc.internal.CensusTracingModule$ClientCallTracer: int callEnded
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: void pushClipRect(int,int,int,int)
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzam
+io.flutter.embedding.engine.FlutterJNI: java.lang.String[] computePlatformResolvedLocale(java.lang.String[])
+com.google.android.gms.internal.measurement.zzbj$zzd$zza: com.google.android.gms.internal.measurement.zzbj$zzd$zza[] values()
+com.google.firestore.v1.StructuredQuery$UnaryFilter$Operator: com.google.firestore.v1.StructuredQuery$UnaryFilter$Operator[] values()
+io.flutter.view.AccessibilityViewEmbedder: java.lang.String TAG
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzat
+com.google.android.gms.measurement.AppMeasurementService: AppMeasurementService()
+io.flutter.embedding.engine.FlutterJNI: long nativeAttach(io.flutter.embedding.engine.FlutterJNI,boolean)
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: void updateTexImage()
+io.flutter.plugin.platform.SingleViewPresentation
+com.google.android.gms.common.api.GoogleApiActivity
+androidx.savedstate.SavedStateRegistry$1
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorView
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzw
+com.google.android.gms.internal.measurement.zzbo$zza: java.lang.String zzd
+com.google.android.gms.internal.measurement.zzc: boolean onTransact(int,android.os.Parcel,android.os.Parcel,int)
+com.google.android.gms.internal.measurement.zzbo$zzb: java.lang.String zzj
+io.grpc.Status$Code: io.grpc.Status$Code[] values()
+com.google.firebase.database.collection.LLRBNode$Color: com.google.firebase.database.collection.LLRBNode$Color[] values()
+io.grpc.ChannelLogger$ChannelLogLevel: io.grpc.ChannelLogger$ChannelLogLevel[] values()
+io.flutter.embedding.engine.FlutterJNI: void onFirstFrame()
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzj
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setUserProperty(java.lang.String,java.lang.String,com.google.android.gms.dynamic.IObjectWrapper,boolean,long)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void onActivityPaused(com.google.android.gms.dynamic.IObjectWrapper,long)
+com.google.firestore.v1.TransactionOptions$ReadOnly$ConsistencySelectorCase: com.google.firestore.v1.TransactionOptions$ReadOnly$ConsistencySelectorCase[] values()
+com.google.android.gms.internal.measurement.zzbo$zza: com.google.android.gms.internal.measurement.zzbo$zza zzh
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: void install()
+io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar: FlutterFirebaseAppRegistrar()
+io.flutter.embedding.engine.FlutterJNI: io.flutter.plugin.localization.LocalizationPlugin localizationPlugin
+io.flutter.embedding.engine.FlutterJNI: void loadLibrary()
+io.flutter.embedding.engine.systemchannels.SettingsChannel$PlatformBrightness: io.flutter.embedding.engine.systemchannels.SettingsChannel$PlatformBrightness valueOf(java.lang.String)
+com.google.firebase.auth.UserProfileChangeRequest: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzk: long zzg
+io.grpc.okhttp.OkHttpFrameLogger$SettingParams: io.grpc.okhttp.OkHttpFrameLogger$SettingParams valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: io.flutter.embedding.engine.FlutterJNI spawn(java.lang.String,java.lang.String)
+io.flutter.embedding.engine.systemchannels.PlatformChannel$SystemUiOverlay: io.flutter.embedding.engine.systemchannels.PlatformChannel$SystemUiOverlay valueOf(java.lang.String)
+com.google.android.gms.internal.firebase_auth.zzdp: android.os.Parcelable$Creator CREATOR
+com.google.firestore.v1.StructuredQuery$FieldFilter$Operator: com.google.firestore.v1.StructuredQuery$FieldFilter$Operator valueOf(java.lang.String)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getCurrentScreenName(com.google.android.gms.internal.measurement.zzn)
+io.flutter.embedding.engine.FlutterJNI: void setPlatformMessageHandler(io.flutter.embedding.engine.dart.PlatformMessageHandler)
+io.flutter.embedding.engine.FlutterJNI: void registerTexture(long,io.flutter.embedding.engine.renderer.SurfaceTextureWrapper)
+com.google.firebase.auth.internal.FederatedSignInActivity: FederatedSignInActivity()
+com.google.android.gms.internal.measurement.zzbr$zzi
+com.google.common.util.concurrent.DirectExecutor: com.google.common.util.concurrent.DirectExecutor valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void updateJavaAssetManager(android.content.res.AssetManager,java.lang.String)
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack$FlutterMutatorType: io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack$FlutterMutatorType[] values()
+com.google.protobuf.WireFormat$Utf8Validation: com.google.protobuf.WireFormat$Utf8Validation[] values()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void onActivityResumed(com.google.android.gms.dynamic.IObjectWrapper,long)
+com.google.android.gms.internal.measurement.zzbr$zze: float zzg
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void beginAdUnitExposure(java.lang.String,long)
+com.google.android.gms.internal.measurement.zzbj$zzf: boolean zzf
+com.google.android.gms.internal.measurement.zzbr$zza: int zzd
+com.google.android.gms.internal.measurement.zzbr$zzi: com.google.android.gms.internal.measurement.zzfm zzd
+io.flutter.embedding.engine.FlutterJNI: float refreshRateFPS
+com.google.android.gms.internal.measurement.zzbr$zzc: int zzh
+com.google.android.gms.internal.measurement.zzbj$zze: int zzc
+com.google.android.gms.internal.measurement.zzex: com.google.android.gms.internal.measurement.zzex[] values()
+io.flutter.embedding.engine.FlutterJNI: java.lang.String observatoryUri
+androidx.legacy.content.WakefulBroadcastReceiver: WakefulBroadcastReceiver()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: boolean needsSave
+androidx.fragment.app.FragmentManagerViewModel
+com.google.firebase.auth.FirebaseAuth
+com.google.firebase.auth.internal.zzaq: android.os.Parcelable$Creator CREATOR
+com.google.firestore.v1.BatchGetDocumentsResponse$ResultCase: com.google.firestore.v1.BatchGetDocumentsResponse$ResultCase[] values()
+com.google.android.gms.internal.measurement.zzbr$zzd: long zze
+com.google.android.gms.internal.measurement.zzbj$zzb: int zzd
+io.flutter.embedding.engine.FlutterJNI: void nativeDeferredComponentInstallFailure(int,java.lang.String,boolean)
+com.google.android.gms.internal.measurement.zzbr$zzg: com.google.android.gms.internal.measurement.zzfl zzg
+com.google.firebase.provider.FirebaseInitProvider: FirebaseInitProvider()
+io.grpc.okhttp.OkHttpChannelBuilder: io.grpc.okhttp.OkHttpChannelBuilder scheduledExecutorService(java.util.concurrent.ScheduledExecutorService)
+io.flutter.view.AccessibilityViewEmbedder: boolean requestSendAccessibilityEvent(android.view.View,android.view.View,android.view.accessibility.AccessibilityEvent)
+androidx.fragment.app.FragmentState: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbj$zza: com.google.android.gms.internal.measurement.zzfl zzf
+com.google.android.gms.internal.measurement.zzbj$zza: boolean zzg
+io.grpc.okhttp.OkHttpChannelBuilder$NegotiationType: io.grpc.okhttp.OkHttpChannelBuilder$NegotiationType[] values()
+com.google.android.gms.internal.firebase_auth.zzcp: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbj$zzf: int zzd
+io.flutter.plugin.platform.SingleViewPresentation: SingleViewPresentation(android.content.Context,android.view.Display,io.flutter.plugin.platform.PlatformViewFactory,io.flutter.plugin.platform.AccessibilityEventsDelegate,int,java.lang.Object,android.view.View$OnFocusChangeListener)
+io.flutter.embedding.android.FlutterSplashView$SavedState: void writeToParcel(android.os.Parcel,int)
+com.google.android.gms.internal.measurement.zzbr$zzj: com.google.android.gms.internal.measurement.zzfm zze
+io.flutter.embedding.engine.FlutterJNI: void nativeLoadDartDeferredLibrary(long,int,java.lang.String[])
+io.grpc.MethodDescriptor$MethodType: io.grpc.MethodDescriptor$MethodType valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzc
+io.flutter.embedding.engine.FlutterOverlaySurface: FlutterOverlaySurface(int,android.view.Surface)
+io.flutter.embedding.engine.FlutterJNI: void nativeRunBundleAndSnapshotFromLibrary(long,java.lang.String,java.lang.String,java.lang.String,android.content.res.AssetManager)
+com.google.android.gms.internal.measurement.zzbr$zza: com.google.android.gms.internal.measurement.zzbr$zzi zzf
+com.google.firebase.auth.internal.zzj: android.os.Parcelable$Creator CREATOR
+com.google.protobuf.GeneratedMessageLite$MethodToInvoke: com.google.protobuf.GeneratedMessageLite$MethodToInvoke valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzb: int zzd
+com.google.firestore.v1.TransactionOptions$ModeCase: com.google.firestore.v1.TransactionOptions$ModeCase valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzd: java.lang.String zzd
+com.google.android.gms.internal.measurement.zzbr$zzc: com.google.android.gms.internal.measurement.zzgx zzj
+com.google.android.gms.internal.measurement.zzbj$zzf: com.google.android.gms.internal.measurement.zzbj$zzf zzh
+io.flutter.embedding.engine.FlutterJNI: void onDisplayOverlaySurface(int,int,int,int,int)
+android.support.v4.app.RemoteActionCompatParcelizer: void write(androidx.core.app.RemoteActionCompat,androidx.versionedparcelable.VersionedParcel)
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: java.util.List finalClippingPaths
+io.grpc.Status$Code: io.grpc.Status$Code valueOf(java.lang.String)
+com.google.gson.FieldNamingPolicy: com.google.gson.FieldNamingPolicy[] values()
+io.flutter.embedding.engine.FlutterJNI: void nativeUnregisterTexture(long,long)
+io.flutter.view.FlutterCallbackInformation
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void getGmpAppId(com.google.android.gms.internal.measurement.zzn)
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityPreStopped(android.app.Activity)
+io.grpc.okhttp.OkHttpChannelBuilder: io.grpc.okhttp.OkHttpChannelBuilder forTarget(java.lang.String)
+io.grpc.Context$DirectExecutor: io.grpc.Context$DirectExecutor valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void ensureRunningOnMainThread()
+com.google.android.gms.common.api.Scope: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbo$zzb: long zzd
+com.google.android.gms.internal.measurement.zzbj$zzd: java.lang.String zzg
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzac
+io.flutter.embedding.engine.FlutterJNI: void handlePlatformMessageResponse(int,byte[])
+io.flutter.view.FlutterCallbackInformation: FlutterCallbackInformation(java.lang.String,java.lang.String,java.lang.String)
+com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar: AnalyticsConnectorRegistrar()
+com.google.android.gms.internal.measurement.zzbr$zzk
+com.google.android.gms.internal.measurement.zzbr$zzg: boolean zzad
+androidx.fragment.app.BackStackState: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbj$zzf: com.google.android.gms.internal.measurement.zzgx zzi
+com.google.android.gms.internal.measurement.zzbj$zzb: boolean zzi
+com.google.firestore.v1.Precondition$ConditionTypeCase: com.google.firestore.v1.Precondition$ConditionTypeCase valueOf(java.lang.String)
+android.support.v4.app.RemoteActionCompatParcelizer: RemoteActionCompatParcelizer()
+com.google.android.gms.internal.measurement.zzbj$zzd: com.google.android.gms.internal.measurement.zzbj$zzd zzi
+io.flutter.embedding.android.FlutterSplashView$SavedState: android.os.Parcelable$Creator CREATOR
+io.flutter.plugins.camera.PictureCaptureRequest$State: io.flutter.plugins.camera.PictureCaptureRequest$State[] values()
+com.google.firestore.v1.TargetChange$TargetChangeType: com.google.firestore.v1.TargetChange$TargetChangeType[] values()
+com.google.android.gms.internal.measurement.zzbr$zzg: int zzah
+com.google.android.gms.internal.measurement.zzv: android.os.Parcelable$Creator CREATOR
+com.google.firebase.firestore.model.Document$DocumentState: com.google.firebase.firestore.model.Document$DocumentState[] values()
+io.flutter.embedding.android.FlutterView
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.WindowInsets access$402(io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback,android.view.WindowInsets)
+io.flutter.embedding.engine.FlutterJNI: void setAsyncWaitForVsyncDelegate(io.flutter.embedding.engine.FlutterJNI$AsyncWaitForVsyncDelegate)
+com.google.firestore.v1.BatchGetDocumentsRequest$ConsistencySelectorCase: com.google.firestore.v1.BatchGetDocumentsRequest$ConsistencySelectorCase valueOf(java.lang.String)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void onActivityStarted(com.google.android.gms.dynamic.IObjectWrapper,long)
+io.flutter.embedding.engine.FlutterJNI: void ensureNotAttachedToNative()
+com.google.firebase.firestore.remote.Stream$State: com.google.firebase.firestore.remote.Stream$State[] values()
+com.google.firebase.components.ComponentDiscoveryService
+com.google.android.gms.internal.firebase_auth.zzbz: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.measurement.AppMeasurement: java.util.Map getUserPropertiesAs(java.lang.String,java.lang.String,java.lang.String,boolean)
+com.google.firestore.v1.StructuredQuery$UnaryFilter$OperandTypeCase: com.google.firestore.v1.StructuredQuery$UnaryFilter$OperandTypeCase valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: boolean nativeFlutterTextUtilsIsEmojiModifier(int)
+com.google.firebase.firestore.core.ViewSnapshot$SyncState: com.google.firebase.firestore.core.ViewSnapshot$SyncState[] values()
+com.google.android.gms.common.api.GoogleApiActivity: GoogleApiActivity()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void logHealthData(int,java.lang.String,com.google.android.gms.dynamic.IObjectWrapper,com.google.android.gms.dynamic.IObjectWrapper,com.google.android.gms.dynamic.IObjectWrapper)
+com.google.firebase.Timestamp: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void logEvent(java.lang.String,java.lang.String,android.os.Bundle,boolean,boolean,long)
+com.google.android.gms.internal.measurement.zzbr$zze: java.lang.String zze
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback
+com.google.android.gms.internal.firebase_auth.zzdj: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzh
+com.google.android.gms.internal.measurement.zzbr$zzk: java.lang.String zzf
+com.google.android.gms.internal.measurement.zzbo$zza: int zzc
+io.flutter.embedding.engine.FlutterJNI: java.lang.String getObservatoryUri()
+org.tensorflow.lite.NativeInterpreterWrapper
+com.google.android.gms.internal.measurement.zzbj$zza: int zzd
+com.google.android.gms.measurement.internal.zzkl: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzi: com.google.android.gms.internal.measurement.zzfl zze
+io.flutter.embedding.engine.FlutterJNI: void onSurfaceCreated(android.view.Surface)
+io.grpc.SecurityLevel: io.grpc.SecurityLevel valueOf(java.lang.String)
+com.google.firebase.firestore.FirebaseFirestoreException$Code: com.google.firebase.firestore.FirebaseFirestoreException$Code valueOf(java.lang.String)
+com.google.firebase.firestore.Query$Direction: com.google.firebase.firestore.Query$Direction[] values()
+com.google.firebase.firestore.Query$Direction: com.google.firebase.firestore.Query$Direction valueOf(java.lang.String)
+ss.ashish.covidly.MainActivity: MainActivity()
+io.grpc.internal.DnsNameResolver$JdkAddressResolver: io.grpc.internal.DnsNameResolver$JdkAddressResolver valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void nativeInit(android.content.Context,java.lang.String[],java.lang.String,java.lang.String,java.lang.String,long)
+com.google.android.gms.measurement.AppMeasurement: void setConditionalUserProperty(com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty)
+com.google.android.gms.internal.measurement.zzbr$zzk: long zzd
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: java.util.List getMutators()
+androidx.core.app.RemoteActionCompatParcelizer: RemoteActionCompatParcelizer()
+io.flutter.embedding.android.DrawableSplashScreen$DrawableSplashScreenView: void setSplashDrawable(android.graphics.drawable.Drawable)
+io.opencensus.tags.TagMetadata$TagTtl: io.opencensus.tags.TagMetadata$TagTtl[] values()
+io.flutter.embedding.engine.systemchannels.SettingsChannel$PlatformBrightness: io.flutter.embedding.engine.systemchannels.SettingsChannel$PlatformBrightness[] values()
+io.flutter.embedding.engine.FlutterJNI: void nativeDispatchSemanticsAction(long,int,int,java.nio.ByteBuffer,int)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void isDataCollectionEnabled(com.google.android.gms.internal.measurement.zzn)
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: android.graphics.Matrix finalMatrix
+androidx.lifecycle.Lifecycle$Event: androidx.lifecycle.Lifecycle$Event ON_CREATE
+com.google.android.gms.internal.measurement.zzbr$zzj: com.google.android.gms.internal.measurement.zzgx zzg
+androidx.lifecycle.ReflectiveGenericLifecycleObserver
+androidx.core.app.ComponentActivity: ComponentActivity()
+com.google.firebase.firestore.FirestoreRegistrar: FirestoreRegistrar()
+io.flutter.embedding.android.FlutterSplashView$SavedState: android.os.Bundle access$700(io.flutter.embedding.android.FlutterSplashView$SavedState)
+com.google.firebase.auth.internal.zzh: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.android.FlutterTextureView
+io.flutter.embedding.engine.FlutterOverlaySurface: android.view.Surface surface
+com.google.firestore.v1.TransactionOptions$ModeCase: com.google.firestore.v1.TransactionOptions$ModeCase[] values()
+io.grpc.internal.CensusStatsModule$ClientTracer: long inboundUncompressedSize
+io.flutter.view.AccessibilityViewEmbedder: int nextFlutterId
+com.google.android.gms.auth.api.signin.GoogleSignInAccount: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.measurement.AppMeasurement: java.util.List getConditionalUserPropertiesAs(java.lang.String,java.lang.String,java.lang.String)
+com.google.android.gms.measurement.internal.zzan: android.os.Parcelable$Creator CREATOR
+io.grpc.okhttp.internal.Platform$TlsExtensionType: io.grpc.okhttp.internal.Platform$TlsExtensionType valueOf(java.lang.String)
+com.google.firebase.firestore.remote.WatchChange$WatchTargetChangeType: com.google.firebase.firestore.remote.WatchChange$WatchTargetChangeType[] values()
+io.flutter.embedding.engine.FlutterJNI: void onRenderingStopped()
+com.google.firebase.firestore.Source: com.google.firebase.firestore.Source valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbo$zzc: int zzc
+io.flutter.embedding.engine.FlutterJNI: void nativePrefetchDefaultFontManager()
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzv
+com.google.firebase.auth.PhoneAuthProvider$ForceResendingToken: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzaj
+com.google.android.gms.internal.measurement.zzbr$zzg
+io.flutter.view.AccessibilityViewEmbedder: java.util.Map originToFlutterId
+com.google.android.gms.internal.measurement.zzbj$zzf
+com.google.firebase.firestore.core.OrderBy$Direction: com.google.firebase.firestore.core.OrderBy$Direction[] values()
+androidx.versionedparcelable.ParcelImpl
+io.flutter.embedding.engine.FlutterJNI: boolean prefetchDefaultFontManagerCalled
+io.flutter.embedding.android.FlutterImageView: io.flutter.embedding.engine.renderer.FlutterRenderer getAttachedRenderer()
+io.flutter.embedding.android.FlutterImageView
+com.google.android.gms.internal.measurement.zzbj$zzc: java.lang.String zzg
+com.google.android.gms.measurement.AppMeasurement: java.lang.String getAppInstanceId()
+io.flutter.embedding.engine.plugins.lifecycle.HiddenLifecycleReference: androidx.lifecycle.Lifecycle lifecycle
+com.google.android.gms.internal.measurement.zzip: com.google.android.gms.internal.measurement.zzip[] values()
+io.grpc.internal.ClientStreamListener$RpcProgress: io.grpc.internal.ClientStreamListener$RpcProgress[] values()
+com.google.firebase.firestore.util.AsyncQueue$TimerId: com.google.firebase.firestore.util.AsyncQueue$TimerId[] values()
+com.google.firebase.firestore.core.Filter$Operator: com.google.firebase.firestore.core.Filter$Operator[] values()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void onActivityStopped(com.google.android.gms.dynamic.IObjectWrapper,long)
+io.flutter.plugins.camera.types.ResolutionPreset: io.flutter.plugins.camera.types.ResolutionPreset valueOf(java.lang.String)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void setMeasurementEnabled(boolean,long)
+com.google.android.gms.internal.firebase_auth.zzcr: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbj$zze: boolean zzg
+io.flutter.embedding.engine.FlutterJNI: void nativeSetAccessibilityFeatures(long,int)
+io.flutter.embedding.engine.FlutterJNI: void setRefreshRateFPS(float)
+com.google.android.gms.internal.measurement.zzbj$zzc: int zzc
+com.google.firestore.v1.BatchGetDocumentsRequest$ConsistencySelectorCase: com.google.firestore.v1.BatchGetDocumentsRequest$ConsistencySelectorCase[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback$AnimationCallback
+com.google.firebase.firestore.model.Document$DocumentState: com.google.firebase.firestore.model.Document$DocumentState valueOf(java.lang.String)
+org.tensorflow.lite.gpu.GpuDelegate: GpuDelegate()
+io.flutter.embedding.android.FlutterView$ZeroSides: io.flutter.embedding.android.FlutterView$ZeroSides[] values()
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: ReportFragment$LifecycleCallbacks()
+com.google.firebase.iid.FirebaseInstanceIdReceiver
+io.flutter.embedding.engine.FlutterJNI: void addEngineLifecycleListener(io.flutter.embedding.engine.FlutterEngine$EngineLifecycleListener)
+com.google.android.gms.common.internal.zzb: android.os.Parcelable$Creator CREATOR
+com.google.common.util.concurrent.AbstractFuture: java.lang.Object value
+com.google.android.gms.internal.measurement.zzbj$zze: com.google.android.gms.internal.measurement.zzgx zzk
+com.google.firebase.components.ComponentDiscoveryService: ComponentDiscoveryService()
+com.google.android.gms.internal.measurement.zzbj$zzc
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityPrePaused(android.app.Activity)
+io.flutter.view.FlutterCallbackInformation: io.flutter.view.FlutterCallbackInformation lookupCallbackInformation(long)
+io.grpc.internal.SerializingExecutor: int runState
+io.grpc.MethodDescriptor$MethodType: io.grpc.MethodDescriptor$MethodType[] values()
+com.google.android.gms.common.internal.ReflectedParcelable
+io.grpc.okhttp.internal.framed.ErrorCode: io.grpc.okhttp.internal.framed.ErrorCode valueOf(java.lang.String)
+io.flutter.plugin.editing.TextInputPlugin$InputTarget$Type: io.flutter.plugin.editing.TextInputPlugin$InputTarget$Type[] values()
+com.google.android.gms.measurement.AppMeasurement: java.util.Map getUserProperties(java.lang.String,java.lang.String,boolean)
+io.grpc.internal.CensusStatsModule$ClientTracer: long outboundWireSize
+com.google.android.gms.internal.measurement.zzbj$zze: int zzd
+com.google.firebase.iid.FirebaseInstanceId: com.google.firebase.iid.FirebaseInstanceId getInstance(com.google.firebase.FirebaseApp)
+com.google.android.gms.dynamite.descriptors.com.google.android.gms.measurement.dynamite.ModuleDescriptor
+com.google.protobuf.WireFormat$JavaType: com.google.protobuf.WireFormat$JavaType valueOf(java.lang.String)
+com.google.firestore.v1.TargetChange$TargetChangeType: com.google.firestore.v1.TargetChange$TargetChangeType valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbo$zzb: com.google.android.gms.internal.measurement.zzfl zzh
+com.google.firestore.v1.Target$TargetTypeCase: com.google.firestore.v1.Target$TargetTypeCase valueOf(java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzj: com.google.android.gms.internal.measurement.zzbr$zzj zzf
+com.google.android.gms.internal.measurement.zzbr$zzg: int zze
+com.google.android.gms.internal.measurement.zzbr$zzc: com.google.android.gms.internal.measurement.zzbr$zzc zzi
+com.google.android.gms.internal.measurement.zzbj$zzd: java.lang.String zzh
+com.google.firebase.auth.PlayGamesAuthCredential: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: void nativeDispatchEmptyPlatformMessage(long,java.lang.String,int)
+com.google.android.gms.internal.measurement.zzbr$zzh: com.google.android.gms.internal.measurement.zzbr$zzh zzf
+com.google.android.gms.internal.measurement.zzbr$zza: boolean zzg
+io.flutter.view.AccessibilityViewEmbedder: io.flutter.view.AccessibilityViewEmbedder$ReflectionAccessors reflectionAccessors
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivitySaveInstanceState(android.app.Activity,android.os.Bundle)
+io.flutter.embedding.engine.FlutterJNI: void nativeDispatchPointerDataPacket(long,java.nio.ByteBuffer,int)
+io.flutter.embedding.engine.FlutterJNI: void onSurfaceChanged(int,int)
+io.opencensus.trace.Status$CanonicalCode: io.opencensus.trace.Status$CanonicalCode valueOf(java.lang.String)
+androidx.activity.ComponentActivity$3
+com.google.firebase.heartbeatinfo.HeartBeatInfo$HeartBeat: com.google.firebase.heartbeatinfo.HeartBeatInfo$HeartBeat[] values()
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzal
+android.support.v4.app.RemoteActionCompatParcelizer: androidx.core.app.RemoteActionCompat read(androidx.versionedparcelable.VersionedParcel)
+com.google.android.gms.internal.firebase_auth.zzdz: android.os.Parcelable$Creator CREATOR
+io.grpc.okhttp.internal.TlsVersion: io.grpc.okhttp.internal.TlsVersion valueOf(java.lang.String)
+com.google.android.gms.dynamite.descriptors.com.google.android.gms.measurement.dynamite.ModuleDescriptor: ModuleDescriptor()
+com.google.firebase.firestore.core.Filter$Operator: com.google.firebase.firestore.core.Filter$Operator valueOf(java.lang.String)
+com.google.firestore.v1.Write$OperationCase: com.google.firestore.v1.Write$OperationCase[] values()
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void generateEventId(com.google.android.gms.internal.measurement.zzn)
+com.google.firestore.v1.StructuredQuery$Direction: com.google.firestore.v1.StructuredQuery$Direction[] values()
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzr
+com.google.android.gms.common.annotation.KeepName
+io.flutter.embedding.engine.FlutterOverlaySurface: android.view.Surface getSurface()
+io.flutter.embedding.engine.FlutterJNI: void onSurfaceDestroyed()
+com.google.android.gms.internal.firebase_auth.zzcx: android.os.Parcelable$Creator CREATOR
+com.google.firestore.v1.StructuredQuery$Direction: com.google.firestore.v1.StructuredQuery$Direction valueOf(java.lang.String)
+io.flutter.embedding.android.FlutterSplashView$SavedState: FlutterSplashView$SavedState(android.os.Parcelable)
+com.google.firestore.v1.StructuredQuery$UnaryFilter$Operator: com.google.firestore.v1.StructuredQuery$UnaryFilter$Operator valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: void dispatchPlatformMessage(java.lang.String,java.nio.ByteBuffer,int,int)
+com.google.firebase.firestore.MetadataChanges: com.google.firebase.firestore.MetadataChanges[] values()
+io.flutter.embedding.android.TransparencyMode: io.flutter.embedding.android.TransparencyMode valueOf(java.lang.String)
+com.google.firestore.v1.Value$ValueTypeCase: com.google.firestore.v1.Value$ValueTypeCase[] values()
+androidx.lifecycle.ReportFragment$LifecycleCallbacks
+io.flutter.embedding.engine.systemchannels.PlatformChannel$DeviceOrientation: io.flutter.embedding.engine.systemchannels.PlatformChannel$DeviceOrientation[] values()
+com.google.firebase.auth.ActionCodeSettings: android.os.Parcelable$Creator CREATOR
+io.grpc.internal.ClientStreamListener$RpcProgress: io.grpc.internal.ClientStreamListener$RpcProgress valueOf(java.lang.String)
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.String mAppId
+com.google.android.gms.internal.firebase_auth.zzdd: android.os.Parcelable$Creator CREATOR
+com.google.firebase.firestore.util.AsyncQueue$TimerId: com.google.firebase.firestore.util.AsyncQueue$TimerId valueOf(java.lang.String)
+io.grpc.okhttp.internal.framed.HeadersMode: io.grpc.okhttp.internal.framed.HeadersMode[] values()
+io.flutter.embedding.engine.systemchannels.PlatformChannel$SoundType: io.flutter.embedding.engine.systemchannels.PlatformChannel$SoundType valueOf(java.lang.String)
+io.flutter.embedding.engine.renderer.SurfaceTextureWrapper: SurfaceTextureWrapper(android.graphics.SurfaceTexture)
+com.google.android.gms.common.ConnectionResult: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzs
+io.flutter.embedding.engine.FlutterJNI: void setSemanticsEnabled(boolean)
+com.google.android.gms.internal.measurement.zzbr$zzg: long zzz
+com.google.android.gms.internal.measurement.zzbr$zzc: int zzc
+io.flutter.embedding.engine.FlutterJNI: io.flutter.embedding.engine.FlutterJNI nativeSpawn(long,java.lang.String,java.lang.String)
+com.google.android.gms.internal.measurement.zzbr$zzj
+com.google.firestore.v1.StructuredQuery$CompositeFilter$Operator: com.google.firestore.v1.StructuredQuery$CompositeFilter$Operator valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI: boolean setRefreshRateFPSCalled
+io.flutter.embedding.engine.FlutterJNI: void nativeSetSemanticsEnabled(long,boolean)
+io.flutter.embedding.engine.FlutterJNI: void setViewportMetrics(float,int,int,int,int,int,int,int,int,int,int,int,int,int,int)
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void endAdUnitExposure(java.lang.String,long)
+com.google.android.gms.internal.measurement.zzbr$zzf: com.google.android.gms.internal.measurement.zzgx zze
+com.google.android.gms.internal.measurement.zzbj$zzb: com.google.android.gms.internal.measurement.zzfl zzf
+io.flutter.view.AccessibilityBridge$AccessibilityFeature: io.flutter.view.AccessibilityBridge$AccessibilityFeature valueOf(java.lang.String)
+io.flutter.embedding.engine.FlutterJNI
+com.google.firestore.v1.ListenResponse$ResponseTypeCase: com.google.firestore.v1.ListenResponse$ResponseTypeCase[] values()
+io.flutter.plugin.platform.SingleViewPresentation: SingleViewPresentation(android.content.Context,android.view.Display,io.flutter.plugin.platform.AccessibilityEventsDelegate,io.flutter.plugin.platform.SingleViewPresentation$PresentationState,android.view.View$OnFocusChangeListener,boolean)
+com.google.android.gms.internal.measurement.zzbr$zzg: java.lang.String zzy
+com.google.firebase.firestore.DocumentSnapshot$ServerTimestampBehavior: com.google.firebase.firestore.DocumentSnapshot$ServerTimestampBehavior[] values()
+io.grpc.internal.MessageDeframer$State: io.grpc.internal.MessageDeframer$State[] values()
+com.google.firebase.iid.zzm: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.signin.internal.zab: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: android.os.Looper mainLooper
+com.google.android.gms.measurement.AppMeasurementService
+io.opencensus.trace.Span$Options: io.opencensus.trace.Span$Options valueOf(java.lang.String)
+io.flutter.embedding.engine.systemchannels.PlatformChannel$HapticFeedbackType: io.flutter.embedding.engine.systemchannels.PlatformChannel$HapticFeedbackType[] values()
+com.google.android.gms.internal.measurement.zzbr$zzc: long zzg
+com.google.firebase.firestore.core.OnlineState: com.google.firebase.firestore.core.OnlineState[] values()
+io.flutter.embedding.android.FlutterView$ZeroSides: io.flutter.embedding.android.FlutterView$ZeroSides valueOf(java.lang.String)
+androidx.lifecycle.ReportFragment$LifecycleCallbacks: void onActivityResumed(android.app.Activity)
+io.flutter.plugin.platform.SingleViewPresentation: boolean startFocused
+io.opencensus.trace.Status$CanonicalCode: io.opencensus.trace.Status$CanonicalCode[] values()
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorView: android.graphics.Matrix getPlatformViewMatrix()
+io.grpc.okhttp.internal.framed.ErrorCode: io.grpc.okhttp.internal.framed.ErrorCode[] values()
+com.google.firestore.v1.DocumentTransform$FieldTransform$ServerValue: com.google.firestore.v1.DocumentTransform$FieldTransform$ServerValue[] values()
+com.google.android.gms.internal.measurement.zzbr$zzc: com.google.android.gms.internal.measurement.zzfl zzd
+com.google.firebase.firestore.FirestoreRegistrar
+io.flutter.embedding.engine.FlutterJNI: void runBundleAndSnapshotFromLibrary(java.lang.String,java.lang.String,java.lang.String,android.content.res.AssetManager)
+com.google.firestore.v1.DocumentTransform$FieldTransform$TransformTypeCase: com.google.firestore.v1.DocumentTransform$FieldTransform$TransformTypeCase[] values()
+com.google.firebase.iid.Registrar
+com.google.android.gms.measurement.AppMeasurement: java.lang.String getCurrentScreenClass()
+androidx.core.graphics.drawable.IconCompatParcelizer: IconCompatParcelizer()
+com.google.android.gms.internal.measurement.zzbr$zzi: com.google.android.gms.internal.measurement.zzgx zzh
+com.google.firebase.auth.TwitterAuthCredential: android.os.Parcelable$Creator CREATOR
+io.flutter.embedding.engine.FlutterJNI: java.lang.String TAG
+io.flutter.plugin.platform.SingleViewPresentation: io.flutter.plugin.platform.SingleViewPresentation$AccessibilityDelegatingFrameLayout rootView
+com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty: java.lang.String mOrigin
+com.google.android.gms.common.api.Status: android.os.Parcelable$Creator CREATOR
+com.google.android.gms.measurement.internal.AppMeasurementDynamiteService: void initialize(com.google.android.gms.dynamic.IObjectWrapper,com.google.android.gms.internal.measurement.zzv,long)
+com.google.gson.stream.JsonToken: com.google.gson.stream.JsonToken[] values()
+io.flutter.plugin.editing.ImeSyncDeferringInsetsCallback: android.view.View view
+io.flutter.embedding.engine.FlutterJNI: void requestDartDeferredLibrary(int)
+io.flutter.embedding.engine.FlutterJNI: boolean nativeGetIsSoftwareRenderingEnabled()
+android.support.v4.app.RemoteActionCompatParcelizer
+androidx.savedstate.Recreator
+io.flutter.view.AccessibilityViewEmbedder: boolean performAction(int,int,android.os.Bundle)
+com.google.android.gms.internal.measurement.zzbr$zzb: long zze
+io.flutter.embedding.engine.systemchannels.PlatformChannel$Brightness: io.flutter.embedding.engine.systemchannels.PlatformChannel$Brightness valueOf(java.lang.String)
+com.google.android.gms.internal.firebase_auth.zzeb: android.os.Parcelable$Creator CREATOR
+io.grpc.okhttp.internal.Platform$TlsExtensionType: io.grpc.okhttp.internal.Platform$TlsExtensionType[] values()
+io.flutter.embedding.engine.mutatorsstack.FlutterMutatorsStack: FlutterMutatorsStack()
+androidx.annotation.Keep
+io.flutter.embedding.engine.FlutterJNI: void onEndFrame()
+io.flutter.embedding.engine.FlutterJNI: void removeEngineLifecycleListener(io.flutter.embedding.engine.FlutterEngine$EngineLifecycleListener)
+io.flutter.embedding.engine.systemchannels.PlatformChannel$Brightness: io.flutter.embedding.engine.systemchannels.PlatformChannel$Brightness[] values()
+com.google.android.gms.internal.measurement.zzbr$zzc
+io.flutter.embedding.engine.FlutterJNI: void setDeferredComponentManager(io.flutter.embedding.engine.deferredcomponents.DeferredComponentManager)
+com.google.android.gms.measurement.AppMeasurement: void logEventInternal(java.lang.String,java.lang.String,android.os.Bundle)
+androidx.lifecycle.Lifecycling$1
+io.flutter.embedding.engine.FlutterJNI: boolean isAttached()
+io.flutter.embedding.android.FlutterActivityLaunchConfigs$BackgroundMode: io.flutter.embedding.android.FlutterActivityLaunchConfigs$BackgroundMode[] values()
+io.flutter.view.AccessibilityViewEmbedder: android.view.accessibility.AccessibilityNodeInfo convertToFlutterNode(android.view.accessibility.AccessibilityNodeInfo,int,android.view.View)

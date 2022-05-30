@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "D:\\Programming\\Flutter\\covidly\\build\\firebase_core\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png",
+        "source": "C:\\Users\\This PC\\.gradle\\caches\\transforms-2\\files-2.1\\37d3d00e0c0ef1b9fc31df7593fb46d9\\core-1.1.0\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "D:\\Programming\\Flutter\\covidly\\build\\firebase_core\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png",
+        "source": "C:\\Users\\This PC\\.gradle\\caches\\transforms-2\\files-2.1\\37d3d00e0c0ef1b9fc31df7593fb46d9\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "D:\\Programming\\Flutter\\covidly\\build\\firebase_core\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\notification_bg_normal.9.png",
+        "source": "C:\\Users\\This PC\\.gradle\\caches\\transforms-2\\files-2.1\\37d3d00e0c0ef1b9fc31df7593fb46d9\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "D:\\Programming\\Flutter\\covidly\\build\\firebase_core\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\notification_bg_low_normal.9.png",
+        "source": "C:\\Users\\This PC\\.gradle\\caches\\transforms-2\\files-2.1\\37d3d00e0c0ef1b9fc31df7593fb46d9\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "D:\\Programming\\Flutter\\covidly\\build\\firebase_core\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png",
+        "source": "C:\\Users\\This PC\\.gradle\\caches\\transforms-2\\files-2.1\\37d3d00e0c0ef1b9fc31df7593fb46d9\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
+    }
+]

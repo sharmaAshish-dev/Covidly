@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">487940786482-aodfbmfm7b16ma121p8fd3nja0avtbj5.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">487940786482</string>
+    <string name="google_api_key" translatable="false">AIzaSyB9AJZzWMD99b4m2pYgl1hQxToFUloUU9A</string>
+    <string name="google_app_id" translatable="false">1:487940786482:android:2e488a8018a1372a1c6f2b</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB9AJZzWMD99b4m2pYgl1hQxToFUloUU9A</string>
+    <string name="google_storage_bucket" translatable="false">covidly-2021-6223d.appspot.com</string>
+    <string name="project_id" translatable="false">covidly-2021-6223d</string>
+</resources>

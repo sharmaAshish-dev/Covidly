@@ -1,0 +1,1015 @@
+Index: lib/Screens/HomeScreen.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:async';\r\nimport 'dart:convert';\r\n\r\nimport 'package:covidly/Screens/SearchCountryPage.dart';\r\nimport 'package:covidly/Screens/SymptomsPage.dart';\r\nimport 'package:covidly/Screens/countryDetailPage.dart';\r\nimport 'package:covidly/Screens/covidInfoScreens/infoScreen1.dart';\r\nimport 'package:covidly/Screens/covidInfoScreens/infoScreen2.dart';\r\nimport 'package:covidly/Widgets/Buttons/tabButton.dart';\r\nimport 'package:covidly/Widgets/colors/LightTheme.dart';\r\nimport 'package:covidly/Widgets/common/CountryCard.dart';\r\nimport 'package:covidly/Widgets/errorScreens/Something_went_wrong.dart';\r\nimport 'package:covidly/Widgets/loadings/CustomLoadingDialog.dart';\r\nimport 'package:covidly/uTils/constAPIUrl.dart';\r\nimport 'package:dots_indicator/dots_indicator.dart';\r\nimport 'package:fl_chart/fl_chart.dart';\r\nimport 'package:fluttertoast/fluttertoast.dart';\r\nimport \"package:intl/intl.dart\";\r\nimport 'package:covidly/uTils/NoScrollBehaviour.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:percent_indicator/circular_percent_indicator.dart';\r\n\r\nint _totalAffectedCases = 0;\r\nint _totalDeadCases = 0;\r\nint _totalRecoveredCases = 0;\r\nint _totalActiveCases = 0;\r\n\r\nint _usaCount = 0;\r\nint _indiaCount = 0;\r\nint _brazilCount = 0;\r\nint _franceCount = 0;\r\nint _turkeyCount = 0;\r\nint _russiaCount = 0;\r\n\r\nString usaSlug;\r\nString indiaSlug;\r\nString brazilSlug;\r\nString franceSlug;\r\nString turkeySlug;\r\nString russiaSlug;\r\n\r\ndynamic globalData;\r\n\r\nclass HomeScreen extends StatefulWidget {\r\n  @override\r\n  _HomeScreenState createState() => _HomeScreenState();\r\n}\r\n\r\nclass _HomeScreenState extends State<HomeScreen> {\r\n  PageController _pageController = PageController();\r\n\r\n  bool isDataLoaded = false;\r\n  bool isTab1 = true;\r\n  bool isTab2 = false;\r\n  bool isTab3 = false;\r\n\r\n  double currentInfoIndex = 0;\r\n\r\n  Future getGlobalCountryData() async {\r\n    var url = apiUrl.baseUrl + \"summary\";\r\n    var response = await http.get(url);\r\n    dynamic data = jsonDecode(response.body);\r\n\r\n    _totalAffectedCases = data['Global']['TotalConfirmed'];\r\n    _totalDeadCases = data['Global']['TotalDeaths'];\r\n    _totalRecoveredCases = data['Global']['TotalRecovered'];\r\n    _totalActiveCases = _totalAffectedCases - (_totalDeadCases + _totalRecoveredCases);\r\n\r\n    isDataLoaded = true;\r\n\r\n    return data;\r\n  }\r\n\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n    globalData = getGlobalCountryData();\r\n  }\r\n\r\n  void _onPageChanged(int index) {\r\n    setState(() {\r\n      currentInfoIndex = index.toDouble();\r\n    });\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    Size appSize = MediaQuery.of(context).size;\r\n    String txtPercentage;\r\n\r\n    Future<void> refresh() async {\r\n      setState(() {\r\n        globalData = getGlobalCountryData();\r\n      });\r\n    }\r\n\r\n    Widget homeContent(context, snapshot) {\r\n      double setProgress(int total, {int active, int dead, int recovered}) {\r\n        double percentage = 0.0;\r\n\r\n        if (isTab1) {\r\n          percentage = (active / total) * 100;\r\n        } else if (isTab2) {\r\n          percentage = (dead / total) * 100;\r\n        } else if (isTab3) {\r\n          percentage = (recovered / total) * 100;\r\n        }\r\n        txtPercentage = percentage.toStringAsFixed(1) + \"%\";\r\n        return percentage / 100;\r\n      }\r\n\r\n      List<Widget> _infoScreens = [\r\n        infoScreen1(),\r\n        infoScreen2(),\r\n      ];\r\n\r\n      return RefreshIndicator(\r\n        onRefresh: refresh,\r\n        child: ScrollConfiguration(\r\n          behavior: NoScrollGlowBehaviour(),\r\n          child: SingleChildScrollView(\r\n            child: Padding(\r\n              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),\r\n              child: Container(\r\n                child: Column(mainAxisSize: MainAxisSize.max, children: <Widget>[\r\n                  Container(\r\n                    height: 210,\r\n                    child: Stack(\r\n                      children: [\r\n                        PageView(\r\n                          controller: _pageController,\r\n                          // scrollDirection: Axis.vertical,\r\n                          children: _infoScreens,\r\n                          onPageChanged: _onPageChanged,\r\n                        ),\r\n                        Align(\r\n                          alignment: Alignment.bottomCenter,\r\n                          child: DotsIndicator(\r\n                            dotsCount: _infoScreens.length,\r\n                            position: currentInfoIndex,\r\n                            decorator: DotsDecorator(\r\n                              activeColor: Colors.teal[500],\r\n                              size: const Size.square(9.0),\r\n                              activeSize: const Size(18.0, 9.0),\r\n                              activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),\r\n                            ),\r\n                          ),\r\n                        )\r\n                      ],\r\n                    ),\r\n                  ),\r\n                  SizedBox(\r\n                    height: 30,\r\n                  ),\r\n                  Padding(\r\n                    padding: const EdgeInsets.only(left: 20),\r\n                    child: Container(\r\n                      padding: EdgeInsets.only(right: 15),\r\n                      child: Row(\r\n                        mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                        children: <Widget>[\r\n                          Container(\r\n                            decoration: BoxDecoration(\r\n                                shape: BoxShape.circle,\r\n                                gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                                  LightTheme.materialGrey,\r\n                                  LightTheme.materialGrey,\r\n                                ]),\r\n                                boxShadow: [\r\n                                  BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                  BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                ]),\r\n                            child: CircularPercentIndicator(\r\n                              radius: 150.0,\r\n                              lineWidth: 12.0,\r\n                              animateFromLastPercent: true,\r\n                              backgroundColor: Colors.teal[50],\r\n                              animation: true,\r\n                              percent: setProgress(_totalAffectedCases, active: _totalActiveCases, dead: _totalDeadCases, recovered: _totalRecoveredCases),\r\n                              center: Container(\r\n                                width: 126,\r\n                                height: 126,\r\n                                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.teal[50]),\r\n                                child: Center(\r\n                                  child: Container(\r\n                                    width: 70,\r\n                                    height: 70,\r\n                                    decoration: BoxDecoration(\r\n                                        gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                                          LightTheme.materialGrey,\r\n                                          LightTheme.materialGrey,\r\n                                        ]),\r\n                                        shape: BoxShape.circle,\r\n                                        boxShadow: [\r\n                                          BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                          BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                        ]),\r\n                                    child: Center(\r\n                                      child: Text(\r\n                                        txtPercentage ?? \"0.0 %\",\r\n                                        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.teal[700]),\r\n                                      ),\r\n                                    ),\r\n                                  ),\r\n                                ),\r\n                              ),\r\n                              // curve: Curves.linearToEaseOut,\r\n                              circularStrokeCap: CircularStrokeCap.round,\r\n                              progressColor: LightTheme.primaryDarkColor,\r\n                            ),\r\n                          ),\r\n                          Column(\r\n                            crossAxisAlignment: CrossAxisAlignment.end,\r\n                            children: <Widget>[\r\n                              Affected(),\r\n                              (isTab1\r\n                                  ? ActiveCases()\r\n                                  : isTab2\r\n                                      ? DeadCases()\r\n                                      : isTab3\r\n                                          ? RecoveredCases()\r\n                                          : Container())\r\n                            ],\r\n                          ),\r\n                        ],\r\n                      ),\r\n                    ),\r\n                  ),\r\n                  SizedBox(height: 30),\r\n                  Padding(\r\n                    padding: EdgeInsets.only(left: 20, right: 20),\r\n                    child: Row(\r\n                      mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                      children: <Widget>[\r\n                        GestureDetector(\r\n                            onTap: () {\r\n                              setState(() {\r\n                                isTab1 = true;\r\n                                isTab2 = false;\r\n                                isTab3 = false;\r\n                              });\r\n                            },\r\n                            child: TabButton(tabName: \"Active Cases\", isSelected: isTab1)),\r\n                        GestureDetector(\r\n                            onTap: () {\r\n                              setState(() {\r\n                                isTab1 = false;\r\n                                isTab2 = true;\r\n                                isTab3 = false;\r\n                              });\r\n                            },\r\n                            child: TabButton(tabName: \"Dead\", isSelected: isTab2)),\r\n                        GestureDetector(\r\n                            onTap: () {\r\n                              setState(() {\r\n                                isTab1 = false;\r\n                                isTab2 = false;\r\n                                isTab3 = true;\r\n                              });\r\n                            },\r\n                            child: TabButton(tabName: \"Recovered\", isSelected: isTab3)),\r\n                      ],\r\n                    ),\r\n                  ),\r\n                  SizedBox(height: 30),\r\n                  Padding(\r\n                    padding: EdgeInsets.only(left: 20, right: 20),\r\n                    child: Row(\r\n                      mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                      children: [\r\n                        Text(\r\n                          \"Top Countries\",\r\n                          style: TextStyle(color: Colors.teal[800], fontWeight: FontWeight.w800, fontSize: appSize.width * 0.06),\r\n                        ),\r\n                        GestureDetector(\r\n                          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchCountryPage())),\r\n                          child: Container(\r\n                            padding: EdgeInsets.all(8),\r\n                            decoration: BoxDecoration(\r\n                                gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                                  LightTheme.materialGrey,\r\n                                  LightTheme.materialGrey,\r\n                                ]),\r\n                                borderRadius: BorderRadius.all(Radius.circular(20)),\r\n                                boxShadow: [\r\n                                  BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                  BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                ]),\r\n                            child: Row(\r\n                              mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                              children: [\r\n                                Text(\r\n                                  \"Search\",\r\n                                  style: TextStyle(color: Colors.teal[900], fontWeight: FontWeight.w600),\r\n                                ),\r\n                                SizedBox(\r\n                                  width: 5,\r\n                                ),\r\n                                Icon(CupertinoIcons.search, color: Colors.teal[900]),\r\n                              ],\r\n                            ),\r\n                          ),\r\n                        ),\r\n                      ],\r\n                    ),\r\n                  ),\r\n                  SizedBox(height: 30),\r\n                  Container(\r\n                    padding: const EdgeInsets.only(left: 20),\r\n                    height: 250,\r\n                    child: ScrollConfiguration(\r\n                      behavior: NoScrollGlowBehaviour(),\r\n                      child: ListView.builder(\r\n                          scrollDirection: Axis.horizontal,\r\n                          // ignore: missing_return\r\n                          itemBuilder: (context, index) {\r\n                            for (int i = 0; i < snapshot.data['Countries'].length; i++) {\r\n                              String temp = snapshot.data['Countries'][i]['CountryCode'];\r\n\r\n                              switch (temp) {\r\n                                case 'US':\r\n                                  _usaCount = snapshot.data['Countries'][i]['TotalConfirmed'];\r\n                                  usaSlug = snapshot.data['Countries'][i]['Slug'];\r\n                                  break;\r\n                                case 'IN':\r\n                                  _indiaCount = snapshot.data['Countries'][i]['TotalConfirmed'];\r\n                                  indiaSlug = snapshot.data['Countries'][i]['Slug'];\r\n                                  break;\r\n                                case 'BR':\r\n                                  _brazilCount = snapshot.data['Countries'][i]['TotalConfirmed'];\r\n                                  brazilSlug = snapshot.data['Countries'][i]['Slug'];\r\n                                  break;\r\n                                case 'FR':\r\n                                  _franceCount = snapshot.data['Countries'][i]['TotalConfirmed'];\r\n                                  franceSlug = snapshot.data['Countries'][i]['Slug'];\r\n                                  break;\r\n                                case 'TR':\r\n                                  _turkeyCount = snapshot.data['Countries'][i]['TotalConfirmed'];\r\n                                  turkeySlug = snapshot.data['Countries'][i]['Slug'];\r\n                                  break;\r\n                                case 'RU':\r\n                                  _russiaCount = snapshot.data['Countries'][i]['TotalConfirmed'];\r\n                                  russiaSlug = snapshot.data['Countries'][i]['Slug'];\r\n                                  break;\r\n                              }\r\n                            }\r\n\r\n                            if (index == 0) {\r\n                              return GestureDetector(\r\n                                onTap: () {\r\n                                  Navigator.of(context).push(MaterialPageRoute(\r\n                                      builder: (context) => CountryDetailPage(\r\n                                            countrySlug: usaSlug,\r\n                                            countryName: \"USA\",\r\n                                            totalCases: _usaCount,\r\n                                            pageColor: LightTheme.primaryColor,\r\n                                            flagPath: 'assets/images/flags/usa_flag.jpg',\r\n                                            fromSearch: false,\r\n                                          )));\r\n                                },\r\n                                child: Padding(\r\n                                  padding: const EdgeInsets.only(top: 12, right: 16, bottom: 12),\r\n                                  child: CountryCard(\r\n                                    cardBackground: Colors.teal[500],\r\n                                    cardName: \"USA\",\r\n                                    flagImageString: 'assets/images/flags/usa_flag.jpg',\r\n                                    totalCases: formatNumber(_usaCount),\r\n                                  ),\r\n                                ),\r\n                              );\r\n                            }\r\n                            if (index == 1) {\r\n                              return GestureDetector(\r\n                                onTap: () {\r\n                                  Navigator.of(context).push(MaterialPageRoute(\r\n                                      builder: (context) => CountryDetailPage(\r\n                                          countrySlug: indiaSlug,\r\n                                          countryName: \"India\",\r\n                                          totalCases: _indiaCount,\r\n                                          flagPath: 'assets/images/flags/indian_flag.jpg',\r\n                                          fromSearch: false,\r\n                                          pageColor: Color(0xffff8000))));\r\n                                },\r\n                                child: Padding(\r\n                                  padding: const EdgeInsets.only(top: 12, right: 16, bottom: 12),\r\n                                  child: CountryCard(\r\n                                    cardBackground: Color(0xffff8000),\r\n                                    cardName: \"India\",\r\n                                    flagImageString: 'assets/images/flags/indian_flag.jpg',\r\n                                    totalCases: formatNumber(_indiaCount),\r\n                                  ),\r\n                                ),\r\n                              );\r\n                            }\r\n                            if (index == 2) {\r\n                              return GestureDetector(\r\n                                onTap: () {\r\n                                  Navigator.of(context).push(MaterialPageRoute(\r\n                                      builder: (context) => CountryDetailPage(\r\n                                          countrySlug: brazilSlug,\r\n                                          countryName: \"Brazil\",\r\n                                          totalCases: _brazilCount,\r\n                                          flagPath: 'assets/images/flags/brazilian_flag.jpg',\r\n                                          fromSearch: false,\r\n                                          pageColor: Colors.yellow[700])));\r\n                                },\r\n                                child: Padding(\r\n                                  padding: const EdgeInsets.only(top: 12, right: 16, bottom: 12),\r\n                                  child: CountryCard(\r\n                                    cardBackground: Colors.yellow[700],\r\n                                    cardName: \"Brazil\",\r\n                                    flagImageString: 'assets/images/flags/brazilian_flag.jpg',\r\n                                    totalCases: formatNumber(_brazilCount),\r\n                                  ),\r\n                                ),\r\n                              );\r\n                            }\r\n                            if (index == 3) {\r\n                              return GestureDetector(\r\n                                onTap: () {\r\n                                  Navigator.of(context).push(MaterialPageRoute(\r\n                                      builder: (context) => CountryDetailPage(\r\n                                          countrySlug: franceSlug,\r\n                                          countryName: \"France\",\r\n                                          totalCases: _franceCount,\r\n                                          flagPath: 'assets/images/flags/france_flag.jpg',\r\n                                          fromSearch: false,\r\n                                          pageColor: Colors.blue[500])));\r\n                                },\r\n                                child: Padding(\r\n                                  padding: const EdgeInsets.only(top: 12, right: 16, bottom: 12),\r\n                                  child: CountryCard(\r\n                                    cardBackground: Colors.blue[500],\r\n                                    cardName: \"France\",\r\n                                    flagImageString: 'assets/images/flags/france_flag.jpg',\r\n                                    totalCases: formatNumber(_franceCount),\r\n                                  ),\r\n                                ),\r\n                              );\r\n                            }\r\n                            if (index == 4) {\r\n                              return GestureDetector(\r\n                                onTap: () {\r\n                                  Navigator.of(context).push(MaterialPageRoute(\r\n                                      builder: (context) => CountryDetailPage(\r\n                                          countrySlug: turkeySlug,\r\n                                          countryName: \"Turkey\",\r\n                                          totalCases: _turkeyCount,\r\n                                          flagPath: 'assets/images/flags/turkey_flag.jpg',\r\n                                          fromSearch: false,\r\n                                          pageColor: Colors.red[300])));\r\n                                },\r\n                                child: Padding(\r\n                                  padding: const EdgeInsets.only(top: 12, right: 16, bottom: 12),\r\n                                  child: CountryCard(\r\n                                    cardBackground: Colors.red[300],\r\n                                    cardName: \"Turkey\",\r\n                                    flagImageString: 'assets/images/flags/turkey_flag.jpg',\r\n                                    totalCases: formatNumber(_turkeyCount),\r\n                                  ),\r\n                                ),\r\n                              );\r\n                            }\r\n                            if (index == 5) {\r\n                              return GestureDetector(\r\n                                onTap: () {\r\n                                  Navigator.of(context).push(MaterialPageRoute(\r\n                                      builder: (context) => CountryDetailPage(\r\n                                          countrySlug: russiaSlug,\r\n                                          countryName: \"Russia\",\r\n                                          totalCases: _russiaCount,\r\n                                          flagPath: 'assets/images/flags/russian_flag.jpg',\r\n                                          fromSearch: false,\r\n                                          pageColor: Colors.blue[700])));\r\n                                },\r\n                                child: Padding(\r\n                                  padding: const EdgeInsets.only(top: 12, right: 16, bottom: 12),\r\n                                  child: CountryCard(\r\n                                    cardBackground: Colors.blue[700],\r\n                                    cardName: \"Russia\",\r\n                                    flagImageString: 'assets/images/flags/russian_flag.jpg',\r\n                                    totalCases: formatNumber(_russiaCount),\r\n                                  ),\r\n                                ),\r\n                              );\r\n                            }\r\n                            return Container();\r\n                          },\r\n                          itemCount: 6),\r\n                    ),\r\n                  ),\r\n                ]),\r\n              ),\r\n            ),\r\n          ),\r\n        ),\r\n      );\r\n    }\r\n\r\n    return Scaffold(\r\n      resizeToAvoidBottomInset: false,\r\n      backgroundColor: LightTheme.materialGrey,\r\n      body: FutureBuilder(\r\n        future: isDataLoaded ? globalData : getGlobalCountryData(),\r\n        // ignore: missing_return\r\n        builder: (context, snapshot) {\r\n          switch (snapshot.connectionState) {\r\n            case ConnectionState.none:\r\n              return Center(child: Text(\"Unable To Connect\"));\r\n              break;\r\n            case ConnectionState.active:\r\n              return Text(\"Please wait...\");\r\n            case ConnectionState.waiting:\r\n              return CustomLoadingDialog();\r\n              break;\r\n            case ConnectionState.done:\r\n              if (snapshot.hasError) {\r\n                return Scaffold(\r\n                  body: Stack(\r\n                    children: [\r\n                      SomethingWentWrongScreen(),\r\n                      Positioned(\r\n                        bottom: MediaQuery.of(context).size.height * 0.15,\r\n                        left: MediaQuery.of(context).size.width * 0.3,\r\n                        right: MediaQuery.of(context).size.width * 0.3,\r\n                        child: FlatButton(\r\n                          color: LightTheme.primaryColor,\r\n                          shape: RoundedRectangleBorder(\r\n                              borderRadius: BorderRadius.circular(50)),\r\n                          onPressed: refresh,\r\n                          child: Text(\r\n                            \"Try Again\".toUpperCase(),\r\n                            style: TextStyle(color: Colors.white),\r\n                          ),\r\n                        ),\r\n                      )\r\n                    ],\r\n                  ),\r\n                );\r\n              } else {\r\n                return homeContent(context, snapshot);\r\n              }\r\n              break;\r\n          }\r\n        },\r\n      ),\r\n    );\r\n  }\r\n}\r\n\r\nString formatNumber(int number) {\r\n  return NumberFormat.compact().format(number);\r\n}\r\n\r\nclass Affected extends StatefulWidget {\r\n  @override\r\n  _AffectedState createState() => _AffectedState();\r\n}\r\n\r\nclass _AffectedState extends State<Affected> {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Padding(\r\n      padding: const EdgeInsets.all(6.0),\r\n      child: Container(\r\n        padding: EdgeInsets.all(10),\r\n        decoration: BoxDecoration(\r\n          gradient: LinearGradient(colors: [\r\n            LightTheme.materialGrey,\r\n            Colors.red[50],\r\n            Colors.red[100],\r\n          ]),\r\n          borderRadius: BorderRadius.all(Radius.circular(10)),\r\n        ),\r\n        child: Row(\r\n          children: <Widget>[\r\n            Column(\r\n              crossAxisAlignment: CrossAxisAlignment.start,\r\n              children: <Widget>[\r\n                Row(\r\n                  children: [\r\n                    Text(\r\n                      \"Affected\",\r\n                      style: TextStyle(color: Colors.brown[800], fontWeight: FontWeight.w600),\r\n                    ),\r\n                    Icon(Icons.arrow_drop_up_rounded, color: Colors.red),\r\n                  ],\r\n                ),\r\n                Text(\r\n                  formatNumber(_totalAffectedCases),\r\n                  style: TextStyle(color: Colors.brown[800], fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05),\r\n                ),\r\n              ],\r\n            ),\r\n            Image.asset(\r\n              'assets/images/red_line.png',\r\n              width: MediaQuery.of(context).size.width * 0.14,\r\n            )\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n\r\nclass ActiveCases extends StatefulWidget {\r\n  final int active;\r\n\r\n  ActiveCases({this.active});\r\n\r\n  @override\r\n  _ActiveCasesState createState() => _ActiveCasesState();\r\n}\r\n\r\nclass _ActiveCasesState extends State<ActiveCases> {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Padding(\r\n      padding: const EdgeInsets.all(6.0),\r\n      child: Container(\r\n        padding: EdgeInsets.all(10),\r\n        decoration: BoxDecoration(\r\n          gradient: LinearGradient(colors: [\r\n            LightTheme.materialGrey,\r\n            Colors.teal[50],\r\n            Colors.teal[100],\r\n          ]),\r\n          borderRadius: BorderRadius.all(Radius.circular(10)),\r\n        ),\r\n        child: Row(\r\n          children: <Widget>[\r\n            Column(\r\n              crossAxisAlignment: CrossAxisAlignment.start,\r\n              children: <Widget>[\r\n                Row(\r\n                  children: [\r\n                    Text(\r\n                      \"Active Cases\",\r\n                      style: TextStyle(color: Colors.teal[700], fontWeight: FontWeight.w600),\r\n                    ),\r\n                    Icon(Icons.arrow_drop_up_rounded, color: Colors.teal[900]),\r\n                  ],\r\n                ),\r\n                Text(\r\n                  formatNumber(_totalActiveCases),\r\n                  style: TextStyle(color: Colors.teal[800], fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05),\r\n                ),\r\n              ],\r\n            ),\r\n            Image.asset(\r\n              'assets/images/green_line.png',\r\n              width: MediaQuery.of(context).size.width * 0.14,\r\n            )\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n\r\nclass DeadCases extends StatefulWidget {\r\n  @override\r\n  _DeadCasesState createState() => _DeadCasesState();\r\n}\r\n\r\nclass _DeadCasesState extends State<DeadCases> {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Padding(\r\n      padding: const EdgeInsets.all(6.0),\r\n      child: Container(\r\n        padding: EdgeInsets.all(10),\r\n        decoration: BoxDecoration(\r\n          gradient: LinearGradient(colors: [\r\n            LightTheme.materialGrey,\r\n            Colors.red[50],\r\n            Colors.red[100],\r\n          ]),\r\n          borderRadius: BorderRadius.all(Radius.circular(10)),\r\n        ),\r\n        child: Row(\r\n          children: <Widget>[\r\n            Column(\r\n              crossAxisAlignment: CrossAxisAlignment.start,\r\n              children: <Widget>[\r\n                Row(\r\n                  children: [\r\n                    Text(\r\n                      \"Dead\",\r\n                      style: TextStyle(color: Colors.brown[800], fontWeight: FontWeight.w600),\r\n                    ),\r\n                    Icon(Icons.arrow_drop_up_rounded, color: Colors.red),\r\n                  ],\r\n                ),\r\n                Text(\r\n                  formatNumber(_totalDeadCases),\r\n                  style: TextStyle(color: Colors.brown[800], fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05),\r\n                ),\r\n              ],\r\n            ),\r\n            // Image.asset('assets/images/red_line.png', width: MediaQuery.of(context).size.width * 0.14,)\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n\r\nclass RecoveredCases extends StatefulWidget {\r\n  @override\r\n  _RecoveredCasesState createState() => _RecoveredCasesState();\r\n}\r\n\r\nclass _RecoveredCasesState extends State<RecoveredCases> {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Padding(\r\n      padding: const EdgeInsets.all(6.0),\r\n      child: Container(\r\n        padding: EdgeInsets.all(10),\r\n        decoration: BoxDecoration(\r\n          gradient: LinearGradient(colors: [\r\n            LightTheme.materialGrey,\r\n            Colors.teal[50],\r\n            Colors.teal[100],\r\n          ]),\r\n          borderRadius: BorderRadius.all(Radius.circular(10)),\r\n        ),\r\n        child: Row(\r\n          children: <Widget>[\r\n            Column(\r\n              crossAxisAlignment: CrossAxisAlignment.start,\r\n              children: <Widget>[\r\n                Row(\r\n                  children: [\r\n                    Text(\r\n                      \"Recovered\",\r\n                      style: TextStyle(color: Colors.teal[700], fontWeight: FontWeight.w600),\r\n                    ),\r\n                    Icon(Icons.arrow_drop_up_rounded, color: Colors.teal[900]),\r\n                  ],\r\n                ),\r\n                Text(\r\n                  formatNumber(_totalRecoveredCases),\r\n                  style: TextStyle(color: Colors.teal[800], fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05),\r\n                ),\r\n              ],\r\n            ),\r\n            Image.asset(\r\n              'assets/images/green_line.png',\r\n              width: MediaQuery.of(context).size.width * 0.14,\r\n            )\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Screens/HomeScreen.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Screens/HomeScreen.dart	(date 1626091926918)
+@@ -60,7 +60,7 @@
+ 
+   Future getGlobalCountryData() async {
+     var url = apiUrl.baseUrl + "summary";
+-    var response = await http.get(url);
++    var response = await http.get(Uri.parse(url));
+     dynamic data = jsonDecode(response.body);
+ 
+     _totalAffectedCases = data['Global']['TotalConfirmed'];
+@@ -97,6 +97,7 @@
+     }
+ 
+     Widget homeContent(context, snapshot) {
++
+       double setProgress(int total, {int active, int dead, int recovered}) {
+         double percentage = 0.0;
+ 
+Index: lib/Screens/walkThroughPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:async';\r\n\r\nimport 'package:covidly/Screens/HomeScreen.dart';\r\nimport 'package:covidly/Screens/LoginPage.dart';\r\nimport 'package:covidly/Screens/MainScreen.dart';\r\nimport 'package:covidly/Widgets/Buttons/PrimaryButton.dart';\r\nimport 'package:covidly/Widgets/colors/LightTheme.dart';\r\nimport 'package:covidly/uTils/FadeRoute.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:lottie/lottie.dart';\r\n\r\nclass WalkThrough extends StatefulWidget {\r\n  @override\r\n  _WalkThroughState createState() => _WalkThroughState();\r\n}\r\n\r\nclass _WalkThroughState extends State<WalkThrough> {\r\n  double _bottomOffset = 0;\r\n  double _bottomSheetHeight = 0;\r\n\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n    startTime();\r\n  }\r\n\r\n  startTime() async {\r\n    var duration = new Duration(milliseconds: 800);\r\n    return new Timer(duration, () {\r\n      setState(() {\r\n        _bottomOffset = MediaQuery.of(context).size.height * 0.3;\r\n        _bottomSheetHeight = MediaQuery.of(context).size.height - _bottomOffset;\r\n      });\r\n    });\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    Size appSize = MediaQuery.of(context).size;\r\n\r\n    return Scaffold(\r\n      backgroundColor: LightTheme.primaryColor,\r\n      body: Stack(\r\n        fit: StackFit.expand,\r\n        children: [\r\n          Column(\r\n            children: [\r\n              Align(\r\n                alignment: Alignment.topLeft,\r\n                child: Transform.translate(\r\n                  offset: Offset(-50 , 20),\r\n                  child: Lottie.asset(\r\n                    'assets/lottie/coronavirus_infection.json',\r\n                    repeat: true,\r\n                    reverse: true,\r\n                    animate: true,\r\n                    width: appSize.width,\r\n                  ),\r\n                ),\r\n              ),\r\n              Lottie.asset(\r\n                  'assets/lottie/covid_fighting.json',\r\n                  repeat: true,\r\n                  reverse: true,\r\n                  animate: true,\r\n                  width: appSize.width,\r\n              ),\r\n            ],\r\n          ),\r\n\r\n          Positioned(\r\n            bottom: 0,\r\n            child: AnimatedContainer(\r\n              width: appSize.width,\r\n              height: _bottomSheetHeight + 20,\r\n              padding: EdgeInsets.all(32),\r\n              curve: Curves.elasticOut,\r\n              duration: Duration(milliseconds: 1000),\r\n              transform: Matrix4.translationValues(0, _bottomOffset, 0),\r\n              decoration: BoxDecoration(\r\n                  color: Colors.white,\r\n                  borderRadius: BorderRadius.only(\r\n                      topLeft: Radius.circular(35),\r\n                      topRight: Radius.circular(35))),\r\n              child: Column(\r\n                crossAxisAlignment: CrossAxisAlignment.start,\r\n                children: <Widget>[\r\n                  Text(\r\n                    \"Track Coronavirus \\nwith Covidly\",\r\n                    style: TextStyle(\r\n                      fontSize: appSize.width * 0.066,\r\n                      fontWeight: FontWeight.w600\r\n                    ),\r\n                  ),\r\n                  SizedBox(\r\n                    height: 30,\r\n                  ),\r\n                  Text(\r\n                    \"is an infectious disease caused by a new virus that affects health of humans.\",\r\n                    style: TextStyle(\r\n                      fontSize: appSize.width * 0.05,\r\n                      color: LightTheme.greyishBlack,\r\n                    ),\r\n                  ),\r\n                  SizedBox(\r\n                    height: 30,\r\n                  ),\r\n                  SizedBox(\r\n                    height: 30,\r\n                  ),\r\n                  GestureDetector(\r\n                      onTap: () {\r\n                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));\r\n                      },\r\n                      child: Container(\r\n                        decoration: BoxDecoration(\r\n                            color: Color(0xFFB40284A),\r\n                            borderRadius: BorderRadius.circular(50),\r\n                            gradient: LinearGradient(\r\n                                begin: Alignment(-1.0, -4.0),\r\n                                end: Alignment(1.0, 4.0),\r\n                                colors: [\r\n                                  LightTheme.primaryColor,\r\n                                  LightTheme.primaryDarkColor,\r\n                                ]),\r\n                            boxShadow: [\r\n                              BoxShadow(\r\n                                  color: Color(0xFFd9d9d9),\r\n                                  offset: Offset(4.0, 5.0),\r\n                                  blurRadius: 14.0,\r\n                                  spreadRadius: 1.0),\r\n                              BoxShadow(\r\n                                  color: Color(0xFFffffff),\r\n                                  offset: Offset(-3.0, -5.0),\r\n                                  blurRadius: 14.0,\r\n                                  spreadRadius: 1.0),\r\n                            ]\r\n                        ),\r\n                        padding: EdgeInsets.all(16),\r\n                        child: Center(\r\n                          child: Row(\r\n                            mainAxisAlignment: MainAxisAlignment.center,\r\n                            children: [\r\n                              Text(\r\n                                \"Get Started\",\r\n                                style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),\r\n                              ),\r\n                              SizedBox(\r\n                                width: 10,\r\n                              ),\r\n                              Icon(Icons.keyboard_arrow_right_rounded, color: Colors.white)\r\n                            ],\r\n                          ),\r\n                        ),\r\n                      )\r\n                  )\r\n                ],\r\n              ),\r\n            ),\r\n          ),\r\n        ],\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Screens/walkThroughPage.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Screens/walkThroughPage.dart	(date 1626254981204)
+@@ -87,9 +87,9 @@
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: <Widget>[
+                   Text(
+-                    "Track Coronavirus \nwith Covidly",
++                    "Track Covid-19 with Covidly",
+                     style: TextStyle(
+-                      fontSize: appSize.width * 0.066,
++                      fontSize: appSize.width * 0.050,
+                       fontWeight: FontWeight.w600
+                     ),
+                   ),
+@@ -97,7 +97,7 @@
+                     height: 30,
+                   ),
+                   Text(
+-                    "is an infectious disease caused by a new virus that affects health of humans.",
++                    "Covid-19 is an infectious disease caused by a new virus that affects health of humans.",
+                     style: TextStyle(
+                       fontSize: appSize.width * 0.05,
+                       color: LightTheme.greyishBlack,
+@@ -111,6 +111,7 @@
+                   ),
+                   GestureDetector(
+                       onTap: () {
++                        // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+                         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
+                       },
+                       child: Container(
+Index: lib/Screens/MainScreen.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:ui';\r\n\r\nimport 'package:bottom_navy_bar/bottom_navy_bar.dart';\r\nimport 'package:covidly/Screens/HomeScreen.dart';\r\nimport 'package:covidly/Screens/IndiaUpdatePage.dart';\r\nimport 'package:covidly/Screens/SearchCountryPage.dart';\r\nimport 'package:covidly/Widgets/colors/LightTheme.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nclass MainScreen extends StatefulWidget {\r\n  @override\r\n  _MainScreenState createState() => _MainScreenState();\r\n}\r\n\r\nclass _MainScreenState extends State<MainScreen> {\r\n  int currentIndex = 0;\r\n  int _selectedIndex = 0;\r\n  PageController _pageController = PageController();\r\n\r\n  List<Widget> _screens = [\r\n    HomeScreen(),\r\n    IndiaUpdatePage(),\r\n    // HomeScreen(),\r\n    // HomeScreen(),\r\n  ];\r\n\r\n  void _onPageChanged(int index) {\r\n    setState(() {\r\n      currentIndex = index;\r\n    });\r\n  }\r\n\r\n  void onBottomIconPressed(int index) {\r\n    _pageController.jumpToPage(index);\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      bottomNavigationBar: BottomNavyBar(\r\n        containerHeight: 60,\r\n        selectedIndex: _selectedIndex,\r\n        showElevation: true,\r\n        mainAxisAlignment: MainAxisAlignment.spaceEvenly,\r\n        backgroundColor: Colors.teal[50],\r\n        onItemSelected: (index) => setState(() {\r\n          _selectedIndex = index;\r\n          _pageController.jumpToPage(index);\r\n        }),\r\n        items: [\r\n          BottomNavyBarItem(\r\n            textAlign: TextAlign.center,\r\n            icon: Icon(Icons.apps),\r\n            title: Text('Home'),\r\n            activeColor: LightTheme.primaryColor,\r\n          ),\r\n          BottomNavyBarItem(\r\n              textAlign: TextAlign.center,\r\n              icon: Icon(Icons.stacked_bar_chart),\r\n              title: Text('Updates'),\r\n              activeColor: LightTheme.primaryColor),\r\n          // BottomNavyBarItem(\r\n          //     textAlign: TextAlign.center,\r\n          //     icon: Icon(Icons.help_rounded),\r\n          //     title: Text('Help'),\r\n          //     activeColor: LightTheme.primaryColor),\r\n          // BottomNavyBarItem(\r\n          //     textAlign: TextAlign.center,\r\n          //     icon: Icon(Icons.settings),\r\n          //     title: Text('Settings'),\r\n          //     activeColor: LightTheme.primaryColor),\r\n        ],\r\n      ),\r\n      body: _activityArea(context),\r\n    );\r\n  }\r\n\r\n  Widget _activityArea(context) {\r\n    return PageView(\r\n      controller: _pageController,\r\n      children: _screens,\r\n      pageSnapping: false,\r\n      onPageChanged: _onPageChanged,\r\n      physics: NeverScrollableScrollPhysics(),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Screens/MainScreen.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Screens/MainScreen.dart	(date 1626078001383)
+@@ -3,11 +3,13 @@
+ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+ import 'package:covidly/Screens/HomeScreen.dart';
+ import 'package:covidly/Screens/IndiaUpdatePage.dart';
+-import 'package:covidly/Screens/SearchCountryPage.dart';
++import 'package:covidly/Screens/NewsUpdatePage.dart';
+ import 'package:covidly/Widgets/colors/LightTheme.dart';
+ import 'package:flutter/cupertino.dart';
+ import 'package:flutter/material.dart';
+ 
++import 'MoreOptions.dart';
++
+ class MainScreen extends StatefulWidget {
+   @override
+   _MainScreenState createState() => _MainScreenState();
+@@ -21,8 +23,8 @@
+   List<Widget> _screens = [
+     HomeScreen(),
+     IndiaUpdatePage(),
+-    // HomeScreen(),
+-    // HomeScreen(),
++    NewsUpdatePage(),
++    MoreOptions()
+   ];
+ 
+   void _onPageChanged(int index) {
+@@ -42,7 +44,7 @@
+         containerHeight: 60,
+         selectedIndex: _selectedIndex,
+         showElevation: true,
+-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
++        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         backgroundColor: Colors.teal[50],
+         onItemSelected: (index) => setState(() {
+           _selectedIndex = index;
+@@ -60,16 +62,16 @@
+               icon: Icon(Icons.stacked_bar_chart),
+               title: Text('Updates'),
+               activeColor: LightTheme.primaryColor),
+-          // BottomNavyBarItem(
+-          //     textAlign: TextAlign.center,
+-          //     icon: Icon(Icons.help_rounded),
+-          //     title: Text('Help'),
+-          //     activeColor: LightTheme.primaryColor),
+-          // BottomNavyBarItem(
+-          //     textAlign: TextAlign.center,
+-          //     icon: Icon(Icons.settings),
+-          //     title: Text('Settings'),
+-          //     activeColor: LightTheme.primaryColor),
++          BottomNavyBarItem(
++              textAlign: TextAlign.center,
++              icon: Icon(Icons.description_rounded),
++              title: Text('News'),
++              activeColor: LightTheme.primaryColor),
++          BottomNavyBarItem(
++              textAlign: TextAlign.center,
++              icon: Icon(Icons.settings),
++              title: Text('Settings'),
++              activeColor: LightTheme.primaryColor),
+         ],
+       ),
+       body: _activityArea(context),
+Index: lib/Screens/SearchCountryPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:math';\r\nimport 'dart:convert';\r\n\r\nimport 'package:covidly/Screens/countryDetailPage.dart';\r\nimport 'package:covidly/Widgets/Buttons/backButton.dart';\r\nimport 'package:covidly/Widgets/colors/LightTheme.dart';\r\nimport 'package:covidly/Widgets/common/CountryCard.dart';\r\nimport 'package:covidly/Widgets/loadings/CustomLoadingDialog.dart';\r\nimport 'package:covidly/model/countryCardModel.dart';\r\nimport 'package:covidly/uTils/NoScrollBehaviour.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:covidly/uTils/constAPIUrl.dart';\r\nimport 'package:http/http.dart' as http;\r\n\r\nclass SearchCountryPage extends StatefulWidget {\r\n  @override\r\n  _SearchCountryPageState createState() => _SearchCountryPageState();\r\n}\r\n\r\nclass _SearchCountryPageState extends State<SearchCountryPage> {\r\n  List<CountryModel> countries = [];\r\n  List<CountryModel> countriesForDisplay = [];\r\n  bool allowSearch = false;\r\n\r\n  Future getCountries() async {\r\n    var url = apiUrl.baseUrl + \"summary\";\r\n    var response = await http.get(url);\r\n    dynamic data = jsonDecode(response.body);\r\n\r\n    for (int i = 0; i < data['Countries'].length; i++) {\r\n      CountryModel country = CountryModel(\r\n        countryName: data['Countries'][i]['Country'],\r\n        countryCode: data['Countries'][i]['CountryCode'],\r\n        countrySlug: data['Countries'][i]['Slug'],\r\n        totalCases: data['Countries'][i]['TotalConfirmed'],\r\n      );\r\n      countries.add(country);\r\n    }\r\n\r\n    countriesForDisplay = countries;\r\n\r\n    return data;\r\n  }\r\n\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n    getCountries().then((value) {\r\n      setState(() {allowSearch = true;});\r\n    });\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Scaffold(\r\n      body: Container(\r\n        padding: EdgeInsets.only(top: 17),\r\n        child: Column(\r\n          children: [\r\n            Expanded(\r\n                child: ScrollConfiguration(\r\n              behavior: NoScrollGlowBehaviour(),\r\n              child: ListView.builder(\r\n                shrinkWrap: true,\r\n                itemBuilder: (context, index) {\r\n                  return index == 0 ? _searchBar() : _listData(context, index - 1);\r\n                },\r\n                itemCount: countriesForDisplay.length + 1,\r\n              ),\r\n            )),\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n\r\n  _searchBar() {\r\n    Size appSize = MediaQuery.of(context).size;\r\n    return Column(\r\n      children: <Widget>[\r\n        Padding(\r\n          padding: const EdgeInsets.only(left: 20, right: 20),\r\n          child: Row(\r\n            mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n            children: [\r\n              Expanded(\r\n                  child: AnimatedContainer(\r\n                padding: EdgeInsets.only(left: 20, right: 20),\r\n                height: 50,\r\n                decoration: BoxDecoration(\r\n                    borderRadius: BorderRadius.circular(15),\r\n                    gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                      Colors.white70,\r\n                      Colors.white70,\r\n                    ]),\r\n                    boxShadow: [\r\n                      BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                      BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                    ]),\r\n                duration: Duration(seconds: 2),\r\n                child: Align(\r\n                    alignment: Alignment.centerLeft,\r\n                    child: TextField(\r\n                      enabled: allowSearch,\r\n                      onChanged: (value) {\r\n                        value = value.toLowerCase();\r\n                        setState(() {\r\n                          countriesForDisplay = countries.where((country) {\r\n                            var countryTitle = country.countryName.toLowerCase();\r\n                            return countryTitle.contains(value);\r\n                          }).toList();\r\n                        });\r\n                      },\r\n                      decoration: InputDecoration(hintText: \"Search Country\", border: InputBorder.none),\r\n                      style: TextStyle(color: Colors.black, fontSize: appSize.width * 0.040, fontWeight: FontWeight.w300),\r\n                    )),\r\n              )),\r\n              Padding(\r\n                padding: const EdgeInsets.only(left: 10),\r\n                child: GestureDetector(\r\n                  onTap: () => Navigator.of(context).pop(),\r\n                  child: AnimatedContainer(\r\n                    duration: Duration(seconds: 2),\r\n                    padding: EdgeInsets.only(left: 20, right: 20),\r\n                    height: 50,\r\n                    decoration: BoxDecoration(\r\n                        borderRadius: BorderRadius.circular(15),\r\n                        gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                          Colors.white70,\r\n                          Colors.white70,\r\n                        ]),\r\n                        boxShadow: [\r\n                          BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                          BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                        ]),\r\n                    child: Center(child: Text(\"Cancel\")),\r\n                  ),\r\n                ),\r\n              ),\r\n            ],\r\n          ),\r\n        ),\r\n        SizedBox(height: 30),\r\n      ],\r\n    );\r\n  }\r\n\r\n  Widget _listData(context, index) {\r\n    Size appSize = MediaQuery.of(context).size;\r\n    return Padding(\r\n      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),\r\n      child: InkWell(\r\n        onTap: () {\r\n          Navigator.of(context).push(MaterialPageRoute(\r\n            builder: (context) => CountryDetailPage(\r\n              countryName: countriesForDisplay[index].countryName,\r\n              countryCode: countriesForDisplay[index].countryCode,\r\n              countrySlug: countriesForDisplay[index].countrySlug,\r\n              totalCases: countriesForDisplay[index].totalCases,\r\n              fromSearch: true,\r\n              flagPath: \"https://www.countryflags.io/\" + countriesForDisplay[index].countryCode + \"/shiny/64.png\",\r\n            ),\r\n          ));\r\n        },\r\n        child: Container(\r\n          decoration: BoxDecoration(\r\n              gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                Colors.white,\r\n                Colors.white,\r\n              ]),\r\n              borderRadius: BorderRadius.all(Radius.circular(15)),\r\n              boxShadow: [\r\n                BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n              ]),\r\n          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),\r\n          width: appSize.width,\r\n          child: Row(\r\n            children: [\r\n              Image.network(\"https://www.countryflags.io/\" + countriesForDisplay[index].countryCode + \"/shiny/64.png\", width: appSize.width * 0.11),\r\n              SizedBox(width: 20),\r\n              Text(countriesForDisplay[index].countryName),\r\n            ],\r\n          ),\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Screens/SearchCountryPage.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Screens/SearchCountryPage.dart	(date 1625721128181)
+@@ -25,7 +25,7 @@
+ 
+   Future getCountries() async {
+     var url = apiUrl.baseUrl + "summary";
+-    var response = await http.get(url);
++    var response = await http.get(Uri.parse(url));
+     dynamic data = jsonDecode(response.body);
+ 
+     for (int i = 0; i < data['Countries'].length; i++) {
+Index: lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:covidly/Screens/MainScreen.dart';\r\nimport 'package:covidly/Screens/splash.dart';\r\nimport 'package:covidly/Screens/test.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:flutter/services.dart';\r\nimport 'package:google_fonts/google_fonts.dart';\r\n\r\nvoid main() {\r\n  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(\r\n    statusBarColor: Colors.transparent,\r\n  ));\r\n  runApp(MyApp());\r\n}\r\n\r\nclass MyApp extends StatelessWidget {\r\n  // This widget is the root of your application.\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return MaterialApp(\r\n      title: \"Covidly App\",\r\n      theme: ThemeData(\r\n        textTheme: GoogleFonts.nunitoSansTextTheme(\r\n          Theme.of(context).textTheme,\r\n        )\r\n      ),\r\n      debugShowCheckedModeBanner: false,\r\n      home: Scaffold(\r\n          resizeToAvoidBottomInset: false,\r\n          body: splashScreen()\r\n          // body: MainScreen()\r\n          // body: LineChartSample1()\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/main.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/main.dart	(date 1626109410289)
+@@ -9,6 +9,11 @@
+   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+     statusBarColor: Colors.transparent,
+   ));
++
++  SystemChrome.setPreferredOrientations([
++    DeviceOrientation.portraitUp,
++  ]);
++
+   runApp(MyApp());
+ }
+ 
+Index: lib/Screens/IndiaUpdatePage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:async';\r\nimport 'dart:convert';\r\nimport 'dart:math';\r\nimport 'dart:ui';\r\n\r\nimport 'package:covidly/Screens/SearchCountryPage.dart';\r\nimport 'package:covidly/Widgets/Buttons/backButton.dart';\r\nimport 'package:covidly/Widgets/colors/LightTheme.dart';\r\nimport 'package:covidly/Widgets/common/StateDetailListTile.dart';\r\nimport 'package:covidly/Widgets/errorScreens/Something_went_wrong.dart';\r\nimport 'package:covidly/Widgets/loadings/CustomLoadingDialog.dart';\r\nimport 'package:covidly/uTils/FadeRoute.dart';\r\nimport 'package:covidly/uTils/NoScrollBehaviour.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'package:intl/intl.dart';\r\n\r\nList<String> stateCodes = [\r\n  'AN',\r\n  'AP',\r\n  'AR',\r\n  'AS',\r\n  'BR',\r\n  'CH',\r\n  'CT',\r\n  'DL',\r\n  'DN',\r\n  'GA',\r\n  'GJ',\r\n  'HP',\r\n  'HR',\r\n  'JH',\r\n  'JK',\r\n  'KA',\r\n  'KL',\r\n  'LA',\r\n  'LD',\r\n  'MH',\r\n  'ML',\r\n  'MN',\r\n  'MP',\r\n  'MZ',\r\n  'NL',\r\n  'OR',\r\n  'PB',\r\n  'PY',\r\n  'RJ',\r\n  'SK',\r\n  'TG',\r\n  'TN',\r\n  'TR',\r\n  'UP',\r\n  'UT',\r\n  'WB'\r\n];\r\n\r\ndynamic indianStatesData;\r\n\r\nclass IndiaUpdatePage extends StatefulWidget {\r\n  @override\r\n  _IndiaUpdatePageState createState() => _IndiaUpdatePageState();\r\n}\r\n\r\nclass _IndiaUpdatePageState extends State<IndiaUpdatePage> with AutomaticKeepAliveClientMixin {\r\n  bool isDataLoaded = false;\r\n\r\n  // bool showHomeStateDelta = false;\r\n\r\n  Color confirmedTextColor = Colors.blue[700];\r\n  Color activeTextColor = Colors.blue[900];\r\n  Color recoveredTextColor = Colors.green[700];\r\n  Color deathTextColor = Colors.red[500];\r\n\r\n  int totalConfirmedCases;\r\n  int totalRecoveredCases;\r\n  int totalDeathCases;\r\n\r\n  int deltaConfirmedCases;\r\n  int deltaRecoveredCases;\r\n  int deltaDeathCases;\r\n\r\n  Future getIndianStateData() async {\r\n    var url = \"https://api.covid19india.org/v4/min/data.min.json\";\r\n    var response = await http.get(url);\r\n    dynamic data = jsonDecode(response.body);\r\n\r\n    for (int i = 0; i < data.length; i++) {\r\n      stateCodes.add(data[i]);\r\n    }\r\n\r\n    isDataLoaded = true;\r\n\r\n    return data;\r\n  }\r\n\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n    indianStatesData = getIndianStateData();\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    super.build(context);\r\n    Size appSize = MediaQuery.of(context).size;\r\n\r\n    Future<void> reloadScreen() async {\r\n      setState(() {\r\n        indianStatesData = getIndianStateData();\r\n      });\r\n    }\r\n\r\n    Widget _contentArea(context, snapshot) {\r\n      return RefreshIndicator(\r\n        onRefresh: reloadScreen,\r\n        child: ScrollConfiguration(\r\n          behavior: NoScrollGlowBehaviour(),\r\n          child: SingleChildScrollView(\r\n            child: Padding(\r\n              padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),\r\n              child: Container(\r\n                child: Column(\r\n                  crossAxisAlignment: CrossAxisAlignment.start,\r\n                  children: <Widget>[\r\n                    Padding(\r\n                      padding: const EdgeInsets.only(left: 20, right: 20),\r\n                      child: Column(\r\n                        crossAxisAlignment: CrossAxisAlignment.start,\r\n                        children: [\r\n                          Padding(\r\n                            padding: const EdgeInsets.only(bottom: 8),\r\n                            child: GestureDetector(\r\n                              onTap: () => Navigator.of(context).push(FadeRoute(builder: (context) => SearchCountryPage())),\r\n                              child: Row(\r\n                                children: <Widget>[\r\n                                  Expanded(\r\n                                      child: Container(\r\n                                    padding: EdgeInsets.only(left: 20, right: 20),\r\n                                    height: 50,\r\n                                    decoration: BoxDecoration(\r\n                                      border: Border.all(color: LightTheme.lightGrey),\r\n                                      borderRadius: BorderRadius.circular(15),\r\n                                      gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                                        Colors.white,\r\n                                        Colors.white,\r\n                                      ]),\r\n                                    ),\r\n                                    child: Align(\r\n                                        alignment: Alignment.centerLeft,\r\n                                        child: Text(\r\n                                          \"Search Country\",\r\n                                          style: TextStyle(color: Colors.black, fontSize: appSize.width * 0.040, fontWeight: FontWeight.w300),\r\n                                        )),\r\n                                  )),\r\n                                ],\r\n                              ),\r\n                            ),\r\n                          ),\r\n                          Stack(children: [\r\n                            Opacity(child: Image.asset('assets/images/map.png', width: appSize.width, color: Colors.black), opacity: 0.12),\r\n                            ClipRect(child: BackdropFilter(filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0), child: Image.asset('assets/images/map.png', width: appSize.width)))\r\n                          ]),\r\n                          SizedBox(height: 20),\r\n                          Row(\r\n                            children: <Widget>[\r\n                              Text(\r\n                                \"Total Cases in India\",\r\n                                style: TextStyle(color: Colors.teal[800], fontWeight: FontWeight.w800, fontSize: appSize.width * 0.055),\r\n                              ),\r\n                              SizedBox(width: 10),\r\n                              ClipRRect(\r\n                                borderRadius: BorderRadius.circular(5),\r\n                                child: Image.asset(\"assets/images/flags/indian_flag.jpg\", width: MediaQuery.of(context).size.width * 0.11),\r\n                              )\r\n                            ],\r\n                          ),\r\n                          // Padding(\r\n                          //   padding: const EdgeInsets.only(top: 10),\r\n                          //   child: Text(\"Last updated on : \" + formatISODate(snapshot.data['TT']['meta']['last_updated'])),\r\n                          // ),\r\n                          SizedBox(height: 20),\r\n                          Container(\r\n                            padding: EdgeInsets.fromLTRB(15, 20, 15, 20),\r\n                            width: MediaQuery.of(context).size.width,\r\n                            decoration: BoxDecoration(\r\n                                gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                                  Colors.white,\r\n                                  Colors.white,\r\n                                ]),\r\n                                borderRadius: BorderRadius.all(Radius.circular(15)),\r\n                                boxShadow: [\r\n                                  BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                  BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                ]),\r\n                            child: Row(\r\n                              mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                              crossAxisAlignment: CrossAxisAlignment.center,\r\n                              children: <Widget>[\r\n                                Column(\r\n                                  crossAxisAlignment: CrossAxisAlignment.start,\r\n                                  mainAxisSize: MainAxisSize.min,\r\n                                  children: [\r\n                                    Text(\r\n                                      \"Confirmed\",\r\n                                      softWrap: true,\r\n                                      overflow: TextOverflow.fade,\r\n                                      style: TextStyle(fontWeight: FontWeight.w700, color: confirmedTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                    ),\r\n                                    SizedBox(height: 5),\r\n                                    Text(\r\n                                      _formatNumberToDecimal(snapshot.data['TT']['total']['confirmed']) ?? \"0\",\r\n                                      softWrap: true,\r\n                                      overflow: TextOverflow.fade,\r\n                                      style: TextStyle(fontWeight: FontWeight.w700, color: confirmedTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                    ),\r\n                                    SizedBox(height: 5),\r\n                                    Row(\r\n                                      children: [\r\n                                        Text(\r\n                                          _formatNumberToDecimal(snapshot.data['TT']['delta']['confirmed']) ?? \"0\",\r\n                                          softWrap: true,\r\n                                          overflow: TextOverflow.fade,\r\n                                          style: TextStyle(fontWeight: FontWeight.w700, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                        ),\r\n                                        RotatedBox(\r\n                                            quarterTurns: 3,\r\n                                            child: Icon(\r\n                                              Icons.arrow_right_alt_rounded,\r\n                                              color: deathTextColor,\r\n                                            )),\r\n                                      ],\r\n                                    ),\r\n                                  ],\r\n                                ),\r\n                                Column(\r\n                                  crossAxisAlignment: CrossAxisAlignment.start,\r\n                                  mainAxisSize: MainAxisSize.min,\r\n                                  children: [\r\n                                    Text(\r\n                                      \"Recovered\",\r\n                                      softWrap: true,\r\n                                      overflow: TextOverflow.fade,\r\n                                      style: TextStyle(fontWeight: FontWeight.w700, color: recoveredTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                    ),\r\n                                    SizedBox(height: 5),\r\n                                    Text(\r\n                                      _formatNumberToDecimal(snapshot.data['TT']['total']['recovered']) ?? \"0\",\r\n                                      softWrap: true,\r\n                                      overflow: TextOverflow.fade,\r\n                                      style: TextStyle(fontWeight: FontWeight.w600, color: recoveredTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                    ),\r\n                                    SizedBox(height: 5),\r\n                                    Row(\r\n                                      children: [\r\n                                        Text(\r\n                                          _formatNumberToDecimal(snapshot.data['TT']['delta']['recovered']) ?? \"0\",\r\n                                          softWrap: true,\r\n                                          overflow: TextOverflow.fade,\r\n                                          style: TextStyle(fontWeight: FontWeight.w600, color: recoveredTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                        ),\r\n                                        RotatedBox(\r\n                                            quarterTurns: 3,\r\n                                            child: Icon(\r\n                                              Icons.arrow_right_alt_rounded,\r\n                                              color: recoveredTextColor,\r\n                                            )),\r\n                                      ],\r\n                                    ),\r\n                                  ],\r\n                                ),\r\n                                Column(\r\n                                  crossAxisAlignment: CrossAxisAlignment.start,\r\n                                  mainAxisSize: MainAxisSize.min,\r\n                                  children: [\r\n                                    Text(\r\n                                      \"Deceased\",\r\n                                      softWrap: true,\r\n                                      overflow: TextOverflow.fade,\r\n                                      style: TextStyle(fontWeight: FontWeight.w700, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                    ),\r\n                                    SizedBox(height: 5),\r\n                                    Text(\r\n                                      _formatNumberToDecimal(snapshot.data['TT']['total']['deceased']) ?? \"0\",\r\n                                      softWrap: true,\r\n                                      overflow: TextOverflow.fade,\r\n                                      style: TextStyle(fontWeight: FontWeight.w600, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                    ),\r\n                                    SizedBox(height: 5),\r\n                                    Row(\r\n                                      children: [\r\n                                        Text(\r\n                                          _formatNumberToDecimal(snapshot.data['TT']['delta']['deceased']) ?? \"0\",\r\n                                          softWrap: true,\r\n                                          overflow: TextOverflow.fade,\r\n                                          style: TextStyle(fontWeight: FontWeight.w600, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                        ),\r\n                                        RotatedBox(\r\n                                            quarterTurns: 3,\r\n                                            child: Icon(\r\n                                              Icons.arrow_right_alt_rounded,\r\n                                              color: deathTextColor,\r\n                                            )),\r\n                                      ],\r\n                                    ),\r\n                                  ],\r\n                                ),\r\n                              ],\r\n                            ),\r\n                          ),\r\n                          Visibility(\r\n                            visible: false,\r\n                            child: Column(\r\n                              crossAxisAlignment: CrossAxisAlignment.start,\r\n                              children: [\r\n                                SizedBox(height: 30),\r\n                                Text(\r\n                                  \"Uttar Pradesh\",\r\n                                  style: TextStyle(color: Colors.teal[800], fontWeight: FontWeight.w800, fontSize: appSize.width * 0.06),\r\n                                ),\r\n                                SizedBox(width: 10),\r\n                                SizedBox(height: 20),\r\n                                Container(\r\n                                  padding: EdgeInsets.fromLTRB(15, 20, 15, 20),\r\n                                  width: MediaQuery.of(context).size.width,\r\n                                  decoration: BoxDecoration(\r\n                                      gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                                        Colors.white,\r\n                                        Colors.white,\r\n                                      ]),\r\n                                      borderRadius: BorderRadius.all(Radius.circular(15)),\r\n                                      boxShadow: [\r\n                                        BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                        BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                                      ]),\r\n                                  child: Row(\r\n                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                                    crossAxisAlignment: CrossAxisAlignment.center,\r\n                                    children: <Widget>[\r\n                                      Column(\r\n                                        crossAxisAlignment: CrossAxisAlignment.start,\r\n                                        mainAxisSize: MainAxisSize.min,\r\n                                        children: [\r\n                                          Text(\r\n                                            \"Confirmed\",\r\n                                            softWrap: true,\r\n                                            overflow: TextOverflow.fade,\r\n                                            style: TextStyle(fontWeight: FontWeight.w700, color: confirmedTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                          ),\r\n                                          SizedBox(height: 5),\r\n                                          Text(\r\n                                            _formatNumberToDecimal(snapshot.data['UP']['total']['confirmed']) ?? \"0\",\r\n                                            softWrap: true,\r\n                                            overflow: TextOverflow.fade,\r\n                                            style: TextStyle(fontWeight: FontWeight.w700, color: confirmedTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                          ),\r\n                                          SizedBox(height: 5),\r\n                                          Row(\r\n                                            children: [\r\n                                              Text(\r\n                                                // (snapshot.data['UP']['delta']['confirmed']).toString() == 'null' ?  :\r\n                                                \"0\",\r\n                                                softWrap: true,\r\n                                                overflow: TextOverflow.fade,\r\n                                                style: TextStyle(fontWeight: FontWeight.w700, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                              ),\r\n                                              RotatedBox(\r\n                                                  quarterTurns: 3,\r\n                                                  child: Icon(\r\n                                                    Icons.arrow_right_alt_rounded,\r\n                                                    color: deathTextColor,\r\n                                                  )),\r\n                                            ],\r\n                                          ),\r\n                                        ],\r\n                                      ),\r\n                                      Column(\r\n                                        crossAxisAlignment: CrossAxisAlignment.start,\r\n                                        mainAxisSize: MainAxisSize.min,\r\n                                        children: [\r\n                                          Text(\r\n                                            \"Recovered\",\r\n                                            softWrap: true,\r\n                                            overflow: TextOverflow.fade,\r\n                                            style: TextStyle(fontWeight: FontWeight.w700, color: recoveredTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                          ),\r\n                                          SizedBox(height: 5),\r\n                                          Text(\r\n                                            _formatNumberToDecimal(snapshot.data['UP']['total']['recovered']) ?? \"0\",\r\n                                            softWrap: true,\r\n                                            overflow: TextOverflow.fade,\r\n                                            style: TextStyle(fontWeight: FontWeight.w600, color: recoveredTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                          ),\r\n                                          SizedBox(height: 5),\r\n                                          Row(\r\n                                            children: [\r\n                                              Text(\r\n                                                // _formatNumberToDecimal(snapshot.data['UP']['delta']['recovered']) ??\r\n                                                \"0\",\r\n                                                softWrap: true,\r\n                                                overflow: TextOverflow.fade,\r\n                                                style: TextStyle(fontWeight: FontWeight.w600, color: recoveredTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                              ),\r\n                                              RotatedBox(\r\n                                                  quarterTurns: 3,\r\n                                                  child: Icon(\r\n                                                    Icons.arrow_right_alt_rounded,\r\n                                                    color: recoveredTextColor,\r\n                                                  )),\r\n                                            ],\r\n                                          ),\r\n                                        ],\r\n                                      ),\r\n                                      Column(\r\n                                        crossAxisAlignment: CrossAxisAlignment.start,\r\n                                        mainAxisSize: MainAxisSize.min,\r\n                                        children: [\r\n                                          Text(\r\n                                            \"Deceased\",\r\n                                            softWrap: true,\r\n                                            overflow: TextOverflow.fade,\r\n                                            style: TextStyle(fontWeight: FontWeight.w700, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                          ),\r\n                                          SizedBox(height: 5),\r\n                                          Text(\r\n                                            _formatNumberToDecimal(snapshot.data['UP']['total']['deceased']) ?? \"0\",\r\n                                            softWrap: true,\r\n                                            overflow: TextOverflow.fade,\r\n                                            style: TextStyle(fontWeight: FontWeight.w600, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                          ),\r\n                                          SizedBox(height: 5),\r\n                                          Row(\r\n                                            children: [\r\n                                              Text(\r\n                                                // _formatNumberToDecimal((snapshot.data['UP']['delta']['deceased'])) ??\r\n                                                \"0\",\r\n                                                softWrap: true,\r\n                                                overflow: TextOverflow.fade,\r\n                                                style: TextStyle(fontWeight: FontWeight.w600, color: deathTextColor, fontSize: MediaQuery.of(context).size.width * 0.04),\r\n                                              ),\r\n                                              RotatedBox(\r\n                                                  quarterTurns: 3,\r\n                                                  child: Icon(\r\n                                                    Icons.arrow_right_alt_rounded,\r\n                                                    color: deathTextColor,\r\n                                                  )),\r\n                                            ],\r\n                                          ),\r\n                                        ],\r\n                                      ),\r\n                                    ],\r\n                                  ),\r\n                                ),\r\n                              ],\r\n                            ),\r\n                          ),\r\n                          SizedBox(height: 30),\r\n                          Text(\r\n                            \"All States\",\r\n                            style: TextStyle(color: Colors.teal[800], fontWeight: FontWeight.w800, fontSize: appSize.width * 0.055),\r\n                          ),\r\n                        ],\r\n                      ),\r\n                    ),\r\n                    Container(\r\n                        height: 500,\r\n                        child: ListView.builder(\r\n                          shrinkWrap: true,\r\n                          itemCount: snapshot.data.length - 1,\r\n                          itemBuilder: (context, index) {\r\n                            String currentStateCode = stateCodes[index];\r\n                            bool hasDeltaData = snapshot.data[currentStateCode]['delta'] != null;\r\n\r\n                            bool hasDeltaConfirmedData = hasDeltaData ? ((snapshot.data[currentStateCode]['delta']['confirmed'] != null) ? true : false) : false;\r\n                            bool hasDeltaRecoveredData = hasDeltaData ? ((snapshot.data[currentStateCode]['delta']['recovered'] != null) ? true : false) : false;\r\n                            bool hasDeltaDeathData = hasDeltaData ? ((snapshot.data[currentStateCode]['delta']['deceased'] != null) ? true : false) : false;\r\n                            bool hasDeltaTestedData = false;\r\n                            bool hasDeltaVaccinatedData = false;\r\n                            bool hasDeltaActiveData = (hasDeltaConfirmedData && hasDeltaRecoveredData && hasDeltaDeathData) ? true : false;\r\n\r\n                            return Padding(\r\n                              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),\r\n                              child: StateDetailListTile(\r\n                                stateName: getStateName(stateCode: currentStateCode),\r\n                                confirmedCases: _formatNumberToDecimal(snapshot.data[currentStateCode]['total']['confirmed']),\r\n                                activeCases: _formatNumberToDecimal(snapshot.data[currentStateCode]['total']['confirmed'] -\r\n                                    (snapshot.data[currentStateCode]['total']['recovered'] + snapshot.data[currentStateCode]['total']['deceased'])),\r\n                                recoveredCases: _formatNumberToDecimal(snapshot.data[currentStateCode]['total']['recovered']),\r\n                                deathCases: _formatNumberToDecimal(snapshot.data[currentStateCode]['total']['deceased']),\r\n                                testedCases: _formatNumberToCompact(snapshot.data[currentStateCode]['total']['tested']),\r\n                                vaccinatedCases: _formatNumberToCompact(snapshot.data[currentStateCode]['total']['vaccinated']),\r\n                                population: _formatNumberToCompact(snapshot.data[currentStateCode]['meta']['population']),\r\n\r\n                                deltaConfirmedCases: hasDeltaConfirmedData ? _formatNumberToDecimal(snapshot.data[currentStateCode]['delta']['confirmed']) : null,\r\n                                deltaRecoveredCases: hasDeltaRecoveredData ? _formatNumberToDecimal(snapshot.data[currentStateCode]['delta']['recovered']) : null,\r\n                                deltaDeathCases: hasDeltaDeathData ? _formatNumberToDecimal(snapshot.data[currentStateCode]['delta']['deceased']) : null,\r\n                                deltaActiveCases: hasDeltaActiveData\r\n                                    ? _formatNumberToDecimal((snapshot.data[currentStateCode]['delta']['confirmed'] -\r\n                                        (snapshot.data[currentStateCode]['delta']['recovered'] + snapshot.data[currentStateCode]['delta']['deceased'])))\r\n                                    : null,\r\n                                // deltaTestedCases: _formatNumberToCompact(snapshot.data[currentState]['delta7']['tested']),\r\n                                // deltaVaccinatedCases: _formatNumberToCompact(snapshot.data[currentState]['delta7']['vaccinated']),\r\n\r\n                                showDeltaConfirmedData: hasDeltaConfirmedData,\r\n                                showDeltaActiveData: false,\r\n                                showDeltaDeathData: hasDeltaDeathData,\r\n                                showDeltaRecoveredData: hasDeltaRecoveredData,\r\n                                showDeltaTestedData: hasDeltaTestedData,\r\n                                showDeltaVaccinatedData: hasDeltaVaccinatedData,\r\n                              ),\r\n                            );\r\n                          },\r\n                        ))\r\n                  ],\r\n                ),\r\n              ),\r\n            ),\r\n          ),\r\n        ),\r\n      );\r\n    }\r\n\r\n    return Scaffold(\r\n        backgroundColor: Colors.white,\r\n        body: FutureBuilder(\r\n          future: getIndianStateData(),\r\n          // ignore: missing_return\r\n          builder: (context, snapshot) {\r\n            switch (snapshot.connectionState) {\r\n              case ConnectionState.none:\r\n                return Center(child: Text(\"Unable To Connect\"));\r\n                break;\r\n              case ConnectionState.active:\r\n                return Text(\"Please wait...\");\r\n              case ConnectionState.waiting:\r\n                return CustomLoadingDialog();\r\n                break;\r\n              case ConnectionState.done:\r\n                if (snapshot.hasError) {\r\n                  return Scaffold(\r\n                    body: Stack(\r\n                      children: [\r\n                        SomethingWentWrongScreen(),\r\n                        Positioned(\r\n                          bottom: MediaQuery.of(context).size.height * 0.15,\r\n                          left: MediaQuery.of(context).size.width * 0.3,\r\n                          right: MediaQuery.of(context).size.width * 0.3,\r\n                          child: FlatButton(\r\n                            color: LightTheme.primaryColor,\r\n                            shape: RoundedRectangleBorder(\r\n                                borderRadius: BorderRadius.circular(50)),\r\n                            onPressed: reloadScreen,\r\n                            child: Text(\r\n                              \"Try Again\".toUpperCase(),\r\n                              style: TextStyle(color: Colors.white),\r\n                            ),\r\n                          ),\r\n                        )\r\n                      ],\r\n                    ),\r\n                  );\r\n                } else {\r\n                  return _contentArea(context, snapshot);\r\n                }\r\n                break;\r\n            }\r\n          },\r\n        ));\r\n  }\r\n\r\n  @override\r\n  bool get wantKeepAlive => true;\r\n\r\n  String getStateName({String stateCode}) {\r\n    switch (stateCode) {\r\n      case 'AN':\r\n        return 'Andaman\\nand\\nNicobar\\nIsland';\r\n        break;\r\n      case 'AP':\r\n        return 'Andhra\\nPradesh';\r\n        break;\r\n      case 'AR':\r\n        return 'Arunachal\\nPradesh';\r\n        break;\r\n      case 'AS':\r\n        return 'Assam';\r\n        break;\r\n      case 'BR':\r\n        return 'Bihar';\r\n        break;\r\n      case 'CH':\r\n        return 'Chandigarh';\r\n        break;\r\n      case 'CT':\r\n        return 'Chattisgarh';\r\n        break;\r\n      case 'DN':\r\n        return 'Dadra And\\nNagar\\nHaveli';\r\n        break;\r\n      case 'DL':\r\n        return 'Delhi';\r\n        break;\r\n      case 'GA':\r\n        return 'Goa';\r\n        break;\r\n      case 'GJ':\r\n        return 'Gujarat';\r\n        break;\r\n      case 'HR':\r\n        return 'Haryana';\r\n        break;\r\n      case 'HP':\r\n        return 'Himachal\\nPradesh';\r\n        break;\r\n      case 'JK':\r\n        return 'Jammu\\nand\\nKashmir';\r\n        break;\r\n      case 'JH':\r\n        return 'Jharkhand';\r\n        break;\r\n      case 'KA':\r\n        return 'Karnataka';\r\n        break;\r\n      case 'KL':\r\n        return 'Kerala';\r\n        break;\r\n      case 'LA':\r\n        return 'Ladakh';\r\n        break;\r\n      case 'LD':\r\n        return 'Lakshadweep\\nIslands';\r\n        break;\r\n      case 'MP':\r\n        return 'Madhya\\nPradesh';\r\n        break;\r\n      case 'MH':\r\n        return 'Maharashtra';\r\n        break;\r\n      case 'MN':\r\n        return 'Manipur';\r\n        break;\r\n      case 'ML':\r\n        return 'Meghalaya';\r\n        break;\r\n      case 'MZ':\r\n        return 'Mizoram';\r\n        break;\r\n      case 'NL':\r\n        return 'Nagaland';\r\n        break;\r\n      case 'OR':\r\n        return 'Odisha';\r\n        break;\r\n      case 'PY':\r\n        return 'Pondicherry';\r\n        break;\r\n      case 'PB':\r\n        return 'Punjab';\r\n        break;\r\n      case 'RJ':\r\n        return 'Rajasthan';\r\n        break;\r\n      case 'SK':\r\n        return 'Sikkim';\r\n        break;\r\n      case 'TN':\r\n        return 'Tamil\\nNadu';\r\n        break;\r\n      case 'TG':\r\n        return 'Telangana';\r\n        break;\r\n      case 'TR':\r\n        return 'Tripura';\r\n        break;\r\n      case 'UP':\r\n        return 'Uttar\\nPradesh';\r\n        break;\r\n      case 'UT':\r\n        return 'Uttarakhand';\r\n        break;\r\n      case 'WB':\r\n        return 'West\\nBengal';\r\n        break;\r\n    }\r\n    return '';\r\n  }\r\n\r\n  String _formatNumberToCompact(int number) {\r\n    if(number == null){\r\n      return \"N/A\";\r\n    }\r\n    return NumberFormat.compact().format(number);\r\n  }\r\n\r\n  String _formatNumberToDecimal(int number) {\r\n    if(number == null){\r\n      return \"N/A\";\r\n    }\r\n    var formatter = NumberFormat('#,##,000');\r\n    return formatter.format(number).toString();\r\n  }\r\n\r\n  String formatISODate(String isoDate) {\r\n    if(isoDate == null){\r\n      return \"N/A\";\r\n    }\r\n\r\n    isoDate = isoDate.split(\"+\")[0];\r\n\r\n    DateTime updateTime = DateTime.parse(isoDate);\r\n    return DateFormat('dd-MMM-yyyy').add_jm().format(updateTime);\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Screens/IndiaUpdatePage.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Screens/IndiaUpdatePage.dart	(date 1625721128212)
+@@ -82,7 +82,7 @@
+ 
+   Future getIndianStateData() async {
+     var url = "https://api.covid19india.org/v4/min/data.min.json";
+-    var response = await http.get(url);
++    var response = await http.get(Uri.parse(url));
+     dynamic data = jsonDecode(response.body);
+ 
+     for (int i = 0; i < data.length; i++) {
+Index: .gitignore
+===================================================================
+--- .gitignore	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ .gitignore	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
+@@ -1,46 +0,0 @@
+-# Miscellaneous
+-*.class
+-*.log
+-*.pyc
+-*.swp
+-.DS_Store
+-.atom/
+-.buildlog/
+-.history
+-.svn/
+-
+-# IntelliJ related
+-*.iml
+-*.ipr
+-*.iws
+-.idea/
+-
+-# The .vscode folder contains launch configuration and tasks you configure in
+-# VS Code which you may wish to be included in version control, so this line
+-# is commented out by default.
+-#.vscode/
+-
+-# Flutter/Dart/Pub related
+-**/doc/api/
+-**/ios/Flutter/.last_build_id
+-.dart_tool/
+-.flutter-plugins
+-.flutter-plugins-dependencies
+-.packages
+-.pub-cache/
+-.pub/
+-/build/
+-
+-# Web related
+-lib/generated_plugin_registrant.dart
+-
+-# Symbolication related
+-app.*.symbols
+-
+-# Obfuscation related
+-app.*.map.json
+-
+-# Android Studio will place build artifacts here
+-/android/app/debug
+-/android/app/profile
+-/android/app/release
+Index: android/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>buildscript {\r\n    ext.kotlin_version = '1.3.50'\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n\r\n    dependencies {\r\n        classpath 'com.android.tools.build:gradle:4.1.0'\r\n        classpath \"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version\"\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n}\r\n\r\nrootProject.buildDir = '../build'\r\nsubprojects {\r\n    project.buildDir = \"${rootProject.buildDir}/${project.name}\"\r\n}\r\nsubprojects {\r\n    project.evaluationDependsOn(':app')\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- android/build.gradle	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ android/build.gradle	(date 1626111153894)
+@@ -6,6 +6,7 @@
+     }
+ 
+     dependencies {
++        classpath 'com.google.gms:google-services:4.3.2'
+         classpath 'com.android.tools.build:gradle:4.1.0'
+         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+     }
+Index: lib/Widgets/Buttons/OutLineButton.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/material.dart';\r\n\r\nclass OutlineBtn extends StatefulWidget {\r\n  final String btnText;\r\n\r\n  OutlineBtn({this.btnText});\r\n\r\n  @override\r\n  _OutlineBtnState createState() => _OutlineBtnState();\r\n}\r\n\r\nclass _OutlineBtnState extends State<OutlineBtn> {\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Container(\r\n      decoration: BoxDecoration(\r\n          border: Border.all(color: Color(0xFFB40284A), width: 2),\r\n          borderRadius: BorderRadius.circular(50)),\r\n      padding: EdgeInsets.all(14),\r\n      child: Center(\r\n        child: Text(\r\n          widget.btnText,\r\n          style: TextStyle(color: Color(0xFFB40284A), fontSize: 16),\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Widgets/Buttons/OutLineButton.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Widgets/Buttons/OutLineButton.dart	(date 1626089099304)
+@@ -2,8 +2,9 @@
+ 
+ class OutlineBtn extends StatefulWidget {
+   final String btnText;
++  final Color btnColor;
+ 
+-  OutlineBtn({this.btnText});
++  const OutlineBtn({this.btnText, this.btnColor});
+ 
+   @override
+   _OutlineBtnState createState() => _OutlineBtnState();
+@@ -14,13 +15,16 @@
+   Widget build(BuildContext context) {
+     return Container(
+       decoration: BoxDecoration(
+-          border: Border.all(color: Color(0xFFB40284A), width: 2),
++          color: widget.btnColor,
++          border: widget.btnColor == null ? Border.all(color: Color(0xFFB40284A), width: 2) : null,
+           borderRadius: BorderRadius.circular(50)),
+       padding: EdgeInsets.all(14),
+       child: Center(
+         child: Text(
+           widget.btnText,
+-          style: TextStyle(color: Color(0xFFB40284A), fontSize: 16),
++          style: TextStyle(
++              color: Color(0xFFB40284A),
++              fontSize: 16),
+         ),
+       ),
+     );
+Index: lib/Screens/countryDetailPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:async';\r\nimport 'dart:convert';\r\n\r\nimport 'package:covidly/Widgets/Buttons/backButton.dart';\r\nimport 'package:covidly/Widgets/colors/LightTheme.dart';\r\nimport 'package:covidly/Widgets/common/CountryCard.dart';\r\nimport 'package:covidly/Widgets/loadings/CustomLoadingDialog.dart';\r\nimport 'package:covidly/Widgets/popups/loadingPopup.dart';\r\nimport 'package:covidly/uTils/NoScrollBehaviour.dart';\r\nimport 'package:fl_chart/fl_chart.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'package:intl/intl.dart';\r\nimport 'package:covidly/uTils/constAPIUrl.dart';\r\n\r\nclass CountryDetailPage extends StatefulWidget {\r\n  String countryName;\r\n  String countryCode;\r\n  int totalCases;\r\n  String flagPath;\r\n  Color pageColor;\r\n  String countrySlug;\r\n  bool fromSearch;\r\n\r\n  CountryDetailPage({this.countryName, this.totalCases, this.flagPath, this.pageColor, this.countrySlug, this.fromSearch, this.countryCode});\r\n\r\n  @override\r\n  _CountryDetailPageState createState() => _CountryDetailPageState();\r\n}\r\n\r\nclass _CountryDetailPageState extends State<CountryDetailPage> {\r\n  bool isDataLoaded = false;\r\n  double _bottomOffset = 0;\r\n  double _bottomSheetHeight = 0;\r\n\r\n  Future _getCountryData(String cName) async {\r\n    var url = apiUrl.baseUrl + \"total/dayone/country/\" + cName;\r\n    var response = await http.get(url);\r\n    dynamic data = jsonDecode(response.body);\r\n\r\n    return data;\r\n  }\r\n\r\n  @override\r\n  void initState() {\r\n    startTime();\r\n    _getCountryData(widget.countrySlug);\r\n    super.initState();\r\n  }\r\n\r\n  startTime() async {\r\n    var duration = new Duration(milliseconds: 200);\r\n    return new Timer(duration, () {\r\n      setState(() {\r\n        _bottomOffset = MediaQuery.of(context).size.height * 0.25;\r\n        _bottomSheetHeight = MediaQuery.of(context).size.height;\r\n      });\r\n    });\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    String slug = widget.countrySlug;\r\n    String countryCode = widget.countryCode;\r\n    Size appSize = MediaQuery.of(context).size;\r\n\r\n    return Scaffold(\r\n      body: Container(\r\n        decoration: BoxDecoration(\r\n          color: widget.pageColor ?? LightTheme.primaryColor,\r\n        ),\r\n        child: Stack(\r\n          fit: StackFit.expand,\r\n          children: [\r\n            Positioned(\r\n              top: 0,\r\n              left: 0,\r\n              child: GestureDetector(\r\n                onTap: () => Navigator.of(context).pop(),\r\n                child: Padding(\r\n                  padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),\r\n                  child: backButton(borderColor: Colors.white),\r\n                ),\r\n              ),\r\n            ),\r\n            Column(children: <Widget>[\r\n              Padding(\r\n                padding: const EdgeInsets.only(top: 60),\r\n                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[\r\n                  Padding(\r\n                    padding: const EdgeInsets.only(right: 10),\r\n                    child: ClipRRect(\r\n                      borderRadius: BorderRadius.circular(widget.fromSearch ? 15 : 0),\r\n                      child: widget.fromSearch\r\n                      ? Image.network(widget.flagPath, width: MediaQuery.of(context).size.width * 0.11)\r\n                      : Image.asset(widget.flagPath ?? 'assets/images/flags/usa_flag.jpg', width: MediaQuery.of(context).size.width * 0.11),\r\n                    ),\r\n                  ),\r\n                  Padding(\r\n                    padding: const EdgeInsets.only(left: 5),\r\n                    child: Text(\r\n                      widget.countryName ?? \"Country\",\r\n                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05),\r\n                    ),\r\n                  )\r\n                ]),\r\n              ),\r\n              Padding(\r\n                padding: const EdgeInsets.only(top: 50),\r\n                child: Row(\r\n                  mainAxisAlignment: MainAxisAlignment.center,\r\n                  children: [\r\n                    Text(\r\n                      _formatNumberToDecimal(widget.totalCases) ?? \"0000000\",\r\n                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.10),\r\n                    ),\r\n                    SizedBox(width: 10),\r\n                    Icon(Icons.arrow_upward_rounded, color: Colors.white)\r\n                  ],\r\n                ),\r\n              )\r\n            ]),\r\n            Positioned(\r\n              bottom: 0,\r\n              child: AnimatedContainer(\r\n                width: appSize.width,\r\n                height: _bottomSheetHeight,\r\n                padding: EdgeInsets.only(top: 20),\r\n                curve: Curves.elasticOut,\r\n                duration: Duration(milliseconds: 1000),\r\n                transform: Matrix4.translationValues(0, _bottomOffset, 0),\r\n                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(35), topRight: Radius.circular(35))),\r\n                child: ScrollConfiguration(\r\n                  behavior: NoScrollGlowBehaviour(),\r\n                  child: SingleChildScrollView(\r\n                    child: Column(\r\n                      crossAxisAlignment: CrossAxisAlignment.start,\r\n                      children: <Widget>[\r\n                        Padding(\r\n                          padding: const EdgeInsets.fromLTRB(20, 10, 10, 0),\r\n                          child: Text(\r\n                            \"Total Cases\",\r\n                            style: TextStyle(color: widget.pageColor, fontWeight: FontWeight.w800, fontSize: appSize.width * 0.06),\r\n                          ),\r\n                        ),\r\n                        SizedBox(\r\n                          height: 20,\r\n                        ),\r\n                        Container(\r\n                          padding: EdgeInsets.only(left: 10, right: 10),\r\n                          height: _bottomSheetHeight,\r\n                          child: FutureBuilder(\r\n                            future: _getCountryData(slug),\r\n                            // ignore: missing_return\r\n                            builder: (context, snapshot) {\r\n                              switch (snapshot.connectionState) {\r\n                                case ConnectionState.none:\r\n                                  return Text(\"Unable to connect\");\r\n                                  break;\r\n                                case ConnectionState.active:\r\n                                  return Text(\"Please Wait...\");\r\n                                  break;\r\n                                case ConnectionState.waiting:\r\n                                  return CustomLoadingDialog();\r\n                                  break;\r\n                                case ConnectionState.done:\r\n                                  if (snapshot.hasData) {\r\n                                    return _listData(context, snapshot);\r\n                                  }\r\n                                  break;\r\n                              }\r\n                            },\r\n                          ),\r\n                        ),\r\n                      ],\r\n                    ),\r\n                  ),\r\n                ),\r\n              ),\r\n            ),\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n\r\n  LineChartData _showCountryData(snapshot) {\r\n    return LineChartData(\r\n      titlesData: FlTitlesData(\r\n        show: true,\r\n        bottomTitles: SideTitles(\r\n          interval: (getMaxX(snapshot) * 0.15).ceilToDouble(),\r\n          showTitles: true,\r\n        ),\r\n      ),\r\n      lineTouchData: LineTouchData(\r\n        touchTooltipData: LineTouchTooltipData(\r\n          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),\r\n        ),\r\n        touchCallback: (LineTouchResponse touchResponse) {},\r\n        handleBuiltInTouches: true,\r\n      ),\r\n      gridData: FlGridData(\r\n        show: false,\r\n      ),\r\n      borderData: FlBorderData(\r\n        show: false,\r\n      ),\r\n      minX: 0,\r\n      maxX: getMaxX(snapshot),\r\n      minY: getMinY(snapshot, 'Confirmed'),\r\n      maxY: getMaxY(snapshot, 'Confirmed'),\r\n      lineBarsData: linesBarData(snapshot),\r\n    );\r\n  }\r\n\r\n  double getMinY(snapshot, String key) {\r\n    int value = snapshot.data[0][key];\r\n    return value.toDouble();\r\n  }\r\n\r\n  double getMaxX(snapshot) {\r\n    int value = snapshot.data.length;\r\n    print(\" Max X: $value\");\r\n    return value.toDouble();\r\n  }\r\n\r\n  double getMaxY(snapshot, String key) {\r\n    int value = snapshot.data[snapshot.data.length - 1][key];\r\n    print(\" Max Y: $value\");\r\n    return value.toDouble();\r\n  }\r\n\r\n  List<LineChartBarData> linesBarData(snapshot) {\r\n    final LineChartBarData confirmedCases = LineChartBarData(\r\n      spots: dataPoints(snapshot, 'Confirmed'),\r\n      isCurved: true,\r\n      colors: [\r\n        const Color(0xff4af699),\r\n      ],\r\n      barWidth: 4,\r\n      isStrokeCapRound: true,\r\n      dotData: FlDotData(\r\n        show: false,\r\n      ),\r\n      belowBarData: BarAreaData(\r\n        show: false,\r\n      ),\r\n    );\r\n    final LineChartBarData activeCases = LineChartBarData(\r\n      spots: dataPoints(snapshot, 'Active'),\r\n      isCurved: true,\r\n      colors: [\r\n        Color(0xFF1565C0),\r\n      ],\r\n      barWidth: 4,\r\n      isStrokeCapRound: true,\r\n      dotData: FlDotData(\r\n        show: false,\r\n      ),\r\n      belowBarData: BarAreaData(\r\n        show: false,\r\n      ),\r\n    );\r\n    final LineChartBarData deathsCases = LineChartBarData(\r\n      spots: dataPoints(snapshot, 'Deaths'),\r\n      isCurved: true,\r\n      colors: [\r\n        const Color(0xffff4f59),\r\n      ],\r\n      barWidth: 4,\r\n      isStrokeCapRound: true,\r\n      dotData: FlDotData(\r\n        show: false,\r\n      ),\r\n      belowBarData: BarAreaData(\r\n        show: false,\r\n      ),\r\n    );\r\n    return [\r\n      confirmedCases,\r\n      activeCases,\r\n      deathsCases,\r\n    ];\r\n  }\r\n\r\n  List<FlSpot> dataPoints(snapshot, String key) {\r\n    List<FlSpot> points = [];\r\n\r\n    for (int i = 0; i < snapshot.data.length; i++) {\r\n      int temp = snapshot.data[i][key];\r\n      if (snapshot.data[i]['Date'] != \"2021-03-07T00:00:00Z\") {\r\n        points.add(FlSpot(i.toDouble(), temp.toDouble()));\r\n      }\r\n    }\r\n    return points;\r\n  }\r\n\r\n  Widget _listData(context, snapshot) {\r\n    Size appSize = MediaQuery.of(context).size;\r\n    return ScrollConfiguration(\r\n      behavior: NoScrollGlowBehaviour(),\r\n      child: SingleChildScrollView(\r\n        child: Column(\r\n          children: [\r\n            Container(\r\n              padding: EdgeInsets.only(right: 20),\r\n              height: _bottomSheetHeight * 0.2,\r\n              child: LineChart(\r\n                _showCountryData(snapshot),\r\n                swapAnimationDuration: const Duration(milliseconds: 250),\r\n              ),\r\n            ),\r\n            Padding(\r\n              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),\r\n              child: Container(\r\n                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),\r\n                decoration: BoxDecoration(\r\n                    gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                      LightTheme.materialGrey,\r\n                      LightTheme.materialGrey,\r\n                    ]),\r\n                    borderRadius: BorderRadius.all(Radius.circular(15)),\r\n                    boxShadow: [\r\n                      BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                      BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                    ]),\r\n                child: Column(\r\n                  crossAxisAlignment: CrossAxisAlignment.start,\r\n                  children: [\r\n                    Row(\r\n                      crossAxisAlignment: CrossAxisAlignment.start,\r\n                      children: [\r\n                        CircleAvatar(\r\n                          maxRadius: 10,\r\n                          backgroundColor: Color(0xff4af699),\r\n                        ),\r\n                        SizedBox(width: 10),\r\n                        Column(\r\n                          crossAxisAlignment: CrossAxisAlignment.start,\r\n                          children: [\r\n                            Text(\r\n                              \"Confirmed Cases\",\r\n                              style: TextStyle(fontSize: appSize.width * 0.045, color: LightTheme.greyishBlack, fontWeight: FontWeight.w700),\r\n                            ),\r\n                            SizedBox(\r\n                              height: 10,\r\n                            ),\r\n                            Text(\r\n                              _formatNumberToDecimal(snapshot.data[snapshot.data.length - 1]['Confirmed']) ?? \"Confirmed Cases\",\r\n                              style: TextStyle(fontSize: appSize.width * 0.045, fontWeight: FontWeight.w700),\r\n                            )\r\n                          ],\r\n                        )\r\n                      ],\r\n                    ),\r\n                  ],\r\n                ),\r\n              ),\r\n            ),\r\n            Padding(\r\n              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),\r\n              child: Container(\r\n                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),\r\n                decoration: BoxDecoration(\r\n                    gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                      LightTheme.materialGrey,\r\n                      LightTheme.materialGrey,\r\n                    ]),\r\n                    borderRadius: BorderRadius.all(Radius.circular(15)),\r\n                    boxShadow: [\r\n                      BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                      BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                    ]),\r\n                child: Column(\r\n                  crossAxisAlignment: CrossAxisAlignment.start,\r\n                  children: [\r\n                    Row(\r\n                      crossAxisAlignment: CrossAxisAlignment.start,\r\n                      children: [\r\n                        CircleAvatar(\r\n                          maxRadius: 10,\r\n                          backgroundColor: Color(0xFF1565C0),\r\n                        ),\r\n                        SizedBox(width: 10),\r\n                        Column(\r\n                          crossAxisAlignment: CrossAxisAlignment.start,\r\n                          children: [\r\n                            Text(\r\n                              \"Active Cases\",\r\n                              style: TextStyle(fontSize: appSize.width * 0.045, color: LightTheme.greyishBlack, fontWeight: FontWeight.w700),\r\n                            ),\r\n                            SizedBox(\r\n                              height: 10,\r\n                            ),\r\n                            Text(\r\n                              _formatNumberToDecimal(snapshot.data[snapshot.data.length - 1]['Active']) ?? \"Active Cases\",\r\n                              style: TextStyle(fontSize: appSize.width * 0.045, fontWeight: FontWeight.w700),\r\n                            )\r\n                          ],\r\n                        )\r\n                      ],\r\n                    ),\r\n                  ],\r\n                ),\r\n              ),\r\n            ),\r\n            Padding(\r\n              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),\r\n              child: Container(\r\n                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),\r\n                decoration: BoxDecoration(\r\n                    gradient: LinearGradient(begin: Alignment(-1.0, -4.0), end: Alignment(1.0, 4.0), colors: [\r\n                      LightTheme.materialGrey,\r\n                      LightTheme.materialGrey,\r\n                    ]),\r\n                    borderRadius: BorderRadius.all(Radius.circular(15)),\r\n                    boxShadow: [\r\n                      BoxShadow(color: Color(0xFFd9d9d9), offset: Offset(4.0, 5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                      BoxShadow(color: Color(0xFFffffff), offset: Offset(-3.0, -5.0), blurRadius: 14.0, spreadRadius: 1.0),\r\n                    ]),\r\n                child: Column(\r\n                  crossAxisAlignment: CrossAxisAlignment.start,\r\n                  children: [\r\n                    Row(\r\n                      crossAxisAlignment: CrossAxisAlignment.start,\r\n                      children: [\r\n                        CircleAvatar(\r\n                          maxRadius: 10,\r\n                          backgroundColor: Color(0xffff4f59),\r\n                        ),\r\n                        SizedBox(width: 10),\r\n                        Column(\r\n                          crossAxisAlignment: CrossAxisAlignment.start,\r\n                          children: [\r\n                            Text(\r\n                              \"Death Cases\",\r\n                              style: TextStyle(fontSize: appSize.width * 0.045, color: LightTheme.greyishBlack, fontWeight: FontWeight.w700),\r\n                            ),\r\n                            SizedBox(\r\n                              height: 10,\r\n                            ),\r\n                            Text(\r\n                              _formatNumberToDecimal(snapshot.data[snapshot.data.length - 1]['Deaths']) ?? \"Deaths\",\r\n                              style: TextStyle(fontSize: appSize.width * 0.045, fontWeight: FontWeight.w700),\r\n                            )\r\n                          ],\r\n                        )\r\n                      ],\r\n                    ),\r\n                  ],\r\n                ),\r\n              ),\r\n            ),\r\n          ],\r\n        ),\r\n      ),\r\n    );\r\n  }\r\n\r\n  String _formatNumberToDecimal(int number) {\r\n    var formatter = NumberFormat('#,##,000');\r\n    return formatter.format(number).toString();\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Screens/countryDetailPage.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Screens/countryDetailPage.dart	(date 1625721128237)
+@@ -35,7 +35,7 @@
+ 
+   Future _getCountryData(String cName) async {
+     var url = apiUrl.baseUrl + "total/dayone/country/" + cName;
+-    var response = await http.get(url);
++    var response = await http.get(Uri.parse(url));
+     dynamic data = jsonDecode(response.body);
+ 
+     return data;
+Index: pubspec.lock
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Generated by pub\r\n# See https://dart.dev/tools/pub/glossary#lockfile\r\npackages:\r\n  archive:\r\n    dependency: transitive\r\n    description:\r\n      name: archive\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"3.1.2\"\r\n  async:\r\n    dependency: transitive\r\n    description:\r\n      name: async\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.5.0\"\r\n  boolean_selector:\r\n    dependency: transitive\r\n    description:\r\n      name: boolean_selector\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.0\"\r\n  bottom_navy_bar:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: bottom_navy_bar\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"5.6.0\"\r\n  cached_network_image:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: cached_network_image\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.5.1\"\r\n  characters:\r\n    dependency: transitive\r\n    description:\r\n      name: characters\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.1.0\"\r\n  charcode:\r\n    dependency: transitive\r\n    description:\r\n      name: charcode\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.2.0\"\r\n  clock:\r\n    dependency: transitive\r\n    description:\r\n      name: clock\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.1.0\"\r\n  collection:\r\n    dependency: transitive\r\n    description:\r\n      name: collection\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.15.0\"\r\n  crypto:\r\n    dependency: transitive\r\n    description:\r\n      name: crypto\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"3.0.1\"\r\n  cupertino_icons:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: cupertino_icons\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.0.3\"\r\n  dots_indicator:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: dots_indicator\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  equatable:\r\n    dependency: transitive\r\n    description:\r\n      name: equatable\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  fake_async:\r\n    dependency: transitive\r\n    description:\r\n      name: fake_async\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.2.0\"\r\n  ffi:\r\n    dependency: transitive\r\n    description:\r\n      name: ffi\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.0.0\"\r\n  file:\r\n    dependency: transitive\r\n    description:\r\n      name: file\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"6.1.0\"\r\n  fl_chart:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: fl_chart\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.36.1\"\r\n  flutter:\r\n    dependency: \"direct main\"\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  flutter_blurhash:\r\n    dependency: transitive\r\n    description:\r\n      name: flutter_blurhash\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.5.0\"\r\n  flutter_cache_manager:\r\n    dependency: transitive\r\n    description:\r\n      name: flutter_cache_manager\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.2\"\r\n  flutter_test:\r\n    dependency: \"direct dev\"\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  flutter_web_plugins:\r\n    dependency: transitive\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.0\"\r\n  fluttertoast:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: fluttertoast\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"8.0.6\"\r\n  google_fonts:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: google_fonts\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.1.2\"\r\n  http:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: http\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.12.2\"\r\n  http_parser:\r\n    dependency: transitive\r\n    description:\r\n      name: http_parser\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"3.1.4\"\r\n  image:\r\n    dependency: transitive\r\n    description:\r\n      name: image\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"3.0.2\"\r\n  intl:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: intl\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.17.0\"\r\n  js:\r\n    dependency: transitive\r\n    description:\r\n      name: js\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.6.3\"\r\n  keyboard_visibility:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: keyboard_visibility\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.5.6\"\r\n  logging:\r\n    dependency: transitive\r\n    description:\r\n      name: logging\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.0.1\"\r\n  lottie:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: lottie\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.0.1\"\r\n  matcher:\r\n    dependency: transitive\r\n    description:\r\n      name: matcher\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.12.10\"\r\n  meta:\r\n    dependency: transitive\r\n    description:\r\n      name: meta\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.3.0\"\r\n  octo_image:\r\n    dependency: transitive\r\n    description:\r\n      name: octo_image\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.3.0\"\r\n  path:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: path\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.8.0\"\r\n  path_provider:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.1\"\r\n  path_provider_linux:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_linux\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  path_provider_macos:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_macos\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  path_provider_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_platform_interface\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  path_provider_windows:\r\n    dependency: transitive\r\n    description:\r\n      name: path_provider_windows\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.1\"\r\n  pedantic:\r\n    dependency: transitive\r\n    description:\r\n      name: pedantic\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.11.0\"\r\n  percent_indicator:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: percent_indicator\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.9+1\"\r\n  petitparser:\r\n    dependency: transitive\r\n    description:\r\n      name: petitparser\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"4.1.0\"\r\n  platform:\r\n    dependency: transitive\r\n    description:\r\n      name: platform\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"3.0.0\"\r\n  plugin_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: plugin_platform_interface\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.0.3\"\r\n  process:\r\n    dependency: transitive\r\n    description:\r\n      name: process\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"4.2.1\"\r\n  rxdart:\r\n    dependency: transitive\r\n    description:\r\n      name: rxdart\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.25.0\"\r\n  shared_preferences:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: shared_preferences\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.5\"\r\n  shared_preferences_linux:\r\n    dependency: transitive\r\n    description:\r\n      name: shared_preferences_linux\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  shared_preferences_macos:\r\n    dependency: transitive\r\n    description:\r\n      name: shared_preferences_macos\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  shared_preferences_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: shared_preferences_platform_interface\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  shared_preferences_web:\r\n    dependency: transitive\r\n    description:\r\n      name: shared_preferences_web\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  shared_preferences_windows:\r\n    dependency: transitive\r\n    description:\r\n      name: shared_preferences_windows\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  shimmer:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: shimmer\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0\"\r\n  sky_engine:\r\n    dependency: transitive\r\n    description: flutter\r\n    source: sdk\r\n    version: \"0.0.99\"\r\n  source_span:\r\n    dependency: transitive\r\n    description:\r\n      name: source_span\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.8.0\"\r\n  sqflite:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: sqflite\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0+3\"\r\n  sqflite_common:\r\n    dependency: transitive\r\n    description:\r\n      name: sqflite_common\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.0+2\"\r\n  stack_trace:\r\n    dependency: transitive\r\n    description:\r\n      name: stack_trace\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.10.0\"\r\n  stream_channel:\r\n    dependency: transitive\r\n    description:\r\n      name: stream_channel\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.0\"\r\n  string_scanner:\r\n    dependency: transitive\r\n    description:\r\n      name: string_scanner\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.1.0\"\r\n  synchronized:\r\n    dependency: transitive\r\n    description:\r\n      name: synchronized\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"3.0.0\"\r\n  term_glyph:\r\n    dependency: transitive\r\n    description:\r\n      name: term_glyph\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.2.0\"\r\n  test_api:\r\n    dependency: transitive\r\n    description:\r\n      name: test_api\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.2.19\"\r\n  typed_data:\r\n    dependency: transitive\r\n    description:\r\n      name: typed_data\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.3.0\"\r\n  url_launcher:\r\n    dependency: \"direct main\"\r\n    description:\r\n      name: url_launcher\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"5.7.10\"\r\n  url_launcher_linux:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_linux\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.0.1+4\"\r\n  url_launcher_macos:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_macos\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.0.1+9\"\r\n  url_launcher_platform_interface:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_platform_interface\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"1.0.9\"\r\n  url_launcher_web:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_web\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.1.5+3\"\r\n  url_launcher_windows:\r\n    dependency: transitive\r\n    description:\r\n      name: url_launcher_windows\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.0.1+3\"\r\n  uuid:\r\n    dependency: transitive\r\n    description:\r\n      name: uuid\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"3.0.4\"\r\n  vector_math:\r\n    dependency: transitive\r\n    description:\r\n      name: vector_math\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.1.0\"\r\n  win32:\r\n    dependency: transitive\r\n    description:\r\n      name: win32\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"2.0.5\"\r\n  xdg_directories:\r\n    dependency: transitive\r\n    description:\r\n      name: xdg_directories\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"0.2.0\"\r\n  xml:\r\n    dependency: transitive\r\n    description:\r\n      name: xml\r\n      url: \"https://pub.dartlang.org\"\r\n    source: hosted\r\n    version: \"5.1.0\"\r\nsdks:\r\n  dart: \">=2.12.0 <3.0.0\"\r\n  flutter: \">=1.24.0-10\"\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pubspec.lock	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ pubspec.lock	(date 1626111307357)
+@@ -36,6 +36,20 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "2.5.1"
++  camera:
++    dependency: "direct main"
++    description:
++      name: camera
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "0.8.1+3"
++  camera_platform_interface:
++    dependency: transitive
++    description:
++      name: camera_platform_interface
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "2.0.0"
+   characters:
+     dependency: transitive
+     description:
+@@ -57,6 +71,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "1.1.0"
++  cloud_firestore:
++    dependency: "direct main"
++    description:
++      name: cloud_firestore
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "0.12.11"
+   collection:
+     dependency: transitive
+     description:
+@@ -64,6 +85,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "1.15.0"
++  cross_file:
++    dependency: transitive
++    description:
++      name: cross_file
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "0.3.1+3"
+   crypto:
+     dependency: transitive
+     description:
+@@ -113,13 +141,48 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "6.1.0"
++  firebase_analytics:
++    dependency: "direct main"
++    description:
++      name: firebase_analytics
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "5.0.15"
++  firebase_analytics_platform_interface:
++    dependency: transitive
++    description:
++      name: firebase_analytics_platform_interface
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.1.0"
++  firebase_auth:
++    dependency: "direct main"
++    description:
++      name: firebase_auth
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "0.14.0+9"
++  firebase_core:
++    dependency: "direct main"
++    description:
++      name: firebase_core
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "0.4.2+2"
++  firebase_core_platform_interface:
++    dependency: transitive
++    description:
++      name: firebase_core_platform_interface
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.0.0"
+   fl_chart:
+     dependency: "direct main"
+     description:
+       name: fl_chart
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "0.36.1"
++    version: "0.36.2"
+   flutter:
+     dependency: "direct main"
+     description: flutter
+@@ -162,21 +225,21 @@
+       name: google_fonts
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "1.1.2"
++    version: "2.1.0"
+   http:
+     dependency: "direct main"
+     description:
+       name: http
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "0.12.2"
++    version: "0.13.3"
+   http_parser:
+     dependency: transitive
+     description:
+       name: http_parser
+       url: "https://pub.dartlang.org"
+     source: hosted
+-    version: "3.1.4"
++    version: "4.0.0"
+   image:
+     dependency: transitive
+     description:
+@@ -233,6 +296,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "1.3.0"
++  news_api_flutter_package:
++    dependency: "direct main"
++    description:
++      name: news_api_flutter_package
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.1.0"
+   octo_image:
+     dependency: transitive
+     description:
+@@ -324,6 +394,20 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "4.2.1"
++  quiver:
++    dependency: transitive
++    description:
++      name: quiver
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "3.0.1"
++  quiver_hashcode:
++    dependency: transitive
++    description:
++      name: quiver_hashcode
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "2.0.0"
+   rxdart:
+     dependency: transitive
+     description:
+@@ -373,13 +457,6 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "2.0.0"
+-  shimmer:
+-    dependency: "direct main"
+-    description:
+-      name: shimmer
+-      url: "https://pub.dartlang.org"
+-    source: hosted
+-    version: "2.0.0"
+   sky_engine:
+     dependency: transitive
+     description: flutter
+@@ -420,6 +497,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "2.1.0"
++  stream_transform:
++    dependency: transitive
++    description:
++      name: stream_transform
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "2.0.0"
+   string_scanner:
+     dependency: transitive
+     description:
+@@ -427,6 +511,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "1.1.0"
++  swipe_cards:
++    dependency: "direct main"
++    description:
++      name: swipe_cards
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "0.1.0"
+   synchronized:
+     dependency: transitive
+     description:
+@@ -448,6 +539,13 @@
+       url: "https://pub.dartlang.org"
+     source: hosted
+     version: "0.2.19"
++  tflite:
++    dependency: "direct main"
++    description:
++      name: tflite
++      url: "https://pub.dartlang.org"
++    source: hosted
++    version: "1.1.2"
+   typed_data:
+     dependency: transitive
+     description:
+@@ -534,4 +632,4 @@
+     version: "5.1.0"
+ sdks:
+   dart: ">=2.12.0 <3.0.0"
+-  flutter: ">=1.24.0-10"
++  flutter: ">=2.0.0"
+Index: lib/Widgets/TextInputWidgets/InputWithIcon.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nclass InputWithIcon extends StatefulWidget {\r\n  final IconData icon;\r\n  final String hint;\r\n  final TextInputType inputType;\r\n  final TextEditingController inputController;\r\n  final bool isTextHidden;\r\n  final bool showToggleBtn;\r\n\r\n  InputWithIcon({this.icon, this.hint, this.inputType, @required this.inputController, this.isTextHidden, this.showToggleBtn});\r\n\r\n  @override\r\n  _InputWithIconState createState() => _InputWithIconState();\r\n}\r\n\r\nclass _InputWithIconState extends State<InputWithIcon> {\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n\r\n    bool showText = widget.isTextHidden;\r\n\r\n    return Container(\r\n      margin: EdgeInsets.only(top: 10.0),\r\n      decoration: BoxDecoration(\r\n          border: Border.all(color: Color(0xFFBC7C7C7), width: 2),\r\n          borderRadius: BorderRadius.circular(50)),\r\n      child: Row(\r\n        mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n        children: <Widget>[\r\n          Container(\r\n              width: 60,\r\n              child: Icon(\r\n                widget.icon,\r\n                size: 20,\r\n                color: Color(0xFFBB9B9B9),\r\n              )),\r\n          Expanded(\r\n            child: TextField(\r\n              obscureText: showText ,\r\n              controller: widget.inputController,\r\n              keyboardType: widget.inputType,\r\n              decoration: InputDecoration(\r\n                  contentPadding: EdgeInsets.symmetric(vertical: 14),\r\n                  border: InputBorder.none,\r\n                  hintText: widget.hint),\r\n            ),\r\n          ),\r\n          GestureDetector(\r\n            onTap: (){\r\n              setState(() {\r\n                showText = !showText;\r\n              });\r\n            },\r\n            child: Padding(\r\n              padding: const EdgeInsets.only(left: 20, right: 20),\r\n              child: Visibility(\r\n                  visible: widget.showToggleBtn ?? false,\r\n                  child: showText ? Icon(CupertinoIcons.eye) : Icon(CupertinoIcons.eye_slash)),\r\n            ),\r\n          )\r\n        ],\r\n      ),\r\n    );\r\n  }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Widgets/TextInputWidgets/InputWithIcon.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Widgets/TextInputWidgets/InputWithIcon.dart	(date 1626115651169)
+@@ -9,8 +9,9 @@
+   final TextEditingController inputController;
+   final bool isTextHidden;
+   final bool showToggleBtn;
++  final int maxLength;
+ 
+-  InputWithIcon({this.icon, this.hint, this.inputType, @required this.inputController, this.isTextHidden, this.showToggleBtn});
++  InputWithIcon({this.icon, this.hint, this.inputType, @required this.inputController, this.isTextHidden, this.showToggleBtn, this.maxLength});
+ 
+   @override
+   _InputWithIconState createState() => _InputWithIconState();
+Index: pubspec.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>name: covidly\r\ndescription: Covid 19 tracker\r\n\r\npublish_to: 'none' # Remove this line if you wish to publish to pub.dev\r\nversion: 1.0.0+1\r\n\r\nenvironment:\r\n  sdk: \">=2.7.0 <3.0.0\"\r\n\r\ndependencies:\r\n  flutter:\r\n    sdk: flutter\r\n\r\n  cupertino_icons: ^1.0.2\r\n  google_fonts: ^1.1.1\r\n  keyboard_visibility: ^0.5.6\r\n  fluttertoast: ^8.0.0\r\n  shared_preferences: ^2.0.5\r\n  http: ^0.12.0+4\r\n  cached_network_image: ^2.0.0\r\n  shimmer: ^2.0.0\r\n  lottie: ^1.0.1\r\n  percent_indicator: ^2.1.7+2\r\n  bottom_navy_bar: ^5.6.0\r\n  intl: ^0.17.0\r\n  url_launcher: ^5.7.10\r\n  fl_chart: ^0.36.0\r\n  dots_indicator: ^2.0.0\r\n\r\n  sqflite:\r\n  path:\r\n\r\ndev_dependencies:\r\n  flutter_test:\r\n    sdk: flutter\r\n\r\nflutter:\r\n\r\n  uses-material-design: true\r\n\r\n  assets:\r\n    - assets/images/\r\n    - assets/fonts/\r\n    - assets/lottie/\r\n    - assets/images/flags/\r\n    - assets/images/symptoms/\r\n    - assets/images/error_images/\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pubspec.yaml	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ pubspec.yaml	(date 1626111272442)
+@@ -12,20 +12,27 @@
+     sdk: flutter
+ 
+   cupertino_icons: ^1.0.2
+-  google_fonts: ^1.1.1
++  google_fonts: ^2.1.0
+   keyboard_visibility: ^0.5.6
+   fluttertoast: ^8.0.0
+   shared_preferences: ^2.0.5
+-  http: ^0.12.0+4
++  http: ^0.13.3
+   cached_network_image: ^2.0.0
+-  shimmer: ^2.0.0
+   lottie: ^1.0.1
+   percent_indicator: ^2.1.7+2
+   bottom_navy_bar: ^5.6.0
+   intl: ^0.17.0
+   url_launcher: ^5.7.10
+-  fl_chart: ^0.36.0
++  fl_chart: ^0.36.2
+   dots_indicator: ^2.0.0
++  news_api_flutter_package: ^1.1.0
++  camera: ^0.8.1+3
++  tflite: ^1.1.2
++  swipe_cards: ^0.1.0
++  firebase_core: ^0.4.0+9
++  firebase_analytics: ^5.0.2
++  firebase_auth: ^0.14.0+5
++  cloud_firestore: ^0.12.9+5
+ 
+   sqflite:
+   path:
+@@ -39,6 +46,9 @@
+   uses-material-design: true
+ 
+   assets:
++    - assets/labels.txt
++    - assets/model_unquant.tflite
++    - assets/icons/
+     - assets/images/
+     - assets/fonts/
+     - assets/lottie/
+Index: android/gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>org.gradle.jvmargs=-Xmx1536M\r\nandroid.useAndroidX=true\r\nandroid.enableJetifier=true\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- android/gradle.properties	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ android/gradle.properties	(date 1626079775479)
+@@ -1,3 +1,4 @@
+ org.gradle.jvmargs=-Xmx1536M
++android.enableR8=true
+ android.useAndroidX=true
+-android.enableJetifier=true
++android.enableJetifier=true
+\ No newline at end of file
+Index: android/app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>def localProperties = new Properties()\r\ndef localPropertiesFile = rootProject.file('local.properties')\r\nif (localPropertiesFile.exists()) {\r\n    localPropertiesFile.withReader('UTF-8') { reader ->\r\n        localProperties.load(reader)\r\n    }\r\n}\r\n\r\ndef flutterRoot = localProperties.getProperty('flutter.sdk')\r\nif (flutterRoot == null) {\r\n    throw new GradleException(\"Flutter SDK not found. Define location with flutter.sdk in the local.properties file.\")\r\n}\r\n\r\ndef flutterVersionCode = localProperties.getProperty('flutter.versionCode')\r\nif (flutterVersionCode == null) {\r\n    flutterVersionCode = '1'\r\n}\r\n\r\ndef flutterVersionName = localProperties.getProperty('flutter.versionName')\r\nif (flutterVersionName == null) {\r\n    flutterVersionName = '1.0'\r\n}\r\n\r\napply plugin: 'com.android.application'\r\napply plugin: 'kotlin-android'\r\napply from: \"$flutterRoot/packages/flutter_tools/gradle/flutter.gradle\"\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n\r\n    sourceSets {\r\n        main.java.srcDirs += 'src/main/kotlin'\r\n    }\r\n\r\n    defaultConfig {\r\n        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).\r\n        applicationId \"ss.ashish.covidly\"\r\n        minSdkVersion 16\r\n        targetSdkVersion 30\r\n        versionCode flutterVersionCode.toInteger()\r\n        versionName flutterVersionName\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            // TODO: Add your own signing config for the release build.\r\n            // Signing with the debug keys for now, so `flutter run --release` works.\r\n            signingConfig signingConfigs.debug\r\n        }\r\n    }\r\n}\r\n\r\nflutter {\r\n    source '../..'\r\n}\r\n\r\ndependencies {\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- android/app/build.gradle	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ android/app/build.gradle	(date 1626114999438)
+@@ -21,7 +21,14 @@
+     flutterVersionName = '1.0'
+ }
+ 
++def keystoreProperties = new Properties()
++def keystorePropertiesFile = rootProject.file('key.properties')
++if (keystorePropertiesFile.exists()) {
++    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
++}
++
+ apply plugin: 'com.android.application'
++apply plugin: 'com.google.gms.google-services'
+ apply plugin: 'kotlin-android'
+ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+ 
+@@ -35,19 +42,31 @@
+     defaultConfig {
+         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+         applicationId "ss.ashish.covidly"
+-        minSdkVersion 16
++        minSdkVersion 21
+         targetSdkVersion 30
++        multiDexEnabled true
+         versionCode flutterVersionCode.toInteger()
+         versionName flutterVersionName
+     }
+ 
++    signingConfigs {
++        release {
++            keyAlias keystoreProperties['keyAlias']
++            keyPassword keystoreProperties['keyPassword']
++            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
++            storePassword keystoreProperties['storePassword']
++        }
++    }
+     buildTypes {
+         release {
+-            // TODO: Add your own signing config for the release build.
+-            // Signing with the debug keys for now, so `flutter run --release` works.
+-            signingConfig signingConfigs.debug
++            signingConfig signingConfigs.release
+         }
+     }
++
++    aaptOptions {
++        noCompress 'tflite'
++        noCompress 'lite'
++    }
+ }
+ 
+ flutter {
+@@ -56,4 +75,11 @@
+ 
+ dependencies {
+     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
++    implementation 'com.google.firebase:firebase-analytics:17.2.1'
++//For Firebase Analytics Service
++    implementation 'com.google.firebase:firebase-auth:19.2.0'
++//For Firebase Authentication Service
++    implementation 'com.google.firebase:firebase-firestore:21.3.1'
++//For Firebase Firestore Database Service
++    implementation 'com.android.support:multidex:1.0.3'
+ }
+Index: lib/Screens/LoginPage.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'dart:convert';\r\nimport 'package:covidly/Screens/HomeScreen.dart';\r\nimport 'package:covidly/Screens/MainScreen.dart';\r\nimport 'package:covidly/Widgets/Buttons/OutLineButton.dart';\r\nimport 'package:covidly/Widgets/Buttons/PrimaryButton.dart';\r\nimport 'package:covidly/Widgets/Buttons/buttonWithLoading.dart';\r\nimport 'package:covidly/Widgets/TextInputWidgets/InputWithIcon.dart';\r\nimport 'package:covidly/Widgets/colors/LightTheme.dart';\r\nimport 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\nimport 'package:flutter/widgets.dart';\r\nimport 'package:fluttertoast/fluttertoast.dart';\r\nimport 'package:http/http.dart' as http;\r\nimport 'package:keyboard_visibility/keyboard_visibility.dart';\r\nimport 'package:lottie/lottie.dart';\r\n\r\nfinal phoneController = TextEditingController();\r\nbool isReset = false;\r\n\r\nclass LoginPage extends StatefulWidget {\r\n  @override\r\n  _LoginPageState createState() => _LoginPageState();\r\n}\r\n\r\nclass _LoginPageState extends State<LoginPage> {\r\n  int _pageState = 0;\r\n\r\n  var _backgroundColor = Colors.white;\r\n  var _headingColor = Color(0xFFB40284A);\r\n\r\n  double _headingTop = 100;\r\n\r\n  double _loginWidth = 0;\r\n  double _loginHeight = 0;\r\n  double _loginOpacity = 1;\r\n\r\n  double _loginYOffset = 0;\r\n  double _loginXOffset = 0;\r\n  double _registerYOffset = 0;\r\n  double _registerHeight = 0;\r\n\r\n  double windowWidth = 0;\r\n  double windowHeight = 0;\r\n\r\n  bool _keyboardVisible = false;\r\n\r\n  @override\r\n  void initState() {\r\n    super.initState();\r\n\r\n    KeyboardVisibilityNotification().addNewListener(\r\n      onChange: (bool visible) {\r\n        setState(() {\r\n          _keyboardVisible = visible;\r\n          print(\"Keyboard State Changed : $visible\");\r\n        });\r\n      },\r\n    );\r\n  }\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    windowHeight = MediaQuery.of(context).size.height;\r\n    windowWidth = MediaQuery.of(context).size.width;\r\n\r\n    _loginHeight = windowHeight - 270;\r\n    _registerHeight = windowHeight - 270;\r\n\r\n    switch (_pageState) {\r\n      case 0:\r\n        _backgroundColor = Colors.white;\r\n        _headingColor = Color(0xFFB40284A);\r\n\r\n        _headingTop = 100;\r\n\r\n        _loginWidth = windowWidth;\r\n        _loginOpacity = 1;\r\n\r\n        _loginYOffset = windowHeight;\r\n        _loginHeight = _keyboardVisible ? windowHeight : windowHeight - 270;\r\n\r\n        _loginXOffset = 0;\r\n        _registerYOffset = windowHeight;\r\n        break;\r\n      case 1:\r\n        _backgroundColor = LightTheme.primaryDarkColor;\r\n        _headingColor = Colors.white;\r\n\r\n        _headingTop = 90;\r\n\r\n        _loginWidth = windowWidth;\r\n        _loginOpacity = 1;\r\n\r\n        _loginYOffset = _keyboardVisible ? 40 : 270;\r\n        _loginHeight = _keyboardVisible ? windowHeight : windowHeight - 270;\r\n\r\n        _loginXOffset = 0;\r\n        _registerYOffset = windowHeight;\r\n        break;\r\n      case 2:\r\n        _backgroundColor = LightTheme.primaryColor;\r\n        _headingColor = Colors.white;\r\n\r\n        _headingTop = 80;\r\n\r\n        _loginWidth = windowWidth - 40;\r\n        _loginOpacity = 0.6;\r\n\r\n        _loginYOffset = _keyboardVisible ? 30 : 240;\r\n        _loginHeight = _keyboardVisible ? windowHeight : windowHeight - 240;\r\n\r\n        _loginXOffset = 20;\r\n        _registerYOffset = _keyboardVisible ? 55 : 270;\r\n        _registerHeight = _keyboardVisible ? windowHeight : windowHeight - 270;\r\n        break;\r\n    }\r\n\r\n    return Scaffold(\r\n      body: Stack(\r\n        children: <Widget>[\r\n          AnimatedContainer(\r\n              curve: Curves.fastLinearToSlowEaseIn,\r\n              duration: Duration(milliseconds: 1000),\r\n              color: _backgroundColor,\r\n              child: Column(\r\n                mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n                children: <Widget>[\r\n                  GestureDetector(\r\n                    onVerticalDragDown: (_) {\r\n                      setState(() {\r\n                        _pageState = 0;\r\n                      });\r\n                    },\r\n                    child: Container(\r\n                      child: Column(\r\n                        children: <Widget>[\r\n                          AnimatedContainer(\r\n                            curve: Curves.fastLinearToSlowEaseIn,\r\n                            duration: Duration(milliseconds: 1000),\r\n                            margin: EdgeInsets.only(\r\n                              top: _headingTop,\r\n                            ),\r\n                            child: Text(\r\n                              \"Covidly App\",\r\n                              style:\r\n                                  TextStyle(color: _headingColor, fontSize: 28),\r\n                            ),\r\n                          ),\r\n                          Container(\r\n                            margin: EdgeInsets.all(20),\r\n                            padding: EdgeInsets.symmetric(horizontal: 32),\r\n                            child: Text(\r\n                              \"An App for Covid-19 updates, best practices and relevant advisories of COVID-19\",\r\n                              textAlign: TextAlign.center,\r\n                              style:\r\n                                  TextStyle(color: _headingColor, fontSize: 16),\r\n                            ),\r\n                          )\r\n                        ],\r\n                      ),\r\n                    ),\r\n                  ),\r\n                  Container(\r\n                    child: Center(\r\n                      child: Lottie.asset(\r\n                        'assets/lottie/covid_fighting.json',\r\n                        repeat: true,\r\n                        reverse: true,\r\n                        animate: true,\r\n                      ),\r\n                    ),\r\n                  ),\r\n                  Container(\r\n                    child: GestureDetector(\r\n                      onTap: () {\r\n                        setState(() {\r\n                          if (_pageState != 0) {\r\n                            _pageState = 0;\r\n                          } else {\r\n                            _pageState = 1;\r\n                          }\r\n                        });\r\n                      },\r\n                      child: Column(\r\n                        children: [\r\n                          Container(\r\n                            margin: EdgeInsets.fromLTRB(32, 32, 32, 20),\r\n                            padding: EdgeInsets.all(20),\r\n                            width: double.infinity,\r\n                            decoration: BoxDecoration(\r\n                                color: LightTheme.primaryDarkColor,\r\n                                borderRadius: BorderRadius.circular(50)),\r\n                            child: Center(\r\n                              child: Text(\r\n                                \"Login\",\r\n                                style: TextStyle(\r\n                                    color: Colors.white,\r\n                                    fontSize: 18,\r\n                                    fontWeight: FontWeight.bold),\r\n                              ),\r\n                            ),\r\n                          ),\r\n                          Row(\r\n                            mainAxisAlignment: MainAxisAlignment.center,\r\n                            crossAxisAlignment: CrossAxisAlignment.center,\r\n                            children: [\r\n                              SizedBox(width: 10),\r\n                              Container(child: Text(\"Powered By \")),\r\n                              Icon(\r\n                                Icons.bolt,\r\n                                color: Colors.yellow,\r\n                              )\r\n                            ],\r\n                          ),\r\n                          SizedBox(height: 10),\r\n                          Container(\r\n                              margin: EdgeInsets.only(bottom: 20),\r\n                              child: Text(\r\n                                \"INFLUX INFOTECH\",\r\n                                style: TextStyle(\r\n                                    fontSize: 16, fontWeight: FontWeight.bold),\r\n                              ))\r\n                        ],\r\n                      ),\r\n                    ),\r\n                  ),\r\n                ],\r\n              )),\r\n          AnimatedContainer(\r\n            padding: EdgeInsets.all(32),\r\n            width: _loginWidth,\r\n            height: _loginHeight,\r\n            curve: Curves.fastLinearToSlowEaseIn,\r\n            duration: Duration(milliseconds: 1000),\r\n            transform:\r\n                Matrix4.translationValues(_loginXOffset, _loginYOffset, 1),\r\n            decoration: BoxDecoration(\r\n                color: Colors.white.withOpacity(_loginOpacity),\r\n                borderRadius: BorderRadius.only(\r\n                    topLeft: Radius.circular(25),\r\n                    topRight: Radius.circular(25))),\r\n            child: Column(\r\n              mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n              children: <Widget>[\r\n                Column(\r\n                  children: <Widget>[\r\n                    Visibility(\r\n                      visible: true,\r\n                      child: Container(\r\n                        margin: EdgeInsets.only(bottom: 20),\r\n                        child: Text(\r\n                          \"Login To Continue\",\r\n                          style: TextStyle(fontSize: 20),\r\n                        ),\r\n                      ),\r\n                    ),\r\n                    InputWithIcon(\r\n                      icon: Icons.phone_android,\r\n                      hint: \"Enter Phone Number...\",\r\n                      inputType: TextInputType.number,\r\n                      inputController: phoneController,\r\n                      isTextHidden: false,\r\n                    ),\r\n                    SizedBox(\r\n                      height: 10,\r\n                    ),\r\n                  ],\r\n                ),\r\n                Column(\r\n                  children: <Widget>[\r\n                    GestureDetector(\r\n                        onTap: () {\r\n                          setState(() {\r\n                            isReset = true;\r\n                            _pageState = 2;\r\n                          });\r\n                        },\r\n                        child: ButtonWithLoading(\r\n                          isReset: isReset,\r\n                          buttonTitle: \"Send otp\",\r\n                          btnColor: LightTheme.primaryDarkColor,\r\n                        )),\r\n                    SizedBox(\r\n                      height: 20,\r\n                    ),\r\n                  ],\r\n                ),\r\n              ],\r\n            ),\r\n          ),\r\n          AnimatedContainer(\r\n            height: _registerHeight,\r\n            padding: EdgeInsets.all(32),\r\n            curve: Curves.fastLinearToSlowEaseIn,\r\n            duration: Duration(milliseconds: 1000),\r\n            transform: Matrix4.translationValues(0, _registerYOffset, 1),\r\n            decoration: BoxDecoration(\r\n                color: Colors.white,\r\n                borderRadius: BorderRadius.only(\r\n                    topLeft: Radius.circular(25),\r\n                    topRight: Radius.circular(25))),\r\n            child: Column(\r\n              mainAxisAlignment: MainAxisAlignment.spaceBetween,\r\n              children: <Widget>[\r\n                Column(\r\n                  children: <Widget>[\r\n                    Container(\r\n                      margin: EdgeInsets.only(bottom: 20),\r\n                      child: Text(\r\n                        \"OTP Verification\",\r\n                        style: TextStyle(fontSize: 20),\r\n                      ),\r\n                    ),\r\n                    InputWithIcon(\r\n                      icon: Icons.phone_android,\r\n                      hint: \"Enter OTP\",\r\n                      inputType: TextInputType.number,\r\n                      inputController: phoneController,\r\n                      isTextHidden: false,\r\n                    ),\r\n                    //   SizedBox(height: 20,),\r\n                    //   InputWithIcon(\r\n                    //     icon: Icons.vpn_key,\r\n                    //     hint: \"Enter Password...\",\r\n                    //   )\r\n                    //\r\n                  ],\r\n                ),\r\n                Column(\r\n                  children: <Widget>[\r\n                    GestureDetector(\r\n                      onTap: () {\r\n                        Navigator.of(context).push(MaterialPageRoute(\r\n                          builder: (context) => MainScreen(),\r\n                        ));\r\n                      },\r\n                      child: PrimaryButton(\r\n                        btnText: \"Verify\",\r\n                      ),\r\n                    ),\r\n                    SizedBox(\r\n                      height: 20,\r\n                    ),\r\n                    GestureDetector(\r\n                      onTap: () {\r\n                        setState(() {\r\n                          _pageState = 1;\r\n                        });\r\n                      },\r\n                      child: OutlineBtn(\r\n                        btnText: \"Back To Login\",\r\n                      ),\r\n                    )\r\n                  ],\r\n                ),\r\n              ],\r\n            ),\r\n          ),\r\n        ],\r\n      ),\r\n    );\r\n  }\r\n\r\n  fetchStudentData(BuildContext context, String uMobile, String uPass) async {\r\n    if (uMobile.isEmpty || uPass.isEmpty) {\r\n      Fluttertoast.showToast(\r\n          msg: \"Please fill all the details\",\r\n          toastLength: Toast.LENGTH_SHORT,\r\n          gravity: ToastGravity.BOTTOM,\r\n          backgroundColor: Colors.white,\r\n          textColor: Colors.black87);\r\n\r\n      setState(() {\r\n        isReset = false;\r\n      });\r\n    } else {\r\n      if (uMobile.length < 10) {\r\n        Fluttertoast.showToast(\r\n            msg: \"Please enter a valid phone number\",\r\n            toastLength: Toast.LENGTH_SHORT,\r\n            gravity: ToastGravity.BOTTOM,\r\n            backgroundColor: Colors.white,\r\n            textColor: Colors.black87);\r\n\r\n        setState(() {\r\n          isReset = false;\r\n        });\r\n      } else {\r\n        setState(() {\r\n          isReset = true;\r\n        });\r\n      }\r\n    }\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Screens/LoginPage.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Screens/LoginPage.dart	(date 1626116655714)
+@@ -6,6 +6,8 @@
+ import 'package:covidly/Widgets/Buttons/buttonWithLoading.dart';
+ import 'package:covidly/Widgets/TextInputWidgets/InputWithIcon.dart';
+ import 'package:covidly/Widgets/colors/LightTheme.dart';
++import 'package:firebase_auth/firebase_auth.dart';
++import 'package:firebase_core/firebase_core.dart';
+ import 'package:flutter/cupertino.dart';
+ import 'package:flutter/material.dart';
+ import 'package:flutter/widgets.dart';
+@@ -14,15 +16,19 @@
+ import 'package:keyboard_visibility/keyboard_visibility.dart';
+ import 'package:lottie/lottie.dart';
+ 
+-final phoneController = TextEditingController();
+-bool isReset = false;
+-
+ class LoginPage extends StatefulWidget {
+   @override
+   _LoginPageState createState() => _LoginPageState();
+ }
+ 
+ class _LoginPageState extends State<LoginPage> {
++  final phoneController = TextEditingController();
++  final otpController = TextEditingController();
++  bool isReset = false;
++  bool verifiyingOtp = false;
++  String verificationID;
++  bool codeSent = false;
++
+   int _pageState = 0;
+ 
+   var _backgroundColor = Colors.white;
+@@ -58,6 +64,52 @@
+     );
+   }
+ 
++  Future<void> registerUser(String mobile, BuildContext context) async {
++    FirebaseAuth _auth = FirebaseAuth.instance;
++
++    final PhoneVerificationCompleted verificationCompleted = (AuthCredential authResult) {
++      _auth.signInWithCredential(authResult);
++    };
++
++    final PhoneVerificationFailed verificationFailed = (AuthException authException) {
++      print('yes ${authException.message}');
++      setState(() {
++        verifiyingOtp = false;
++      });
++      Fluttertoast.showToast(msg: "Invalid OTP", gravity: ToastGravity.BOTTOM);
++    };
++
++    final PhoneCodeSent smsSent = (String verID, [int forceResend]) {
++      this.verificationID = verID;
++      setState(() {
++        codeSent = true;
++      });
++    };
++
++    final PhoneCodeAutoRetrievalTimeout authTimeout = (String verID) {
++      this.verificationID = verID;
++    };
++
++    await _auth.verifyPhoneNumber(
++        phoneNumber: "+91" + mobile,
++        timeout: const Duration(seconds: 5),
++        verificationCompleted: verificationCompleted,
++        verificationFailed: verificationFailed,
++        codeSent: smsSent,
++        codeAutoRetrievalTimeout: authTimeout);
++  }
++
++  Future<void> verifyOtp(smsCode, verID) async {
++    setState(() {
++      verifiyingOtp = true;
++    });
++
++    AuthCredential credential = PhoneAuthProvider.getCredential(verificationId: verID, smsCode: smsCode);
++    await FirebaseAuth.instance.signInWithCredential(credential).then((value) => setState(() {
++          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreen()));
++        }));
++  }
++
+   @override
+   Widget build(BuildContext context) {
+     windowHeight = MediaQuery.of(context).size.height;
+@@ -142,8 +194,7 @@
+                             ),
+                             child: Text(
+                               "Covidly App",
+-                              style:
+-                                  TextStyle(color: _headingColor, fontSize: 28),
++                              style: TextStyle(color: _headingColor, fontSize: 28),
+                             ),
+                           ),
+                           Container(
+@@ -152,8 +203,7 @@
+                             child: Text(
+                               "An App for Covid-19 updates, best practices and relevant advisories of COVID-19",
+                               textAlign: TextAlign.center,
+-                              style:
+-                                  TextStyle(color: _headingColor, fontSize: 16),
++                              style: TextStyle(color: _headingColor, fontSize: 16),
+                             ),
+                           )
+                         ],
+@@ -187,16 +237,11 @@
+                             margin: EdgeInsets.fromLTRB(32, 32, 32, 20),
+                             padding: EdgeInsets.all(20),
+                             width: double.infinity,
+-                            decoration: BoxDecoration(
+-                                color: LightTheme.primaryDarkColor,
+-                                borderRadius: BorderRadius.circular(50)),
++                            decoration: BoxDecoration(color: LightTheme.primaryDarkColor, borderRadius: BorderRadius.circular(50)),
+                             child: Center(
+                               child: Text(
+                                 "Login",
+-                                style: TextStyle(
+-                                    color: Colors.white,
+-                                    fontSize: 18,
+-                                    fontWeight: FontWeight.bold),
++                                style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                               ),
+                             ),
+                           ),
+@@ -205,21 +250,14 @@
+                             crossAxisAlignment: CrossAxisAlignment.center,
+                             children: [
+                               SizedBox(width: 10),
+-                              Container(child: Text("Powered By ")),
++                              Container(child: Text("Made with ")),
+                               Icon(
+-                                Icons.bolt,
+-                                color: Colors.yellow,
++                                CupertinoIcons.heart_solid,
++                                color: Colors.red,
+                               )
+                             ],
+                           ),
+-                          SizedBox(height: 10),
+-                          Container(
+-                              margin: EdgeInsets.only(bottom: 20),
+-                              child: Text(
+-                                "INFLUX INFOTECH",
+-                                style: TextStyle(
+-                                    fontSize: 16, fontWeight: FontWeight.bold),
+-                              ))
++                          SizedBox(height: 20),
+                         ],
+                       ),
+                     ),
+@@ -232,13 +270,8 @@
+             height: _loginHeight,
+             curve: Curves.fastLinearToSlowEaseIn,
+             duration: Duration(milliseconds: 1000),
+-            transform:
+-                Matrix4.translationValues(_loginXOffset, _loginYOffset, 1),
+-            decoration: BoxDecoration(
+-                color: Colors.white.withOpacity(_loginOpacity),
+-                borderRadius: BorderRadius.only(
+-                    topLeft: Radius.circular(25),
+-                    topRight: Radius.circular(25))),
++            transform: Matrix4.translationValues(_loginXOffset, _loginYOffset, 1),
++            decoration: BoxDecoration(color: Colors.white.withOpacity(_loginOpacity), borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+             child: Column(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: <Widget>[
+@@ -258,6 +291,7 @@
+                       icon: Icons.phone_android,
+                       hint: "Enter Phone Number...",
+                       inputType: TextInputType.number,
++                      maxLength: 10,
+                       inputController: phoneController,
+                       isTextHidden: false,
+                     ),
+@@ -270,10 +304,17 @@
+                   children: <Widget>[
+                     GestureDetector(
+                         onTap: () {
+-                          setState(() {
+-                            isReset = true;
+-                            _pageState = 2;
+-                          });
++                          if (phoneController.text.length != 10) {
++                            Fluttertoast.showToast(msg: "Please enter a valid number");
++                          } else {
++                            setState(() {
++                              isReset = true;
++                              registerUser(phoneController.text, context);
++                              if (true) {
++                                _pageState = 2;
++                              }
++                            });
++                          }
+                         },
+                         child: ButtonWithLoading(
+                           isReset: isReset,
+@@ -294,11 +335,7 @@
+             curve: Curves.fastLinearToSlowEaseIn,
+             duration: Duration(milliseconds: 1000),
+             transform: Matrix4.translationValues(0, _registerYOffset, 1),
+-            decoration: BoxDecoration(
+-                color: Colors.white,
+-                borderRadius: BorderRadius.only(
+-                    topLeft: Radius.circular(25),
+-                    topRight: Radius.circular(25))),
++            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+             child: Column(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: <Widget>[
+@@ -315,7 +352,7 @@
+                       icon: Icons.phone_android,
+                       hint: "Enter OTP",
+                       inputType: TextInputType.number,
+-                      inputController: phoneController,
++                      inputController: otpController,
+                       isTextHidden: false,
+                     ),
+                     //   SizedBox(height: 20,),
+@@ -330,12 +367,16 @@
+                   children: <Widget>[
+                     GestureDetector(
+                       onTap: () {
+-                        Navigator.of(context).push(MaterialPageRoute(
+-                          builder: (context) => MainScreen(),
+-                        ));
++                        if (otpController.text.length < 6) {
++                          Fluttertoast.showToast(msg: "Invalid OTP");
++                        } else {
++                          verifyOtp(otpController.text, verificationID);
++                        }
+                       },
+-                      child: PrimaryButton(
+-                        btnText: "Verify",
++                      child: ButtonWithLoading(
++                        isReset: verifiyingOtp,
++                        buttonTitle: "Verify otp",
++                        btnColor: LightTheme.primaryDarkColor,
+                       ),
+                     ),
+                     SizedBox(
+@@ -363,24 +404,14 @@
+ 
+   fetchStudentData(BuildContext context, String uMobile, String uPass) async {
+     if (uMobile.isEmpty || uPass.isEmpty) {
+-      Fluttertoast.showToast(
+-          msg: "Please fill all the details",
+-          toastLength: Toast.LENGTH_SHORT,
+-          gravity: ToastGravity.BOTTOM,
+-          backgroundColor: Colors.white,
+-          textColor: Colors.black87);
++      Fluttertoast.showToast(msg: "Please fill all the details", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.BOTTOM, backgroundColor: Colors.white, textColor: Colors.black87);
+ 
+       setState(() {
+         isReset = false;
+       });
+     } else {
+       if (uMobile.length < 10) {
+-        Fluttertoast.showToast(
+-            msg: "Please enter a valid phone number",
+-            toastLength: Toast.LENGTH_SHORT,
+-            gravity: ToastGravity.BOTTOM,
+-            backgroundColor: Colors.white,
+-            textColor: Colors.black87);
++        Fluttertoast.showToast(msg: "Please enter a valid phone number", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.BOTTOM, backgroundColor: Colors.white, textColor: Colors.black87);
+ 
+         setState(() {
+           isReset = false;
+Index: lib/Widgets/Buttons/backButton.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import 'package:flutter/cupertino.dart';\r\nimport 'package:flutter/material.dart';\r\n\r\nclass backButton extends StatelessWidget {\r\n\r\n  Color borderColor;\r\n  IconData iconData;\r\n\r\n  backButton({@required this.borderColor, this.iconData});\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return Container(\r\n      width: 50,\r\n      height: 50,\r\n      decoration: BoxDecoration(\r\n        borderRadius: BorderRadius.circular(15),\r\n        border: Border.all(color: borderColor.withOpacity(0.6)),\r\n      ),\r\n      child: Icon(\r\n          iconData ?? Icons.arrow_back_ios_rounded,\r\n          color: borderColor.withOpacity(0.8)),\r\n    );\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/Widgets/Buttons/backButton.dart	(revision f276e4d65d40fabdf16d666b9517052074990ef1)
++++ lib/Widgets/Buttons/backButton.dart	(date 1625735623730)
+@@ -5,8 +5,9 @@
+ 
+   Color borderColor;
+   IconData iconData;
++  Color containerColor;
+ 
+-  backButton({@required this.borderColor, this.iconData});
++  backButton({@required this.borderColor, this.iconData, this.containerColor});
+ 
+   @override
+   Widget build(BuildContext context) {
+@@ -16,10 +17,11 @@
+       decoration: BoxDecoration(
+         borderRadius: BorderRadius.circular(15),
+         border: Border.all(color: borderColor.withOpacity(0.6)),
++        color: containerColor != null ? containerColor : null
+       ),
+       child: Icon(
+           iconData ?? Icons.arrow_back_ios_rounded,
+-          color: borderColor.withOpacity(0.8)),
++          color: containerColor != null ? Colors.black : borderColor.withOpacity(0.8)),
+     );
+   }
+ }
